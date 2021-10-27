@@ -26,30 +26,30 @@
     <nav>
       <ul class="itens">
         <li><a href="{# {{url_for('topicos')}} #}">Tópicos</a></li>
-        {# {% if current_user.is_authenticated %} #}
+         {% if current_user.is_authenticated %}
         <li><a href="{# {{url_for('contato')}} #}">Contato</a></li>
         <li><a href="{# {{url_for('perfil')}} #}">Perfil</a></li>
-       {# {% endif %} #}
+        {% endif %}
 
       </ul>
     </nav>
 
     <nav>
-     {# {% if current_user.is_authenticated %} #}
+      {% if current_user.is_authenticated %}
       <ul class="sair">
         <li><a href="{# {{url_for('logout')}} #}">Logout</a></li>
       </ul>
-     {# {% else %} #}
+      {% else %}
       <ul class="registrar">
         <li> <a href="register">registrar</a> </li>
       </ul>
-     {# {% endif %} #}
-     {# {% if current_user.is_authenticated %} #}
+      {% endif %}
+      {% if current_user.is_authenticated %}
 
-     {# {% else %} #}
+      {% else %}
       <ul class="entrar">
         <li> <a href="login">entrar</a> </li>
-    {#    {% endif %} #}
+        {% endif %}
       </ul>
     </nav>
 

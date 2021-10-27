@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, url_for, flash, render_template
 from ...ext.database import db
 from ..usuario.entidades import User
-from flask_login import login_user, login_required
+from flask_login import login_user
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
 
