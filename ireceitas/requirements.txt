@@ -2,3 +2,9 @@ flask
 dynaconf
 toml
 flaskstarter
+flask-sqlalchemy
+flask-migrate
+mysqlclient
+flask-bcrypt
+flask-mail
+flask-login
