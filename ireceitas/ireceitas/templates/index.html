@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block css %}/static/css/home.css {% endblock %}
+{% block css %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
 
 {% block titulo %}Página inicial{% endblock %}
 
@@ -42,7 +42,7 @@
                 <img src="/static/imagens/carrossel/bolonhesa_imagem1.jpeg" class="rounded" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h4 class="texto"><strong>Massas</strong></h4>
-                  <a href="/massas">
+                  <a href="{{url_for('receitas.massas')}}">
                     <h5 class="texto"><strong>Como fazer aquela lasanha a bolonhesa deliciosa? </strong></h5>
                   </a>
                 </div>
@@ -54,7 +54,7 @@
                 <img src="/static/imagens/carrossel/bolofit_imagem2.jpg" class="rounded" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h4 class="texto"><strong>Comidas Fitness</strong></h4>
-                  <a href="comidasfit">
+                  <a href="{{url_for('receitas.comidasfit')}}">
                     <h5 class="texto"><strong>Como fazer uma Bolo fit delicioso de banana e aveia?</strong></h5>
                   </a>
                 </div>
@@ -65,7 +65,7 @@
                 <img src="/static/imagens/carrossel/bolo_imagem3.jpg" class="rounded" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                   <h4 class="texto"><strong>Sobremesas</strong></h4>
-                  <a href="sobremesas">
+                  <a href="{{url_for('receitas.sobremesas')}}">
                     <h5 class="texto"><strong>Como fazer um maravilhoso bolo de chocolate?</strong></h5>
                   </a>
                 </div>

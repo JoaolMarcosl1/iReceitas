@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/static/css/nav-rodape.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="{% block css %}{% endblock %}">
+  {% block css %}{% endblock %}
   <title> {% block titulo %}{% endblock %} </title>
 </head>
 
@@ -37,18 +37,18 @@
     <nav>
       {% if current_user.is_authenticated %}
       <ul class="sair">
-        <li><a href="{# {{url_for('logout')}} #}">Logout</a></li>
+        <li><a href="{{url_for('logout')}}">Logout</a></li>
       </ul>
       {% else %}
       <ul class="registrar">
-        <li> <a href="register">registrar</a> </li>
+        <li> <a href="{{ url_for('autenticacao.register')}}">registrar</a> </li>
       </ul>
       {% endif %}
       {% if current_user.is_authenticated %}
 
       {% else %}
       <ul class="entrar">
-        <li> <a href="login">entrar</a> </li>
+        <li> <a href="{{ url_for('autenticacao.login')}}">entrar</a> </li>
         {% endif %}
       </ul>
     </nav>
