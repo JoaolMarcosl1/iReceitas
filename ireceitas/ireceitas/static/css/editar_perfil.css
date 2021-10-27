@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+
+body {
+    background: #bf902a;
+    height:100%
+}
+
+.geral {
+    min-height:100%;
+    position:relative;
+    width:800px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ffa430;
+}
+
+.botao-enviar{
+    background: #bf902a;
+    box-shadow: none;
+    border: none
+}
+/*
+.botao-enviar:hover {
+    background: #d57700;
+}
+
+.botao-enviar:focus {
+    background: #784607;
+    box-shadow: none
+}
+*/
+.voltar {
+    background: #bf902a;
+    box-shadow: none;
+    border: none;
+}
+
+
+/*
+.voltar {
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  color: #bf902a;
+}
+
+.voltar:hover {
+ color: #d57700;
+}
+*/
+
+#h2, .titulo{
+  font-family: "Montserrat", italic;
+}

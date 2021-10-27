@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap');
+
+body{
+  background:#f2f2f2;
+}
+
+.Lasanha{
+  width: 10x;
+  height:480px;
+  margin-left:-25px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+  margin-top: 90px;
+}
+
+.massalasanha{
+  margin-left:1048px;
+  font-family:IBM Plex Serif;
+  margin-top: -485px;
+}
+
+.descricaomassa{
+  margin-left:1048px;
+  width:600px;
+  font-family:Nanum Myeongjo;
+  margin-top: -400px;
+ }
+
+.especificacoes{
+  font-family:Nanum Myeongjo;
+  margin-left:150px;
+  font-size:25px;
+}
+
+#linha-horizontal {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:150px;
+    margin-top: 95px;
+}
+
+#molho{
+   margin-top: -15px;
+   margin-left:412px;
+   font-family:IBM Plex Serif;
+}
+
+#linha-horizontal2 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:790px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+#linha-horizontal3 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:720px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+#modospreparomassas{
+  margin-left:150px;
+  font-family:Times New Roman;
+  letter-spacing:1.2px;
+  margin-bottom: 65px;
+}
+
+#ingredientesmassas{
+   margin-left:150px;
+  letter-spacing:1.5px;
+   font-family:Nanum Myeongjo;
+   margin-top: -22px;
+   margin-bottom: 55px;
+}
+
+.text-break{
+  margin-right:815px;
+  margin-left:150px;
+  letter-spacing:1.5px;
+  font-family:Nanum Myeongjo;
+  font-size:25px;
+}
+
+#linha-horizontal4 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:670px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+.BoloBanana{
+  width:853px;
+  height:480px;
+  border-radius:10px;
+  margin-bottom:80px;
+  margin-top: 65px;
+  margin-left:-25px;
+}
+
+.receita{
+  margin-left:1048px;
+  font-family:IBM Plex Serif;
+  margin-top: -485px;
+}
+
+.descricaofit{
+  margin-left:1048px;
+  width:600px;
+  font-family:Nanum Myeongjo;
+  margin-top: -390px;
+ }
+
+#linha-horizontal5 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:585px;
+    margin-top:-23px;
+}
+
+#massafit{
+   margin-top: -15px;
+   margin-left:412px;
+   font-family:IBM Plex Serif;
+}
+
+
+#modospreparofit{
+  margin-left:150px;
+  font-family:Times New Roman;
+  letter-spacing:1.2px;
+  margin-bottom: 65px;
+}
+
+#ingredientesfit{
+   margin-left:150px;
+  letter-spacing:1.5px;
+   font-family:Nanum Myeongjo;
+   margin-top: -22px;
+   margin-bottom: 55px;
+}
+
+.BoloChocolate{
+  width:853px;
+  height:480px;
+  margin-left:-25px;
+  border-radius:10px;
+  margin-bottom:80px;
+  margin-top: 65px;
+}
+
+.bolo{
+  margin-left:1048px;
+  font-family:IBM Plex Serif;
+  margin-top: -485px;
+}
+
+.recheio{
+  margin-left:1048px;
+  font-family:IBM Plex Serif;
+  margin-top: -435px;
+}
+
+.descricaosobre{
+  margin-left:1080px;
+  width:600px;
+  font-family:Nanum Myeongjo;
+  margin-top: -350px;
+}
+
+#massabolo{
+   margin-top: -15px;
+   margin-left:412px;
+   font-family:IBM Plex Serif;
+}
+
+#linha-horizontal6{
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:605px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+#modospreparosobre{
+  margin-left:150px;
+  font-family:Times New Roman;
+  letter-spacing:1.2px;
+  margin-bottom: 65px;
+}
+
+#igredientesSobre{
+
+
+  margin-left:150px;
+  letter-spacing:1.5px;
+  font-family:Nanum Myeongjo;
+  margin-top: -22px;
+  margin-bottom: 65px;
+}
+
+
+#linha-horizontal7{
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:1005px;
+    margin-top: -25px;
+    margin-bottom: 75px;
+
+}
+
+#linha-horizontal8 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:660px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+#linha-horizontal9 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:998px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}
+
+#linha-horizontal10 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:670px;
+    margin-top: -22px;
+}
+
+#linha-horizontal11 {
+    width: 250px;
+    border: 1px solid #ff6600;
+    margin-left:145px;
+    margin-top: -22px;
+    margin-bottom: 75px;
+}

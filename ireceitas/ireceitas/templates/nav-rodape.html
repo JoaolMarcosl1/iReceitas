@@ -37,14 +37,14 @@
       </ul>
      {# {% else %} #}
       <ul class="registrar">
-        <li> <a href="register">registrar</a> </li>
+        <li> <a href="{{url_for('autenticacao.register')}}">registrar</a> </li>
       </ul>
      {# {% endif %} #}
      {# {% if current_user.is_authenticated %} #}
 
      {# {% else %} #}
       <ul class="entrar">
-        <li> <a href="login">entrar</a> </li>
+        <li> <a href="{{url_for('autenticacao.login')}}">entrar</a> </li>
     {#    {% endif %} #}
       </ul>
     </nav>
