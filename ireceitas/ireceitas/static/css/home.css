@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+
+
+
+.tudo {
+    height: 100% ;
+}
+
+..geral {
+    min-height:100%;
+    position:relative;
+    width: 100%;
+}
+
+.rounded{
+  height:700px;
+  width:1700px;
+}
+
+.texto{
+  color:white;
+  font-family: "Montserrat";
+  letter-spacing:1.6px;
+  text-decoration: none;
+}
+
+
+
+.linha-horizontal {
+    width: 100%
+    border: 20px solid #f2f2f2;
+
+}
+
+
