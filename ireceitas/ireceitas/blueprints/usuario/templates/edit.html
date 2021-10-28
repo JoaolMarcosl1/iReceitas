@@ -36,7 +36,7 @@
             </div>
             <h5> <a class="btn btn-warning voltar" href="{{url_for('root')}}"> Tela inicial </a> </h5>
           </div>
-          <form action="usuario/edit/{{current_user.id}} " method="post">
+          <form action="/usuario/edit/{{current_user.id}} " method="post">
             <div class="row mt-2">
               <div class="col-md-6"> <input type="text" name="name" value="{{ current_user.name }}" class="form-control" placeholder="Nome de usuário"> </div>
             </div>
