@@ -1,50 +1,48 @@
+
 <!--<html lang="PT-BR">-->
 
 <!--<head>-->
-
 <!--  <meta charset="utf-8">-->
 <!--  <meta name="viewport" content="width=device-width">-->
 <!--  <link href="/static/css/bootstrap.min.css" rel="stylesheet">-->
 <!--  <link rel="stylesheet" href="/static/css/editar_perfil.css">-->
-<!--  <link rel="stylesheet" href="/static/css/home.css">-->
 <!--  <script src="/static/js/bootstrap.bundle.min.js"></script>-->
 <!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
-<!--  <title> Edição de dados </title>-->
+
+<!--  <title> Contato </title>-->
 
 <!--</head>-->
 
 <!--<body>-->
 {% extends 'base.html' %}
 
-{% block css %}<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+{% block css %}<link rel="stylesheet" href="static/css/editar_perfil.css"> {% endblock %}
 
-{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
+{% block titulo %}Página inicial{% endblock %}
 
-{% block titulo %}Editar Perfil{% endblock %}
 
 {% block conteudo %}
+  {% if current_user.is_authenticated %}
   <div class="container rounded bg-white mt-5 geral">
     <div class="row">
       <div class="col-md-4 border-right">
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="/static/imagens/default_perfil.png" alt"x" width="190" height="190"> </div>
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="static/images/icon_contato.png" width="190" height="190" alt"x"> </div>
       </div>
       <div class="col-md-8">
+
         <div class="p-3 py-5">
           <div class="d-flex justify-content-between align-items-center mb-3 titulo">
-            <h2> Edição de dados </h2>
+            <h2> Contato </h2>
             <div class="d-flex flex-row align-items-center back">
             </div>
-            <h5> <a class="btn btn-warning voltar" href="{{url_for('root')}}"> Tela inicial </a> </h5>
+            <h5> <a class="btn btn-warning voltar" href="{{url_for('home')}}"> Tela inicial </a> </h5>
           </div>
-          <form action="/edit/{# {{user.id}} #}" method="post">
+          <form action="" method="POST">
             <div class="row mt-2">
-              <div class="col-md-6"> <input type="text" name="name" value="{{ current_user.name }}" class="form-control" placeholder="Nome de usuário"> </div>
+              <div class="col-md-6"> <input type="tittle" name="tittle" placeholder="Título da mensagem" class="form-control" required id=""> </div>
             </div>
             <div class="row mt-3">
-              <div class="col-md-6"> <input type="email" name="email" value="{{ current_user.email }}" class="form-control" placeholder="Email"> </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6"> <textarea name="sobre" value="{{current_user.sobre}}" id="" cols="9" rows="4" class="form-control" placeholder="{{current_user.sobre}}"></textarea></div>
+              <div class="col-md-6"> <textarea name="message" id="" placeholder="Mensagem" cols="9" required rows="4" class="form-control"> </textarea> </div>
             </div>
             <div class="mt-5 text-right"><button class="btn btn-warning botao-enviar" type="submit"> Enviar </button> </div>
           </form>
@@ -52,7 +50,14 @@
       </div>
     </div>
   </div>
+
+  {% else %}
+
+  <h1>Somente quem esta logado pode enviar um e-mail para a nossa central</h1>
+
+  {% endif %}
+
 <!--</body>-->
-{% endblock %}
+  {% endblock %}
 
 <!--</html>-->

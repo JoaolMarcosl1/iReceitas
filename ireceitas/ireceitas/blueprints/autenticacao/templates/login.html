@@ -11,11 +11,11 @@
   <title> Login </title>
 </head>
 
-{# {% if current_user.is_authenticated %} #}
-<h1>Olá {# {{ current_user.name }} #}, nosso sistema verificou que você ja está logado! Em 5 segundos você será redirecionado para a tela inicial.</h1>
-<meta http-equiv="refresh" content="2; URL='home'" />
+ {% if current_user.is_authenticated %}
+<h1>Olá {{ current_user.name }}, nosso sistema verificou que você ja está logado! Em 5 segundos você será redirecionado para a tela inicial.</h1>
+<meta http-equiv="refresh" content="2; URL='/'" />
 
-{# {% else %} #}
+ {% else %}
 
 <body>
   <div class="container-fluid">
@@ -29,7 +29,7 @@
                 <center>
                   <h1 class="login-heading mb-4"> Login </h1>
                 </center>
-                <form action="" class="container" method="post">
+                <form action="{{url_for('autenticacao.login')}}" class="container" method="post">
                   {% for mess in get_flashed_messages() %}
                   <div class="row justify-content-center">
                     {{mess}}
@@ -66,4 +66,4 @@
 </body>
 
 </html>
-{# {% endif %} #}
+{% endif %}
