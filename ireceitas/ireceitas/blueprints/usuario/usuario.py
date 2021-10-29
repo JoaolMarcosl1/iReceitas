@@ -35,7 +35,7 @@ def edit(id):
 
         except IntegrityError:
             flash("Opa! Esse e-mail ja esta sendo utilizado.")
-            return redirect(url_for('root'))
+            return redirect(url_for('usuario.perfil'))
 
             #return "E-mail existe"
             #db.session.commit()
