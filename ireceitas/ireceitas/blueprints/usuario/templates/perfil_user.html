@@ -29,14 +29,14 @@
 {% block conteudo %}
   {% if current_user.is_authenticated %}
 
-  {# {% for mess in get_flashed_messages() %} #}
+   {% for mess in get_flashed_messages() %}
 
   <center>
 
-   {# {{mess}} #}
+    {{mess}}
   </center>
 
- {# {%endfor%} #}
+  {%endfor%}
   <div class="container rounded bg-white mt-5 geral">
     <div class="row">
       <div class="col-md-4 border-right">
