@@ -28,7 +28,7 @@
       <ul class="itens">
         <li><a href="{# {{url_for('topicos')}} #}">Tópicos</a></li>
          {% if current_user.is_authenticated %}
-        <li><a href="{# {{url_for('contato')}} #}">Contato</a></li>
+        <li><a href=" {{url_for('contato.contato')}}">Contato</a></li>
         <li><a href="  {{url_for('usuario.perfil')}} ">Perfil</a></li>
         {% endif %}
 
