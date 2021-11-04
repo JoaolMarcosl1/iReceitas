@@ -5,10 +5,19 @@ from flask_login import login_user, logout_user
 from ireceitas.ext.database import db
 from ireceitas.ext.mail import mail
 from ..usuario.entidades import User
+from ... import create_app
+import os
+from werkzeug.utils import secure_filename
 
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
 s = URLSafeTimedSerializer('123456')
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -17,7 +26,10 @@ def register():
         email = request.form['email']
         pwd = request.form['password']
         sobre = ""
-
+        if 'foto_perfil' not in request.files:
+            flash("Não deu certo inserir essa imagem")
+            return redirect(url_for('autenticacao.register'))
+        foto = request.files['foto_perfil']
 
         jatem = User.query.filter_by(email=email).first()
 
@@ -26,19 +38,33 @@ def register():
             return redirect(url_for('autenticacao.register'))
 
         else:
+            if foto and allowed_file(foto.filename):
+                user = User(name, email, pwd, sobre)
 
-            user = User(name, email, pwd, sobre)
-            token = s.dumps(email, salt='email-confirm')
-            msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
-            link = url_for('autenticacao.confirm_email', token=token, _external=True)
-            msg.body = 'Confirme seu e-mail, link: {}'.format(link)
-            msg.html = render_template('ativacao_conta.html', link=link)
-            mail.send(msg)
-            flash('Foi enviado um e-mail de confirmação de conta!')
-            db.session.add(user)
-            db.session.commit()
-            return redirect(url_for('autenticacao.login'))
+                token = s.dumps(email, salt='email-confirm')
+                msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
+                link = url_for('autenticacao.confirm_email', token=token, _external=True)
+                msg.body = 'Confirme seu e-mail, link: {}'.format(link)
+                msg.html = render_template('ativacao_conta.html', link=link)
+                mail.send(msg)
+                flash('Foi enviado um e-mail de confirmação de conta!')
 
+                db.session.add(user)
+                db.session.commit()
+
+                filename =  secure_filename(foto.filename)
+                filename = filename.split(".")
+                id = user.id
+                filename = 'PerfilUser' + str(id) + '.' + filename[1]
+                user.profile_img = filename
+
+                app = create_app()
+                foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+
+                db.session.add(user)
+                db.session.commit()
+
+                return redirect(url_for('autenticacao.login'))
     return render_template('register.html')
 
 
