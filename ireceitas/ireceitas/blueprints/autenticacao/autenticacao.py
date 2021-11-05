@@ -13,7 +13,7 @@ bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_fo
 
 s = URLSafeTimedSerializer('123456')
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
 def allowed_file(filename):
@@ -38,20 +38,20 @@ def register():
             return redirect(url_for('autenticacao.register'))
 
         else:
+
+            user = User(name, email, pwd, sobre)
+
+            token = s.dumps(email, salt='email-confirm')
+            msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
+            link = url_for('autenticacao.confirm_email', token=token, _external=True)
+            msg.body = 'Confirme seu e-mail, link: {}'.format(link)
+            msg.html = render_template('ativacao_conta.html', link=link)
+            mail.send(msg)
+            flash('Foi enviado um e-mail de confirmação de conta!')
+
+            db.session.add(user)
+            db.session.commit()
             if foto and allowed_file(foto.filename):
-                user = User(name, email, pwd, sobre)
-
-                token = s.dumps(email, salt='email-confirm')
-                msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
-                link = url_for('autenticacao.confirm_email', token=token, _external=True)
-                msg.body = 'Confirme seu e-mail, link: {}'.format(link)
-                msg.html = render_template('ativacao_conta.html', link=link)
-                mail.send(msg)
-                flash('Foi enviado um e-mail de confirmação de conta!')
-
-                db.session.add(user)
-                db.session.commit()
-
                 filename =  secure_filename(foto.filename)
                 filename = filename.split(".")
                 id = user.id
@@ -64,7 +64,7 @@ def register():
                 db.session.add(user)
                 db.session.commit()
 
-                return redirect(url_for('autenticacao.login'))
+            return redirect(url_for('autenticacao.login'))
     return render_template('register.html')
 
 
@@ -107,7 +107,9 @@ def login():
 @bp.route("/delete/<int:id>", methods=['GET', 'POST'])
 def delete(id):
     user = User.query.get(id)
-
+    if user.profile_img != 'default_perfil.png':
+        app = create_app()
+        os.remove(os.path.join(app.config['UPLOAD_PERFIL'], user.profile_img))
     db.session.delete(user)
     db.session.commit()
 
