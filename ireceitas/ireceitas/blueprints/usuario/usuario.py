@@ -1,15 +1,18 @@
-from flask import Blueprint, render_template, flash, request, url_for, redirect
-from flask_login import current_user
+from flask import Blueprint, render_template, flash, request, url_for, redirect, send_from_directory
+from flask_login import current_user, login_required
 from ...ext.database import db
 from .entidades import User
 from sqlalchemy.exc import IntegrityError
+from ... import create_app
+import os
+from werkzeug.utils import secure_filename
 
 bp = Blueprint('usuario', __name__, url_prefix='/usuario', template_folder='templates')
 
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-# @bp.route('/')
-# def root():
-#     return render_template('edit.html')
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/perfil')
 def perfil():
@@ -27,9 +30,34 @@ def edit(id):
         user.name = request.form['name']
         user.email = request.form['email']
         user.sobre = request.form['sobre']
-
+        foto = request.files['foto_perfil']
+        resetar_imagem = "nao"
+        if 'resetar_imagem' in request.form:
+            resetar_imagem = request.form['resetar_imagem']
         try:
             db.session.commit()
+
+            if foto and allowed_file(foto.filename):
+                app = create_app()
+                if user.profile_img != 'default_perfil.png':
+                    os.remove(os.path.join(app.config['UPLOAD_PERFIL'], user.profile_img))
+                filename =  secure_filename(foto.filename)
+                filename = filename.split(".")
+                id = user.id
+                filename = 'PerfilUser' + str(id) + '.' + filename[1]
+                user.profile_img = filename
+
+                # app = create_app()
+                foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+                db.session.commit()
+
+            if resetar_imagem == "sim":
+                if user.profile_img != 'default_perfil.png':
+                    app = create_app()
+                    os.remove(os.path.join(app.config['UPLOAD_PERFIL'], user.profile_img))
+                    user.profile_img = 'default_perfil.png'
+                    db.session.add(user)
+                    db.session.commit()
             flash("Alteração feita com sucesso!")
             return redirect(url_for('root'))
 
@@ -47,6 +75,12 @@ def edit(id):
            # return "E-mail existe"
       #  else:
     return render_template("edit.html", user=user)
+
+@bp.get('/imagem/<nome>')
+@login_required
+def imagens(nome):
+    app = create_app()
+    return send_from_directory(app.config['UPLOAD_PERFIL'], nome)
 
 def init_app(app):
     app.register_blueprint(bp)
