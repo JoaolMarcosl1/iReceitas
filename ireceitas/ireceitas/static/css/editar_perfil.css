@@ -50,6 +50,7 @@ body {
 }
 */
 
-#h2, .titulo{
-  font-family: "Montserrat", italic;
+#h2, .titulo {
+  font-family: "Montserrat";
 }
+
