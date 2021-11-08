@@ -36,6 +36,9 @@ def comidasfitness():
 def comidasveganas():
     return render_template("comidasveganas.html")
 
+@bp.route('/docesesobremesas')
+def docesesobremesas():
+    return render_template("DoceseSobremesas.html")
 
 def init_app(app):
     app.register_blueprint(bp)
