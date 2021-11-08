@@ -20,13 +20,17 @@ def comidasfit():
 def sobremesas():
     return render_template("SobremesasCarrossel.html")
 
+@bp.route('/acompanhamentos')
+def acompanhamentos ():
+    return render_template("acompanhamentos.html")
+
+@bp.route('/cafedamanha')
+def cafedamanha():
+    return render_template("cafedamanha.html")
+
 @bp.route('/comidasfitness')
 def comidasfitness():
     return render_template("comidasfitness.html")
-
-@bp.route('/cafedamanha')
-def cafedamanha ():
-    return render_template("cafedamanha.html")
 
 
 def init_app(app):
