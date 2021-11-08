@@ -24,6 +24,10 @@ def sobremesas():
 def comidasfitness():
     return render_template("comidasfitness.html")
 
+@bp.route('/cafedamanha')
+def cafedamanha ():
+    return render_template("cafedamanha.html")
+
 
 def init_app(app):
     app.register_blueprint(bp)

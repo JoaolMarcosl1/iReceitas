@@ -14,7 +14,7 @@ body{
   border:10px;
   border-radius:10px;
   padding: 20px;
-   height:230px;
+  height:230px;
 }
 
 .card-title{
@@ -23,7 +23,7 @@ body{
    margin-bottom: 5px;
    margin-top: 5px;
    margin-left: 25px;
-  font-family:Zen Antique Soft;
+   font-family:Zen Antique Soft;
 }
 
 .card-text{
