@@ -26,7 +26,22 @@
 
     <nav>
       <ul class="itens">
-        <li><a href="{# {{url_for('topicos')}} #}">Tópicos</a></li>
+        <li class="nav-item dropdown itens">
+            <a class="nav-link dropdown-toggle" href="{# {{url_for('topicos')}} #}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Tópicos</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Acompanhamentos</a></li>
+                <li><a class="dropdown-item" href="#">Café da manhã</a></li>
+                <li><a class="dropdown-item" href="#">Sopas</a></li>
+                <li><a class="dropdown-item" href="#">Comidas vegetarianas</a></li>
+                <li><a class="dropdown-item" href="#">Fitness</a></li>
+                <li><a class="dropdown-item" href="#">Frutos do mar</a></li>
+                <li><a class="dropdown-item" href="#">Lanches</a></li>
+                <li><a class="dropdown-item" href="#">Doces e Sobremesas</a></li>
+                <li><a class="dropdown-item" href="#">Massas</a></li>
+            </ul>
+        </li>
+
          {% if current_user.is_authenticated %}
         <li><a href=" {{url_for('contato.contato')}}">Contato</a></li>
         <li><a href="  {{url_for('usuario.perfil')}} ">Perfil</a></li>
