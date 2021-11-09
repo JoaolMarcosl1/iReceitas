@@ -50,8 +50,8 @@
 }
 
 .card:hover {
-  background-color: #fbb640;
-  border-radius:10px;
+  border-radius: 10px;
+  opacity: 0.5;
 
 }
 
