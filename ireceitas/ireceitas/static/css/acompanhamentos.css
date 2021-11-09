@@ -6,7 +6,7 @@ body{
 }
 
 
-.Batatassada{
+.videos{
   width:853px;
   height:480px;
   margin-left:200px;
@@ -60,7 +60,7 @@ body{
   margin-bottom: 85px;
 }
 
-#igredientesbatata{
+#igredientes{
    margin-left:200px;
    letter-spacing:1.5px;
    font-family:Nanum Myeongjo;
@@ -78,5 +78,16 @@ body{
   margin-bottom: 30px;
 }
 
+.salada{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -510px;
+}
+
+.salada2{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: 1px;
+}
 
 
