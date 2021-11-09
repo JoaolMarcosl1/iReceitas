@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap');
+
+body{
+  background:#f2f2f2;
+}
+
+
+.videos{
+  width:853px;
+  height:480px;
+  margin-left:200px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+  margin-top: 120px;
+}
+
+.batata{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -480px;
+  margin-bottom: 35px;
+  }
+
+.minidescricao{
+  margin-left:1115px;
+  width:600px;
+  font-family:Nanum Myeongjo;
+  margin-top: 40px;
+  margin-bottom: 55px;
+ }
+
+.especificacoesautor{
+  font-family:Nanum Myeongjo;
+  margin-left:200px;
+  font-size:25px;
+  margin-top: 250px;
+
+}
+
+.especificacoes{
+  font-family:Nanum Myeongjo;
+  margin-left:200px;
+  font-size:25px;
+}
+
+#linha-horizontal{
+    width: 853px;
+    border: 1px solid #ff6600;
+    margin-left:200px;
+    margin-top: 95px;
+    margin-bottom: 80px;
+
+}
+
+#modopreparosacompanhamentos{
+  margin-left:200px;
+  font-family:Times New Roman;
+  letter-spacing:1.2px;
+  margin-bottom: 85px;
+}
+
+#igredientes{
+   margin-left:200px;
+   letter-spacing:1.5px;
+   font-family:Nanum Myeongjo;
+   margin-top: -22px;
+   margin-bottom: 85px;
+
+}
+
+.text-break{
+  margin-right:815px;
+  margin-left:200px;
+  letter-spacing:1.2px;
+  font-family:Nanum Myeongjo;
+  font-size:25px;
+  margin-bottom: 30px;
+}
+
+.salada{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -510px;
+}
+
+.salada2{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: 1px;
+}
+
+
