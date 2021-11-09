@@ -28,6 +28,7 @@ class User(db.Model, UserMixin): #usuarios
     sobre = db.Column(db.String(100), nullable=False)
     isactive = db.Column(db.Boolean, default=False)
     profile_img = db.Column(db.String(100), default="default_perfil.png")
+    receitas = db.relationship('Receitas', backref='user', lazy=True)
 #class Receitas(db.Model):
    # id = db.Column(db.Integer, autoincrement=True, primary_key=True)
    # titulo = db.Column(db.String(50), nullable=False)
@@ -49,3 +50,18 @@ class User(db.Model, UserMixin): #usuarios
 
     def __str__(self):
         return f'Usuário {self.name} tem o e-mail {self.email}'
+
+class Receitas(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    titulo = db.Column(db.String(50), nullable=False)
+    desc = db.Column(db.String(100), nullable=False)
+    tempo_preparo = db.Column(db.String(50), nullable=False)
+    rendimento = db.Column(db.String(50), nullable=False)
+    userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
+        self.titulo = titulo
+        self.desc = desc
+        self.tempo_preparo = tempo_preparo
+        self.rendimento = rendimento
+        self.userID = userID

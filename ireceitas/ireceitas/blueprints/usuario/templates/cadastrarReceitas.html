@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block titulo %}cadastrar Receita{% endblock %}
+
+{% block conteudo %}
+
+<div class="row justify-content-center my-5 font-monospace ">
+
+  <div class="col-sm-6  col-lg-5 formulario bg-secondary">
+
+    <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" class="rounded mx-auto d-block my-3" alt="..." height="200">
+
+    <form action="/usuario/cadastrarReceitas/{{current_user.id}}" method="POST" enctype="multipart/form-data">
+
+      <h3 class="text-center fs-1 my-3">Cadastrar receitas</h3>
+
+       <div class="form-group col-sm-12">
+         <center> <img src="https://cdn.pixabay.com/photo/2017/12/29/19/37/food-3048440_960_720.jpg" alt="Imagem do animal" height="200" id="imagemReceitas"> </center>
+          <label for="imagem" class="form-label my-3">Escolha uma imagem</label>
+          <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()">
+        </div>
+
+      <div class="form-group">
+        <label for="tituloReceita" class="form-label">Título:</label>
+        <input type="text" class="form-control" id="tituloReceita" name="titulo" required>
+      </div>
+
+      <div class="form-group my-3">
+        <label for="TempoDePreparo" class="form-label">Tempo de preparo:</label>
+        <input type="text" class="form-control" id="TempoDePreparo" name="tempo_preparo" required>
+      </div>
+
+      <div class="form-group my-3">
+        <label for="rendimento" class="form-label">Rendimento:</label>
+        <input type="text" class="form-control" id="rendimento" name="rendimento" required>
+      </div>
+
+      <div class="form-group col-sm-12">
+        <label for="Descricao" class="form-label">Descrição</label>
+        <textarea class="form-control entrada" id="Descricao" rows="5"  name="descricao"></textarea>
+      </div>
+
+      <div class="form-group col-12 text-center">
+        <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Entrar</span></button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<script>
+  function previewImagem() {
+    var imagem = document.querySelector('input[name=imagemReceitas]').files[0];
+    var preview = document.querySelector('img[id=imagemReceitas]');
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      preview.src = reader.result;
+    }
+    if (imagem) {
+      reader.readAsDataURL(imagem);
+    } else {
+      preview.src = "https://cdn.pixabay.com/photo/2017/11/19/08/42/cat-and-dog-2962082_960_720.jpg";
+    }
+  }
+</script>
+
+{% endblock %}
