@@ -218,3 +218,12 @@ https://pixabay.com/pt/photos/torta-de-lim%c3%a3o-vegano-sobremesa-5299060/
 
 https://pixabay.com/pt/photos/bolos-bolos-de-copo-aveia-amarelo-5908287/
 
+ícones das guias do site:
+
+https://www.iconpacks.net/free-icon/cook-book-5026.html
+
+https://www.iconpacks.net/free-icon/mail-1007.html
+
+https://www.iconpacks.net/free-icon/orange-person-10776.html
+
+
