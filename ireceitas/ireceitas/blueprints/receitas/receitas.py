@@ -40,6 +40,18 @@ def comidasveganas():
 def docesesobremesas():
     return render_template("DoceseSobremesas.html")
 
+@bp.route('/lanches')
+def lanches():
+    return render_template("lanches.html")
+
+@bp.route('/massas_topicos')
+def massas_topicos():
+    return render_template("massas.html")
+
+@bp.route('/sopas')
+def sopas():
+    return render_template("sopas.html")
+
 @bp.route('/acompanhamentos1')
 def acompanhamentos1():
     return render_template("1°acompanhamento_batata_assada.html")
