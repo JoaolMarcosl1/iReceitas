@@ -52,5 +52,13 @@ def massas_topicos():
 def sopas():
     return render_template("sopas.html")
 
+@bp.route('/acompanhamentos1')
+def acompanhamentos1():
+    return render_template("1°acompanhamento_batata_assada.html")
+
+@bp.route('/acompanhamentos2')
+def acompanhamentos2():
+    return render_template("2°acompanhamento_salada_couve.html")
+
 def init_app(app):
     app.register_blueprint(bp)
