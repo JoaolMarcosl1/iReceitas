@@ -89,12 +89,23 @@ def cadastrarReceitas(id):
         desc = request.form['descricao']
         tempo_preparo = request.form['tempo_preparo']
         rendimento = request.form['rendimento']
+        img = request.files['imagemReceitas']
         userID = id
 
-        receitas = Receitas(titulo, desc, tempo_preparo, rendimento, userID)
+        if img and allowed_file(img.filename):
+            filename =  secure_filename(img.filename)
 
-        db.session.add(receitas)
-        db.session.commit()
+            app = create_app()
+            img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
+
+            receitas = Receitas(filename, titulo, desc, tempo_preparo, rendimento, userID)
+
+            db.session.add(receitas)
+            db.session.commit()
+        else:
+            flash("A extensão deste arquivo é não permitida!")
+            return redirect(f'/usuario/cadastrarReceitas/{id}')
+
 
     return render_template("cadastrarReceitas.html" )
 

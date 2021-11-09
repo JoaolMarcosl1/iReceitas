@@ -58,8 +58,10 @@ class Receitas(db.Model):
     tempo_preparo = db.Column(db.String(50), nullable=False)
     rendimento = db.Column(db.String(50), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    img = db.Column(db.String(100), nullable=False)
 
-    def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
+    def __init__(self, img, titulo, desc, tempo_preparo, rendimento, userID):
+        self.img = img
         self.titulo = titulo
         self.desc = desc
         self.tempo_preparo = tempo_preparo
