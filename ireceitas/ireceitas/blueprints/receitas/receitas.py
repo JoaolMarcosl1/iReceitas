@@ -48,5 +48,10 @@ def acompanhamentos1():
 def acompanhamentos2():
     return render_template("2°acompanhamento_salada_couve.html")
 
+@bp.route('/acompanhamentos3')
+def acompanhamentos3():
+    return render_template("3°acompanhamento_tostones.html")
+
+
 def init_app(app):
     app.register_blueprint(bp)
