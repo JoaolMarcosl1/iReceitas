@@ -20,5 +20,25 @@ def comidasfit():
 def sobremesas():
     return render_template("SobremesasCarrossel.html")
 
+@bp.route('/acompanhamentos')
+def acompanhamentos ():
+    return render_template("acompanhamentos.html")
+
+@bp.route('/cafedamanha')
+def cafedamanha():
+    return render_template("cafedamanha.html")
+
+@bp.route('/comidasfitness')
+def comidasfitness():
+    return render_template("comidasfitness.html")
+
+@bp.route('/comidasveganas')
+def comidasveganas():
+    return render_template("comidasveganas.html")
+
+@bp.route('/docesesobremesas')
+def docesesobremesas():
+    return render_template("DoceseSobremesas.html")
+
 def init_app(app):
     app.register_blueprint(bp)

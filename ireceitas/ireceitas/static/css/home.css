@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
 
 
 
@@ -27,8 +28,42 @@
 
 
 .linha-horizontal {
-    width: 100%
-    border: 20px solid #f2f2f2;
+    width: 100
+    border: 0.1px solid #acacac;
+
+}
+
+
+.card{
+  font-family:"Zen Kaku Gothic Antique";
+  margin-bottom: 10px;
+  padding: 35px;
+  margin-left: 60px;
+  border-radius:10px;
+  width: 480px;
+  height: 380px;
+  margin-top: 65px;
+}
+
+.card-img-top{
+  border-radius:10px;
+}
+
+.card:hover {
+  background-color: #fbb640;
+  border-radius:10px;
+
+}
+
+
+.card-title{
+   font-size:24px;
+   height:8px;
+   color: #262626;
+}
+
+.textoTopo {
+    font-family: "Montserrat"
 
 }
 

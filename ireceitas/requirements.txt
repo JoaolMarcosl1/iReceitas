@@ -8,3 +8,4 @@ mysqlclient
 flask-bcrypt
 flask-mail
 flask-login
+flask-recaptcha
