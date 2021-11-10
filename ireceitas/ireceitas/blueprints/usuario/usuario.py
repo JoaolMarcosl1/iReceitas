@@ -82,5 +82,7 @@ def imagens(nome):
     app = create_app()
     return send_from_directory(app.config['UPLOAD_PERFIL'], nome)
 
+
+
 def init_app(app):
     app.register_blueprint(bp)
