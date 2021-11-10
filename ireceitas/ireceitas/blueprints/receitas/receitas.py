@@ -52,6 +52,10 @@ def massas_topicos():
 def sopas():
     return render_template("sopas.html")
 
+@bp.route('/frutosdomar')
+def frutosdomar():
+    return render_template("frutosdomar.html")
+
 @bp.route('/acompanhamentos1')
 def acompanhamentos1():
     return render_template("1°acompanhamento_batata_assada.html")
