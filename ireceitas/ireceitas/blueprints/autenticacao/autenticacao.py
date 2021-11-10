@@ -106,6 +106,15 @@ def login():
 
 @bp.route("/delete/<int:id>", methods=['GET', 'POST'])
 def delete(id):
+
+    app = create_app()
+    imagensReceitas = os.listdir(app.config['UPLOAD_RECEITAS'])
+    # usuario = f'User8'
+    img = [imagem for imagem in imagensReceitas if f'User{id}' in imagem]
+
+    for deletarImg in img:
+        os.remove(os.path.join(app.config['UPLOAD_RECEITAS'], deletarImg))
+
     user = User.query.get(id)
     if user.profile_img != 'default_perfil.png':
         app = create_app()
