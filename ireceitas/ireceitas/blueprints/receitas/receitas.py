@@ -64,5 +64,18 @@ def acompanhamentos1():
 def acompanhamentos2():
     return render_template("2°acompanhamento_salada_couve.html")
 
+@bp.route('/acompanhamentos3')
+def acompanhamentos3():
+    return render_template("3°acompanhamento_tostones.html")
+
+@bp.route('/acompanhamentos4')
+def acompanhamentos4():
+    return render_template("4°acompanhamento_arroz_vermelho.html")
+
+@bp.route('/acompanhamentos5')
+def acompanhamentos5():
+    return render_template("5°acompanhamento_farora_aveia.html")
+
+
 def init_app(app):
     app.register_blueprint(bp)

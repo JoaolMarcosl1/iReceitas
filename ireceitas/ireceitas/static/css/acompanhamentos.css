@@ -5,7 +5,6 @@ body{
   background:#f2f2f2;
 }
 
-
 .videos{
   width:853px;
   height:480px;
@@ -35,7 +34,6 @@ body{
   margin-left:200px;
   font-size:25px;
   margin-top: 250px;
-
 }
 
 .especificacoes{
@@ -45,11 +43,11 @@ body{
 }
 
 #linha-horizontal{
-    width: 853px;
-    border: 1px solid #ff6600;
-    margin-left:200px;
-    margin-top: 95px;
-    margin-bottom: 80px;
+  width: 853px;
+  border: 1px solid #ff6600;
+  margin-left:200px;
+  margin-top: 95px;
+  margin-bottom: 80px;
 
 }
 
@@ -61,11 +59,11 @@ body{
 }
 
 #igredientes{
-   margin-left:200px;
-   letter-spacing:1.5px;
-   font-family:Nanum Myeongjo;
-   margin-top: -22px;
-   margin-bottom: 85px;
+  margin-left:200px;
+  letter-spacing:1.5px;
+  font-family:Nanum Myeongjo;
+  margin-top: -22px;
+  margin-bottom: 85px;
 
 }
 
@@ -87,7 +85,30 @@ body{
 .salada2{
   margin-left:1115px;
   font-family:IBM Plex Serif;
-  margin-top: 1px;
+  margin-top: -5px;
 }
+
+.tostones{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -480px;
+  margin-bottom: 35px;
+  }
+
+.arrozvermelho{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -480px;
+  margin-bottom: 35px;
+}
+
+.farofavaeia{
+   margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -480px;
+  margin-bottom: 35px;
+}
+
+
 
 
