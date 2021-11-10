@@ -28,7 +28,7 @@ class User(db.Model, UserMixin): #usuarios
     sobre = db.Column(db.String(100), nullable=False)
     isactive = db.Column(db.Boolean, default=False)
     profile_img = db.Column(db.String(100), default="default_perfil.png")
-    receitas = db.relationship('Receitas', backref='user', lazy=True)
+    receitas = db.relationship('Receitas', backref='user', lazy=True, cascade="all, delete")
 #class Receitas(db.Model):
    # id = db.Column(db.Integer, autoincrement=True, primary_key=True)
    # titulo = db.Column(db.String(50), nullable=False)

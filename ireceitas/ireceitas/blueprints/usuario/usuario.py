@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash, request, url_for, redirect, send_from_directory
 from flask_login import current_user, login_required
 from ...ext.database import db
-from .entidades import User, Receitas
+from .entidades import User
 from sqlalchemy.exc import IntegrityError
 from ... import create_app
 import os
@@ -82,32 +82,6 @@ def imagens(nome):
     app = create_app()
     return send_from_directory(app.config['UPLOAD_PERFIL'], nome)
 
-@bp.route('/cadastrarReceitas/<int:id>', methods=['GET', 'POST'])
-def cadastrarReceitas(id):
-    if request.method == 'POST':
-        titulo = request.form['titulo']
-        desc = request.form['descricao']
-        tempo_preparo = request.form['tempo_preparo']
-        rendimento = request.form['rendimento']
-        img = request.files['imagemReceitas']
-        userID = id
-
-        if img and allowed_file(img.filename):
-            filename =  secure_filename(img.filename)
-
-            app = create_app()
-            img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
-
-            receitas = Receitas(filename, titulo, desc, tempo_preparo, rendimento, userID)
-
-            db.session.add(receitas)
-            db.session.commit()
-        else:
-            flash("A extensão deste arquivo é não permitida!")
-            return redirect(f'/usuario/cadastrarReceitas/{id}')
-
-
-    return render_template("cadastrarReceitas.html" )
 
 
 def init_app(app):
