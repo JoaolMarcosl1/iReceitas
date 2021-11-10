@@ -109,7 +109,7 @@ def delete(id):
 
     app = create_app()
     imagensReceitas = os.listdir(app.config['UPLOAD_RECEITAS'])
-    # usuario = f'User8'
+
     img = [imagem for imagem in imagensReceitas if f'User{id}' in imagem]
 
     for deletarImg in img:
