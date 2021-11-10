@@ -23,12 +23,20 @@ def cadastrarReceitas(id):
         userID = id
 
         if img and allowed_file(img.filename):
+
+            receitas = Receitas(titulo, desc, tempo_preparo, rendimento, userID)
+            db.session.add(receitas)
+            db.session.commit()
+
             filename =  secure_filename(img.filename)
+            filename = filename.split(".")
+            idReceitas = receitas.id
+
+            filename = 'User' + str(id) + 'Receita' + str(idReceitas) + '.' + filename[1]
+            receitas.img = filename
 
             app = create_app()
             img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
-
-            receitas = Receitas(filename, titulo, desc, tempo_preparo, rendimento, userID)
 
             db.session.add(receitas)
             db.session.commit()
