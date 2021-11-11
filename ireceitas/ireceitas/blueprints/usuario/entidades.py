@@ -58,7 +58,7 @@ class User(db.Model, UserMixin): #usuarios
 class Receitas(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     titulo = db.Column(db.String(50), nullable=False)
-    desc = db.Column(db.String(100), nullable=False)
+    desc = db.Column(db.Text(), nullable=False)
     tempo_preparo = db.Column(db.String(50), nullable=False)
     rendimento = db.Column(db.String(50), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
