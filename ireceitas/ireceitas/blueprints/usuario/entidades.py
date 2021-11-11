@@ -42,6 +42,10 @@ class User(db.Model, UserMixin): #usuarios
         self.password = generate_password_hash(password)
         self.sobre = sobre
 
+    def setPassword(self, senhanova):
+        self.password = generate_password_hash(senhanova)
+
+
 
     #def __init__(self, name, email, password):
 
