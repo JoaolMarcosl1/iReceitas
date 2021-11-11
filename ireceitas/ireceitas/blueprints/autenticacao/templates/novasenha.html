@@ -1,27 +1,40 @@
-<head>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="stylesheet" href="/static/css/redefinir_conta.css">
-</head>
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/redefinir_conta.css"> {% endblock %}
+
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/ireceitas.ico"> {% endblock %}
+
+{% block titulo %} Recuperação {% endblock %}
+
+{% block conteudo %}
 
 <div class="container rounded bg-white mt-5 geral">
   <div class="row">
+      <div class="col-md-4 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="/static/imagens/icon_recuperar_senha.png" width="190" height="190" alt"x"> </div>
+      </div>
     <div class="col-md-8">
       <div class="p-3 py-5">
         <div class="d-flex justify-content-between align-items-center mb-3 titulo">
-          <h2> Digite sua nova senha </h2>
-            {% for mess in get_flashed_messages() %}
+          <h2> Recuperação de senha </h2>
+          {% for mess in get_flashed_messages() %}
 
-  <center>
+          <center>
 
-  {{mess}}
-</center>
+                     <div class="alert alert-success">
+  <strong>{{mess}}</strong>
+</div>
 
-  {%endfor%}
-          <div class="d-flex flex-row align-items-center back">
-          </div>
+
+
+          </center>
+
+          {%endfor%}
+
         </div>
-        <form action="/autenticacao/redefinir_senha/{{user.id}}/{{token}}" method="post">
+        <form action="/autenticacao/redefinir_senha_on/{{user.id}}" method="post">
           <div class="row mt-2">
             <div class="col-md-6"> <input type="password" name="password" placeholder="Digite sua nova senha" class="form-control" required> </div>
           </div>
@@ -31,3 +44,5 @@
     </div>
   </div>
 </div>
+
+{% endblock %}
