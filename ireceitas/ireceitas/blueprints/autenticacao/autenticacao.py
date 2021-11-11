@@ -1,7 +1,7 @@
 from flask import Blueprint, request, redirect, url_for, flash, render_template
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required, current_user
 from ireceitas.ext.database import db
 from ireceitas.ext.mail import mail
 from ..usuario.entidades import User
@@ -123,6 +123,48 @@ def delete(id):
     db.session.commit()
 
     return redirect(url_for("root"))
+
+#Redefinir e-mail
+@bp.route('/redefinir_email_on', methods=['GET','POST'])
+@login_required
+def redefinir_email_on():
+
+    token = s.dumps(current_user.email, salt='email-confirm')
+    msg = Message('Redefinição de e-mail', sender='receitasprojetoint@gmail.com', recipients=[current_user.email])
+    link = url_for('autenticacao.redefinir_email', id=current_user.id, token=token, _external=True)
+    msg.body = 'Redefinição de e-mail: {}'.format(link)
+    mail.send(msg)
+    flash("Foi enviado um e-mail de redefinição")
+    return redirect(url_for("root"))
+
+
+
+
+@bp.route('/redefinir_email/<int:id>/<path:token>', methods=['GET', 'POST'])
+
+def redefinir_email(token, id):
+    user = User.query.get(id)
+    try:
+        email = s.loads(token, salt='email-confirm', max_age=3600)
+        if request.method == 'POST':
+            email = request.form['email']
+            jatem = User.query.filter_by(email=email).first()
+            if not jatem:
+                user.email=email
+                db.session.add(user)
+                db.session.commit()
+                flash('e-mail alterado com sucesso')
+                return redirect(url_for('root'))
+
+            else:
+                flash("Ja existe uma conta com esse e-mail.")
+
+        return render_template("novaemail.html", user=user, token=token)
+
+    except SignatureExpired:
+            return '<h1>Seu token foi expirado! </h1>'
+
+
 
 
 #Redefinir senha
