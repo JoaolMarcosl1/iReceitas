@@ -28,7 +28,6 @@ def edit(id):
     if request.method == 'POST':
 
         user.name = request.form['name']
-        user.email = request.form['email']
         user.sobre = request.form['sobre']
         foto = request.files['foto_perfil']
         resetar_imagem = "nao"
