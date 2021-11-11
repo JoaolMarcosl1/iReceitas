@@ -124,6 +124,60 @@ def delete(id):
 
     return redirect(url_for("root"))
 
+
+#Redefinir senha
+@bp.route('/redefinir_senha_on/<int:id>', methods=['GET','POST'])
+def redefinir_senha_on(id):
+    user = User.query.get(id)
+    if request.method == 'POST':
+        user.setPassword(request.form['password'])
+        db.session.add(user)
+        db.session.commit()
+        flash('Senha alterada com sucesso')
+        return redirect(url_for('root'))
+    return render_template("redefinir_senha_on.html", user=user)
+
+
+@bp.route('/redefinir', methods=['GET', 'POST'])
+def redefinir():
+    if request.method == 'POST':
+
+        email = request.form['email']
+        jatem = User.query.filter_by(email=email).first()
+
+        if jatem:
+            id = jatem.id
+            token = s.dumps(email, salt='senha-confirm')
+            msg = Message('Redefinição de senha!', sender='receitasprojetoint@gmail.com', recipients=[email])
+            link = url_for('autenticacao.redefinir_senha', id=id, token=token, _external=True)
+            msg.body = 'Redefina sua senha: {}'.format(link)
+            mail.send(msg)
+            flash("Foi enviado um e-mail de redefinição de senha")
+
+        else:
+            flash("Não foi encontrado esse e-mail no nosso sistema")
+
+
+    return render_template("verificar_email.html")
+
+@bp.route('/redefinir_senha/<int:id>/<path:token>', methods=['GET', 'POST'])
+def redefinir_senha(token, id):
+    user = User.query.get(id)
+    try:
+        email = s.loads(token, salt='senha-confirm', max_age=3600)
+        if request.method == 'POST':
+            user.setPassword(request.form['password'])
+            db.session.add(user)
+            db.session.commit()
+            flash('Senha alterada com sucesso')
+            return redirect(url_for('root'))
+
+        return render_template("novasenha.html", user=user, token=token)
+
+    except SignatureExpired:
+            return '<h1>Seu token foi expirado! </h1>'
+
+
 @bp.route('/logout')
 def logout():
     logout_user()
