@@ -1,6 +1,6 @@
-from flask import Blueprint, request, redirect, render_template, flash
-
-from ..usuario.entidades import Receitas
+from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory
+from flask_login import login_required
+from ..usuario.entidades import Receitas, User
 from ...ext.database import db
 from ... import create_app
 import os
@@ -47,6 +47,22 @@ def cadastrarReceitas(id):
 
     return render_template("cadastrarReceitas.html" )
 
+
+@bp.get('/minhasReceitas/<int:id>')
+def minhasReceitas(id):
+    usuario = User.query.get(id)
+    return render_template('receitasUsuario.html', usuario=usuario)
+
+@bp.get('/receita/<int:id>')
+def receita(id):
+    receita = Receitas.query.get(id)
+    return render_template("receita.html", receita = receita)
+
+@bp.get('/imagemReceitas/<nome>')
+@login_required
+def imagens(nome):
+    app = create_app()
+    return send_from_directory(app.config['UPLOAD_RECEITAS'], nome)
 
 def init_app(app):
     app.register_blueprint(bp)

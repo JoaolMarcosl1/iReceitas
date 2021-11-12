@@ -20,7 +20,7 @@
 
     <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" class="rounded mx-auto d-block my-3" alt="..." height="200">
 
-    <form action="/receitasUsuario/cadastrarReceitas/{{current_user.id}}" method="POST" enctype="multipart/form-data">
+    <form action="/receitasUsuario/cadastrarReceitas/{{current_user.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
 
       <h3 class="text-center fs-1 my-3">Cadastrar receitas</h3>
 
@@ -35,12 +35,12 @@
         <input type="text" class="form-control" id="tituloReceita" name="titulo" required>
       </div>
 
-      <div class="form-group my-3">
+      <div class="form-group my-3 col-sm-5">
         <label for="TempoDePreparo" class="form-label">Tempo de preparo:</label>
-        <input type="text" class="form-control" id="TempoDePreparo" name="tempo_preparo" required>
+        <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="00:00" required>
       </div>
 
-      <div class="form-group my-3">
+      <div class="form-group my-3 col-sm-7">
         <label for="rendimento" class="form-label">Rendimento:</label>
         <input type="text" class="form-control" id="rendimento" name="rendimento" required>
       </div>

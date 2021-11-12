@@ -48,6 +48,7 @@
             <h4>Sobre: {{current_user.sobre}} </h4>
           </div>
           <div class="mt-3 text-right"><a class="btn btn-warning botao-enviar" type="button" href="/receitasUsuario/cadastrarReceitas/{{current_user.id}}"> Cadastrar Receitas </a> </div>
+          <div class="mt-3 text-right"><a class="btn btn-warning botao-enviar" type="button" href="/receitasUsuario/minhasReceitas/{{current_user.id}}">Minhas receitas </a> </div>
           <div class="mt-3 text-right"><a class="btn btn-warning botao-enviar" type="button" href="/usuario/edit/{{current_user.id}}"> Editar dados </a> </div>
           <div type="button" class="btn btn-warning botao-enviar text-light mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Deletar conta</div>
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

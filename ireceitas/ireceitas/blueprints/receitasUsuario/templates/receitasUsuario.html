@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Minhas receitas{% endblock %}
+
+{% block conteudo %}
+
+
+<div class="row g-3">
+  {% for receita in usuario.receitas %}
+  <div class="col-12 col-sm-6 col-xl-3 mt-3">
+    <div class="text-center">
+      <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
+      <!--<div class="card-body">-->
+        <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
+      <!--</div>-->
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
