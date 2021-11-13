@@ -12,6 +12,10 @@ https://www.pexels.com/pt-br/foto/assado-bolo-de-chocolate-torta-de-chocolate-cl
 
 ícone Contato: https://www.iconpacks.net/free-icon/mail-1015.html
 
+ícone redefinir senha: https://www.iconpacks.net/free-icon/yellow-padlock-11727.html
+
+Ícone redefinir e-mail: https://www.iconpacks.net/free-icon/mail-1021.html
+
 Imagem Email: https://www.pexels.com/pt-br/foto/pao-cafe-da-manha-bolo-torta-9928207/
 
 Página de receitas:
