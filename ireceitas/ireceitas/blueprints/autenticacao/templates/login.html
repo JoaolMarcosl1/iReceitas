@@ -27,14 +27,18 @@
           <div class="container">
             <div class="row">
               <div class="col-md-9 col-lg-8 mx-auto">
+                {% for mess in get_flashed_messages() %}
+                <div class="alert alert-warning" role="alert">
+ <strong> {{mess}} </strong>
+</div>
+ {%endfor%}
                 <center>
                   <h1 class="login-heading mb-4"> Login </h1>
                 </center>
                 <form action="{{url_for('autenticacao.login')}}" class="container" method="post">
-                  {% for mess in get_flashed_messages() %}
+
                   <div class="row justify-content-center">
-                    {{mess}}
-                    {%endfor%}
+
                     <div class="row">
                       <input type="email" class="form-control" name="email" placeholder="E-mail" required>
 

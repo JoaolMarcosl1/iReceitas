@@ -10,16 +10,19 @@
 {% block conteudo %}
       <center>
         <div class="linha-horizontal"></div>
+
+
       </center>
 
-      {% for mess in get_flashed_messages() %}
+       {% for mess in get_flashed_messages() %}
 
-      <center>
+  <center>
+    <div class="alert alert-warning">
+      <strong>{{mess}}</strong>
+    </div>
 
-        {{mess}}
-      </center>
-
-      {%endfor%}
+  </center>
+  {%endfor%}
 
       <!--<h5>Seja bem vindo(a) {# {{ current_user.name }} #}</h5>-->
       <br><br>
