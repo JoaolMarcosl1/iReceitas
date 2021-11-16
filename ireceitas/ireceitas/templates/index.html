@@ -22,73 +22,60 @@
       {%endfor%}
 
       <!--<h5>Seja bem vindo(a) {# {{ current_user.name }} #}</h5>-->
-      <br><br>
-      <div class="tudo">
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-          </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="text-center">
-                <img src="/static/imagens/carrossel/Welcome.png" class="rounded" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="text-center">
-                <img src="/static/imagens/carrossel/bolonhesa_imagem1.jpeg" class="rounded" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4 class="texto"><strong>Massas</strong></h4>
-                  <a href="{{url_for('receitas.massas')}}">
-                    <h5 class="texto"><strong>Como fazer aquela lasanha a bolonhesa deliciosa? </strong></h5>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="text-center">
-                <a href="https://codepen.io/Danielly_Suousa/pen/zYdxXrV"></a>
-                <img src="/static/imagens/carrossel/bolofit_imagem2.jpg" class="rounded" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4 class="texto"><strong>Comidas Fitness</strong></h4>
-                  <a href="{{url_for('receitas.comidasfit')}}">
-                    <h5 class="texto"><strong>Como fazer uma Bolo fit delicioso de banana e aveia?</strong></h5>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="text-center">
-                <img src="/static/imagens/carrossel/bolo_imagem3.jpg" class="rounded" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h4 class="texto"><strong>Sobremesas</strong></h4>
-                  <a href="{{url_for('receitas.sobremesas')}}">
-                    <h5 class="texto"><strong>Como fazer um maravilhoso bolo de chocolate?</strong></h5>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+  </div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://cdn.pixabay.com/photo/2017/01/26/02/06/platter-2009590_960_720.jpg" class="img-fluid d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.pexels.com/photos/2747591/pexels-photo-2747591.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
+       <div class="carousel-caption ">
+         <h5>Comidas fitness</h5>
       </div>
-      <center>
-        <div class="linha-horizontal"></div>
-      </center>
-
-
-
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.pexels.com/photos/3992132/pexels-photo-3992132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
+       <div class="carousel-caption">
+         <h5>Doces e Sobremesas</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://cdn.pixabay.com/photo/2021/10/16/12/51/pomelo-salad-6714965_960_720.jpg" class="img-fluid d-block w-100" alt="...">
+       <div class="carousel-caption">
+         <h5>Frutos do mar</h5>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.pexels.com/photos/5949885/pexels-photo-5949885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
+       <div class="carousel-caption">
+         <h5>Massas</h5>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
 
       <center>
         <div class="textoTopo">
         <h1> NOSSAS RECEITAS </h1>
         </div>
       </center>
-
 
 
 
