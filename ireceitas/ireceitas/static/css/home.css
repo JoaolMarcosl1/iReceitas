@@ -1,39 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
 
 
-.tudo {
-    height: 100%;
-    background: #f2f2f2;
-}
-
-..geral {
-    min-height:100%;
-    position:relative;
+.linha-horizontal{
     width: 100%;
+    border: 0.1px solid #f2f2f2;
 }
 
-.rounded{
-  height:700px;
-  width:1700px;
+.carousel-caption{
+  font-family:"Poppins";
 }
 
-.texto{
-  color:white;
-  font-family: "Montserrat";
-  letter-spacing:1.6px;
-  text-decoration: none;
+.img-fluid{
+  max-height:780px;
 }
-
-
-
-.linha-horizontal {
-    width: 100
-    border: 0.1px solid #acacac;
-
-}
-
 
 .card{
   font-family:"Zen Kaku Gothic Antique";
@@ -50,12 +32,16 @@
   border-radius:10px;
 }
 
-.card:hover {
-  border-radius: 10px;
+img:hover {
   opacity: 0.5;
-
+  border-radius:10px;
 }
 
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
 
 .card-title{
    font-size:24px;
@@ -64,7 +50,7 @@
 }
 
 .textoTopo {
-    font-family: "Montserrat"
+ font-family:"Montserrat";
 
 }
 

@@ -8,18 +8,6 @@ bp = Blueprint('receitas', __name__, url_prefix='/receitas', template_folder='te
 # def root():
 #     return 'Hello from receitas'
 
-@bp.route('/massas')
-def massas():
-    return render_template("MassasCarrossel.html")
-
-@bp.route('/comidasfit')
-def comidasfit():
-    return render_template("ComidasFitnessCarrossel.html")
-
-@bp.route('/sobremesas')
-def sobremesas():
-    return render_template("SobremesasCarrossel.html")
-
 @bp.route('/acompanhamentos')
 def acompanhamentos ():
     return render_template("acompanhamentos.html")
@@ -38,7 +26,7 @@ def comidasveganas():
 
 @bp.route('/docesesobremesas')
 def docesesobremesas():
-    return render_template("DoceseSobremesas.html")
+    return render_template("docesesobremesas.html")
 
 @bp.route('/lanches')
 def lanches():
