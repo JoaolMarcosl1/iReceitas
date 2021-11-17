@@ -8,7 +8,7 @@ body {
 .geral {
     min-height:100%;
     position:relative;
-    width: 800px;
+    min-width: 900px;
 }
 
 .form-control:focus {
