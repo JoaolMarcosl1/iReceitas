@@ -32,16 +32,12 @@
   border-radius:10px;
 }
 
-img:hover {
+.card-img-top:hover {
   opacity: 0.5;
   border-radius:10px;
 }
 
-a:link {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
+
 
 .card-title{
    font-size:24px;
