@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory
+from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory, url_for
 from flask_login import login_required
 from ..usuario.entidades import Receitas, User
 from ...ext.database import db
@@ -63,6 +63,16 @@ def receita(id):
 def imagens(nome):
     app = create_app()
     return send_from_directory(app.config['UPLOAD_RECEITAS'], nome)
+
+@bp.route("/delete_receita/<int:id>", methods=['GET', 'POST'])
+def delete_receita(id):
+    receita = Receitas.query.get(id)
+    app = create_app()
+    os.remove(os.path.join(app.config['UPLOAD_RECEITAS'], receita.img))
+    db.session.delete(receita)
+    db.session.commit()
+
+    return redirect(url_for('usuario.perfil'))
 
 def init_app(app):
     app.register_blueprint(bp)
