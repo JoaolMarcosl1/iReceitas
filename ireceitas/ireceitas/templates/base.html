@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="icon" href="/static/imagens/icons/ireceitas.ico">
+  <script src="/static/js/bootstrap.bundle.min.js"> </script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"> </script>
   {% block css %}{% endblock %}
   {% block css2 %} {% endblock %}
   {% block icon %} {% endblock %}
@@ -75,44 +78,40 @@
 
   {% block conteudo %} {% endblock %}
 
-  <footer>
-    <div class="boxs">
-      <h3>Início</h3>
-      <ul>
-        <li class="inicio">Home</li>
-        <li class="inicio">Perfil</li>
-      </ul>
+  <footer class="footer">
+    <div class="ondas">
+      <div class="onda" id="onda1"></div>
+      <div class="onda" id="onda2"></div>
+      <div class="onda" id="onda3"></div>
+      <div class="onda" id="onda4"></div>
     </div>
-    <div class="boxs">
-      <h3>Suporte</h3>
-      <ul>
-        <li class="suporte">Contato</li>
-      </ul>
-    </div>
-    <div class="boxs">
-      <h3>Informações</h3>
-      <ul>
-        <p class="informacoes">
-          Se você deseja se tornar um iReceiteiro profissional assim como nós, basta conferir todas nossas receitas passo a passo. Neste site aproveite para dar sugestões e avaliações de como podemos melhorar.</p>
-      </ul>
-    </div>
-  </footer>
-  <div class="footer">
-    <h2></h2>
-    <div class="sociais">
-      <div class="social">
-        <a href="https://www.instagram.com/i.receitas_/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-      </div>
-      <div class="social">
-        <a href="https://br.pinterest.com/receitasprojetoint/_saved/"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-      </div>
-      <div class="social">
-        <a href="https://twitter.com/iReceitas_"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-      </div>
-    </div>
-  </div>
+    <ul class="redes">
+      <li class="redes_item"><a class="redes_link" href="#">
+          <ion-icon name="logo-whatsapp"></ion-icon>
 
-   <script src="/static/js/bootstrap.bundle.min.js"></script>
+             <li class="redes_item"><a class="redes_link" href="https://br.pinterest.com/receitasprojetoint/_saved/">
+          <ion-icon name="logo-pinterest"></ion-icon>
+
+
+        <li class="redes_item"><a class="redes_link" href="#">
+          <ion-icon name="logo-discord"></ion-icon>
+
+        </a></li>
+      <li class="redes_item"><a class="redes_link" href="https://twitter.com/iReceitas_">
+          <ion-icon name="logo-twitter"></ion-icon>
+        </a></li>
+
+        <li class="redes_item"><a class="redes_link" href="https://www.instagram.com/i.receitas_/">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></li>
+    </ul>
+    <ul class="links">
+      <li class="links_item"><a class="links_link" href="/">Início</a></li>
+      <li class="links_item"><a class="links_link" href="/contato/contato">Contato</a></li>
+
+    </ul>
+    <p>&copy;2021 iReceitas | All Rights Reserved </p>
+  </footer>
 </body>
 
 </html>

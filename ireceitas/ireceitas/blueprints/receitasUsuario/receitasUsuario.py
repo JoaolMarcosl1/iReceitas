@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory
+from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory, url_for
 from flask_login import login_required
 from ..usuario.entidades import Receitas, User
 from ...ext.database import db
@@ -64,5 +64,50 @@ def imagens(nome):
     app = create_app()
     return send_from_directory(app.config['UPLOAD_RECEITAS'], nome)
 
+@bp.route("/delete_receita/<int:id>", methods=['GET', 'POST'])
+def delete_receita(id):
+    receita = Receitas.query.get(id)
+    app = create_app()
+    os.remove(os.path.join(app.config['UPLOAD_RECEITAS'], receita.img))
+    db.session.delete(receita)
+    db.session.commit()
+    return redirect(url_for('usuario.perfil'))
+
+@bp.route("/edit_receita/<int:id>", methods=['GET', 'POST'])
+def edit_receita(id):
+    receita = Receitas.query.get(id)
+    user = User.query.get(receita.userID)
+    if request.method == 'POST':
+
+        receita.titulo = request.form['titulo']
+        receita.tempo_preparo = request.form['tempo_preparo']
+        receita.rendimento = request.form['rendimento']
+        descricao = request.form['descricao']
+
+
+        if descricao != '':
+            receita.descricao = descricao
+
+        if 'imagemReceitas' in request.files:
+            img = request.files['imagemReceitas']
+
+            if img:
+                if allowed_file(img.filename):
+                    app = create_app()
+                    os.remove(os.path.join(app.config['UPLOAD_RECEITAS'], receita.img))
+                    filename =  secure_filename(img.filename)
+                    filename = filename.split(".")
+                    filename = 'User' + str(user.id) + 'Receita' + str(receita.id) + '.' + filename[1]
+                    receita.img = filename
+                    img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
+                else:
+                    flash("A extensão deste arquivo não é permitida!")
+                    return redirect(f'/receitasUsuario/edit_receita/{id}')
+
+        db.session.commit()
+        flash("Edição feita com sucesso")
+        return redirect(f'/receitasUsuario/minhasReceitas/{user.id}')
+
+    return render_template("editarReceita.html", receita = receita)
 def init_app(app):
     app.register_blueprint(bp)
