@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&display=swap');
 
 body {
     background: #f2f2f2;
@@ -16,8 +16,8 @@ body {
     border-color: #ffa430;
 }
 
-.botao-enviar{
-    background: #bf902a;
+.botao{
+    background: #ff7f00;
     box-shadow: none;
     border: none;
 }
@@ -33,36 +33,13 @@ body {
     max-height: 250px;
 }
 
-/*
-.botao-enviar:hover {
-    background: #d57700;
-}
-
-.botao-enviar:focus {
-    background: #784607;
-    box-shadow: none
-}
-*/
 .voltar {
-    background: #bf902a;
-    box-shadow: none;
-    border: none;
+    height: 900x;
+    width: 900x;
 }
 
-
-/*
-.voltar {
-  text-decoration: none;
-  font-family: "Montserrat", sans-serif;
-  color: #bf902a;
-}
-
-.voltar:hover {
- color: #d57700;
-}
-*/
-
-#h2, .titulo {
-  font-family: "Montserrat";
+.titulo {
+  font-family: "Poppins";
+  font-weight: 2000;
 }
 
