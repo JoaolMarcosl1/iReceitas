@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Martel:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
 *{
   box-sizing: border-box;
@@ -146,7 +147,6 @@ header{
 }
 
 
-
 .caixa-texto {
     border: none;
     background-color: #333;
@@ -161,109 +161,120 @@ header{
     border-radius: 20px;
 }
 
-body{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-}
 
-footer{
-  width:100%;
+.footer {
+  position: relative;
+  width: 100%;
+  background: #ff6600;
   min-height: 100px;
-  background:#ff8533;
-  display:flex;
-  font-family:Martel;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 600px;
 }
 
-footer .boxs {
-  width:325px;
-  min-height:2px;
-  padding:20px;
-  margin-left:20px;
+.redes,
+.links {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
 }
 
-.boxs{
+.redes_item,
+.links_item {
+  list-style: none;
+}
+
+.redes_link {
+  font-size: 2rem;
   color: #fff;
-  margin-bottom:6px;
-
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.redes_link:hover {
+  transform: translateY(-10px);
 }
 
-.inicio{
-  margin:10px 0px;
-  list-style:none;
-  font-size:19px;
-  color:#e6e6e6;
-  font-family:Martel;
-  margin-left:-30px;
+.links_link {
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
 }
 
-.suporte{
-  margin:10px 0px;
-  list-style:none;
-  font-size:19px;
-  color:#e6e6e6;
-  font-family:Martel;
-  margin-left:-30px;
+.links_link:hover {
+  opacity: 1;
 }
 
-.informacoes{
-  color:#e6e6e6;
-  text-align:justify;
-  font-size:18px;
-  font-family:Martel;
-  margin-left:-30px;
+.footer p {
+  color: #fff;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
 }
 
-.footer{
-  width:100%;
-  height:80px;
-  display:flex;
-  justify-content: space-between;
-  align-items:center;
-  background:#ff751a;
-  padding: 0px 20px;
+.onda {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("https://media.discordapp.net/attachments/910630778977792035/910679085888438332/wave_2.png");
+  background-size: 1000px 100px;
 }
 
-.footer .sociais{
-  display:flex;
+.onda#onda1 {
+  z-index: 1000;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWaves 4s linear infinite;
 }
 
-.sociais .social{
-  width:28px;
-  height:25px;
-  background: #ff751a;
-  text-align:center;
-  line-height:40px;
-  margin:20px;
-  border-radius:5px;
-  cursor:pointer;
-  transition: background .3s linear;
+.onda#onda2 {
+  z-index: 999;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animate 4s linear infinite !important;
 }
 
-.sociais .social a{
-  transition: color .3s linear;
-  color:#fff;
-  font-size:1.5em;
+.onda#onda3 {
+  z-index: 1000;
+  opacity: 0.2;
+  bottom: 15px;
+  animation: animateWaves 3s linear infinite;
 }
 
-.sociais .social:hover{
-  background:#e6e6e6;
+.onda#onda4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animate 3s linear infinite;
 }
 
-.sociais .social:hover a{
-  color:#e65c00;
-}
-
- @media(max-width: 950px){
-  footer{
-    flex-direction:column;
-        }
-    footer .boxs {
-    width:100%;
-    text-align:center;
-                 }
-    footer .boxs:nth-child(4){
-    width:400px;
-}
-
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
   }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}

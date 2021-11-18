@@ -32,7 +32,6 @@
             <h2> Edição de dados </h2>
             <div class="d-flex flex-row align-items-center back">
             </div>
-            <h5> <a class="btn btn-warning voltar" href="{{url_for('root')}}"> Tela inicial </a> </h5>
           </div>
           <form action="/usuario/edit/{{current_user.id}} " method="post" enctype="multipart/form-data">
             <div class="row mt-2">
@@ -52,9 +51,9 @@
                 </div>
               </div>
             </div>
-
-            <div class="mt-5 text-right"><button class="btn btn-warning botao-enviar" type="submit"> Enviar </button> </div>
+            <div class="mt-5 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
           </form>
+        <div class="mt-2 text-right"><button class="btn btn-warning botao text-light"> <a href="/usuario/perfil"> Voltar </a> </button> </div>
         </div>
       </div>
     </div>
