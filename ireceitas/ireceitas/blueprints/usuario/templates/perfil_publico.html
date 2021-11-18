@@ -11,26 +11,24 @@
 {% block conteudo %}
     <div class="row my-3">
       <div class="col ">
-        <img src="https://cdn.pixabay.com/photo/2015/12/09/15/51/code-1084923_960_720.png" class="rounded mx-auto d-block" alt="..." style="width: 18rem;">
-        <p class="text-center fs-4 my-3">Nome</p>
+        <img src="/usuario/imagem/{{usuario.profile_img}}" class="rounded mx-auto d-block" alt="..." style="width: 20rem;">
+        <p class="text-center fs-4 my-3">{{usuario.name}}</p>
 
         <p class="text-center fs-1">Receitas</p>
         <div class="row g-3">
-          <!--   {#{% for receita in usuario.receitas %}#} -->
+        {% for receita in usuario.receitas %}
           <div class="col-12 col-sm-6 col-xl-3 mt-3">
             <div class="text-center">
-              <center><img src="https://cdn.pixabay.com/photo/2014/11/23/21/22/snake-543243_960_720.jpg" class="card-img-top" alt="..." style="width: 18rem;"></center>
-              <!--<div class="card-body">-->
-              <a href="" class="text-warning text-center fs-3 font-monospace">Nome da receita</a>
-              <!--</div>-->
+              <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
+              <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
             </div>
           </div>
-          <!--   {#{% endfor %}#} -->
+         {% endfor %}
         </div>
         <p class="text-center fs-1 my-3">Sobre</p>
         <div class="jumbotron jumbotron-fluid">
           <div class="container">
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <p class="lead">{{usuario.descricao}}</p>
           </div>
         </div>
 
