@@ -75,6 +75,11 @@ def edit(id):
       #  else:
     return render_template("edit.html", user=user)
 
+@bp.route('/perfil_publico')
+def perfil_publico():
+
+    return render_template("perfil_publico.html")
+
 @bp.get('/imagem/<nome>')
 @login_required
 def imagens(nome):
