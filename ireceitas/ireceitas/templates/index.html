@@ -2,6 +2,8 @@
 
 {% block css %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
 
+{% block css2 %}<link rel="stylesheet" href="/static/css/card_home.css"> {% endblock %}
+
 {% block icon %} <link rel="icon" href="/static/imagens/icons/ireceitas.ico"> {% endblock %}
 
 {% block titulo %} iReceitas {% endblock %}
@@ -47,7 +49,7 @@
     <div class="carousel-item">
       <img src="https://images.pexels.com/photos/3992132/pexels-photo-3992132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
        <div class="carousel-caption">
-         <h5>Doces e Sobremesas</h5>
+         <h5>Sobremesas</h5>
       </div>
     </div>
     <div class="carousel-item">
@@ -80,99 +82,129 @@
         </div>
       </center>
 
+   <body>
 
-
-      <div class="row row-cols-4 row-cols-md-3 g-9">
-    <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.acompanhamentos')}}">
-        <img src="https://images.pexels.com/photos/723198/pexels-photo-723198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Acompanhamentos</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-    <div class="col">
+    <div class="main">
+  <ul class="cards">
+    <li class="cards_item">
       <div class="card">
-        <a target="_blank" href="{{url_for('receitas.cafedamanha')}}">
-          <img src="https://images.pexels.com/photos/4915571/pexels-photo-4915571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Café da manhã</h5>
-        </a>
+        <div class="card_image">
+        <img src="https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+        </div>
+        <div class="card_content">
+          <h2 class="card_title">Acompanhementos</h2>
+           <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+           <a target="_blank" href="{{url_for('receitas.acompanhamentos')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.comidasfitness')}}">
-        <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Comidas Fitness </h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.comidasveganas')}}">
-        <img src="https://images.pexels.com/photos/7172067/pexels-photo-7172067.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Comidas Veganas</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.docesesobremesas')}}">
-        <img src="https://images.pexels.com/photos/5695890/pexels-photo-5695890.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Doces e Sobremesas</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.frutosdomar')}}">
-        <img src="https://images.pexels.com/photos/3843224/pexels-photo-3843224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Frutos do Mar</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.lanches')}}">
-        <img src="https://images.pexels.com/photos/1600727/pexels-photo-1600727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Lanches</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.massas_topicos')}}">
-        <img src="https://images.pexels.com/photos/691114/pexels-photo-691114.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Massas</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <a target="_blank" href="{{url_for('receitas.sopas')}}">
-        <img src="https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=210" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Sopas</h5>
-      </a>
-    </div>
-  </div>
-  </div>
-  </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/4915571/pexels-photo-4915571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Café da manhã</h2>
+           <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+           <a target="_blank" href="{{url_for('receitas.cafedamanha')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Comidas fitness</h2>
+           <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+            <a target="_blank" href="{{url_for('receitas.comidasfitness')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/7172067/pexels-photo-7172067.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Comidas veganas</h2>
+           <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+            <a target="_blank" href="{{url_for('receitas.comidasveganas')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/827513/pexels-photo-827513.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Sobremesas</h2>
+           <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+            <a target="_blank" href="{{url_for('receitas.docesesobremesas')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/3843224/pexels-photo-3843224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Frutos do mar</h2>
+          <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+          <a target="_blank" href="{{url_for('receitas.frutosdomar')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/1600727/pexels-photo-1600727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Lanches</h2>
+          <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+           <a target="_blank" href="{{url_for('receitas.lanches')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/5949889/pexels-photo-5949889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Massas</h2>
+          <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+           <a target="_blank" href="{{url_for('receitas.massas_topicos')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_image">
+            <img src="https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=210">
+            </div>
+        <div class="card_content">
+          <h2 class="card_title">Sopas</h2>
+          <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
+          <a target="_blank" href="{{url_for('receitas.sopas')}}">
+          <button class="btn card_btn">Saber mais</button></a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+</body>
 
 {% endblock %}
