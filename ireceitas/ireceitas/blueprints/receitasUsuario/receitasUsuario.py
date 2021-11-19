@@ -58,6 +58,11 @@ def receita(id):
     receita = Receitas.query.get(id)
     return render_template("receita.html", receita = receita)
 
+@bp.get('/receitaPublica/<int:id>')
+def receitaPublica(id):
+    receita = Receitas.query.get(id)
+    return render_template("receitaPublica.html", receita = receita)
+
 @bp.get('/imagemReceitas/<nome>')
 @login_required
 def imagens(nome):

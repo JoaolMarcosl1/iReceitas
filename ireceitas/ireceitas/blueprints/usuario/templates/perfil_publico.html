@@ -20,18 +20,15 @@
           <div class="col-12 col-sm-6 col-xl-3 mt-3">
             <div class="text-center">
               <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
-              <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
+              <a href="/receitasUsuario/receitaPublica/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
             </div>
           </div>
          {% endfor %}
         </div>
         <p class="text-center fs-1 my-3">Sobre</p>
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
-            <p class="lead">{{usuario.sobre}}</p>
-          </div>
+        <div class="container">
+            <p class="fs-4">{{usuario.sobre}}</p>
         </div>
-
       </div>
     </div>
 {% endblock %}
