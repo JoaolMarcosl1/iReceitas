@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+
+{% block css %}<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+
+{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
+
+{% block icon %} <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+
+{% block titulo %}Buscar usuário{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col">
+             <form action="/usuario/buscar_usuario" method="post" class="row g-3">
+                <div class="mb-3">
+                    <label for="nome" class="form-label fs-2">Nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" >
+                    <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

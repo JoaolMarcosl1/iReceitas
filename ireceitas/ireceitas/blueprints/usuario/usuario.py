@@ -81,6 +81,17 @@ def perfil_publico(id):
 
     return render_template("perfil_publico.html", usuario = user)
 
+@bp.route('/buscar_usuario', methods=['GET', 'POST'])
+def buscar_usuario():
+    if request.method == 'POST':
+        nome = request.form["nome"]
+        search = "%{}%".format(nome)
+
+        user = User.query.filter(User.name.like(search)).all()
+
+        return render_template("listaDeUsuarios.html", usuarios = user)
+    return render_template("buscar_usuario.html")
+
 @bp.get('/imagem/<nome>')
 @login_required
 def imagens(nome):
