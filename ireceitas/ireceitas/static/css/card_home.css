@@ -1,22 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
-*{
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  background-color: #f2f2f2;
 }
 
 body {
   color: white;
-  font-family: 'Quicksand';
+  font-family: 'Quicksand', serif;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0;
   padding: 1rem;
-  background-color: #f2f2f2;
 }
 
 .main{
-  max-width: 1295px;
+  max-width: 1200px;
   margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
 }
 
 img {
@@ -95,6 +106,6 @@ img {
   color: #ffffff;
   font-size: 0.965rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;    
+  margin-bottom: 1.25rem;
   font-weight: 400;
 }
