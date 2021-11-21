@@ -47,3 +47,15 @@ img:hover {
   opacity: 0.5;
   border-radius:30px;
 }
+
+.cadastrar_receita{
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 30px;
+  background: #d57700;
+  position: center;
+  height: -150;
+  border-radius: 10px;
+}
