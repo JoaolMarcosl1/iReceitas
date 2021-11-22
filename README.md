@@ -17,9 +17,10 @@
 
 ## Ferramentas utilzadas
 
-Codepen
-Trello
-Pythonanywhere 
-Flasck
-Github
+- Codepen
+- Pythonanywhere 
+- Flask
+- GitHub
+- Trello
+- Slack
 
