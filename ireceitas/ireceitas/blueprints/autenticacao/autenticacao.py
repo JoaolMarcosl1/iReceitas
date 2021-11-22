@@ -1,13 +1,14 @@
+import os
 from flask import Blueprint, request, redirect, url_for, flash, render_template
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from flask_login import login_user, logout_user, login_required, current_user
+from PIL import Image
+from werkzeug.utils import secure_filename
 from ireceitas.ext.database import db
 from ireceitas.ext.mail import mail
 from ..usuario.entidades import User
 from ... import create_app
-import os
-from werkzeug.utils import secure_filename
 
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
@@ -56,11 +57,16 @@ def register():
                 filename = filename.split(".")
                 id = user.id
                 filename = 'PerfilUser' + str(id) + '.' + filename[1]
-                user.profile_img = filename
+
 
                 app = create_app()
                 foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
 
+                imagem = Image.open(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+                imagem.thumbnail((300,300))
+                imagem.save(os.path.join(app.config['UPLOAD_PERFIL'],filename))
+
+                user.profile_img = filename
                 db.session.add(user)
                 db.session.commit()
 
