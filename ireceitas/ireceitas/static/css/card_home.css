@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  color: white;
+  color: #ff6600;
   font-family: 'Quicksand', serif;
   font-style: normal;
   font-weight: 400;
@@ -37,7 +37,7 @@ img {
 }
 
 .btn {
-  color: #f2f2f2;
+  color: #ffffff;
   padding: 0.8rem;
   font-size: 14px;
   text-transform: uppercase;
@@ -46,12 +46,13 @@ img {
   display: block;
   width: 100%;
   cursor: pointer;
-  border: 1px solid rgba(255, 240, 230);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
 }
 
 .btn:hover {
-  background-color: rgba(255, 194, 153);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
 }
 
 .cards {
@@ -81,7 +82,7 @@ img {
 
 .card {
   background-color: white;
-  border-radius: 0.25rem;
+  border-radius: 0.35rem;
   box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
@@ -90,12 +91,12 @@ img {
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #ff8533 40%,  #ffa366 100%);
+  background: linear-gradient(to bottom left, #ff8533 40%, #ffa366 100%);
 }
 
 .card_title {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -104,8 +105,20 @@ img {
 
 .card_text {
   color: #ffffff;
-  font-size: 0.965rem;
+  font-size: 0.875rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;    
   font-weight: 400;
+}
+.made_by{
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 35px;
+  text-align: center;
+}
+
+a:link {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
 }
