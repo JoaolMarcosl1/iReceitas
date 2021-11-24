@@ -1,0 +1,31 @@
+#area-de-busca {
+  text-align: center;
+  background-color: #F9F9F9;
+}
+#nome-input {
+  border-radius: 0;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 1px solid #D57700;
+  display: inline;
+  box-sizing: border-box;
+  width: 40%;
+  height: 40px;
+}
+#buscar-btn{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid #D57700;
+  background-color: #D57700;
+  text-transform: uppercase;
+  color: #FFF;
+  heigth: 40px;
+  padding: 7px 30px;
+  margim-left: -130px;
+  position: absolute;
+  transition: .5s;
+}
+#buscar-btn:hover{
+  background-color: #FFF;
+  color: #D57700;
+}
