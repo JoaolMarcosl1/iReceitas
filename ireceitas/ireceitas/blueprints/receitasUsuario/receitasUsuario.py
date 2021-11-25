@@ -160,6 +160,15 @@ def editarComentario():
 
     return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
 
+@bp.post('/apagarComentario')
+@login_required
+def apagarComentario():
+    idComentario = request.form['idComentario']
+    idReceita = request.form['idReceita']
+    comentario = Comentarios.query.get(idComentario)
+    db.session.delete(comentario)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
 
 def init_app(app):
     app.register_blueprint(bp)
