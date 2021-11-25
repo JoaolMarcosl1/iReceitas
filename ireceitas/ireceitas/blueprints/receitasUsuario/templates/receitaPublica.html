@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block titulo %}Minhas receitas{% endblock %}
+{% block titulo %}Receitas{% endblock %}
 
 {% block conteudo %}
 
@@ -12,6 +12,42 @@
       <p class="my-3 fs-3"><strong>Rendimento: </strong><span class="fs-4">{{receita.rendimento}}</span></p>
       <p class="my-3 fs-3 text-center"><strong>Descrição</strong></p>
       <p class="my-3 fs-4">{{receita.descricao}}</p>
+
+      <h3 class="text-center"><strong>Comentários</strong></h3>
+      <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
+        <div class="row">
+                {% for comentario in receita.comentario %}
+                 <div class="col-2">
+                    <img src="/usuario/imagem/{{comentario.imgUser}}" class="img-thumbnail"
+                    style="width:200px" alt="...">
+                </div>
+                <div class="col-10">
+                    <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.nameUser}}</a></strong></p>
+                    <p>{{comentario.comentario}}</p>
+
+                    <p>24/11/21</p>
+                    {% if comentario.userID == current_user.id %}
+                        <button type="button" class="btn btn-outline-warning">Editar</button>
+                        <button type="button" class="btn btn-outline-danger">Apagar</button>
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+
+        </div>
+      </div>
+
+      <h4 class="text-center my-3"><strong>Adicione um comentário:</strong></h4>
+      <form action="/receitasUsuario/addComentario/{{receita.id}}/{{current_user.id}}/{{current_user.name}}/{{current_user.profile_img}}" method="POST" class="form-row row">
+          <div class="form-group col-sm-12">
+            <!--         <label for="Comentario" class="form-label">Comentário</label> -->
+            <textarea class="form-control" id="comentario" rows="5" name="comentario"></textarea>
+          </div>
+
+          <div class="form-group col-12 text-center">
+            <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Publicar</span></button>
+          </div>
+       </form>
     </div>
   </div>
 

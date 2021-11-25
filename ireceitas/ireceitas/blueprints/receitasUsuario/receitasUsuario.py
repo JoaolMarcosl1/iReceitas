@@ -3,7 +3,7 @@ from flask import Blueprint, request, redirect, render_template, flash,  send_fr
 from flask_login import login_required
 from PIL import Image
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User
+from ..usuario.entidades import Receitas, User, Comentarios
 from ...ext.database import db
 from ... import create_app
 
@@ -129,6 +129,21 @@ def edit_receita(id):
         return redirect(f'/receitasUsuario/minhasReceitas/{user.id}')
 
     return render_template("editarReceita.html", receita = receita)
+
+@bp.post('/addComentario/<int:id_receita>/<int:id_usuario>/<name>/<img>')
+@login_required
+def addComentario(id_receita, id_usuario, name, img):
+    comentario = request.form['comentario']
+    publicar_comentario = Comentarios()
+    publicar_comentario.comentario = comentario
+    publicar_comentario.receitaID = id_receita
+    publicar_comentario.userID = id_usuario
+    publicar_comentario.nameUser = name
+    publicar_comentario.imgUser = img
+    db.session.add(publicar_comentario)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receitaPublica/{id_receita}')
+
 
 
 def init_app(app):
