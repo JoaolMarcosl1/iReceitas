@@ -7,31 +7,59 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none ;
 
 }
 
-a:link, a:visited, .entrar, .registrar, .sair {
-  text-decoration: none;
-  color: white;
+.search-box{
+    position: absolute;
+    top: 50%;
+    left: 63%;
+    transform: translate(-50%,-50%);
+    background: #f2f2f2;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
 }
-header{
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 30px;
-  height: 125px;
-  background: white;
-
-
+.search-btn{
+    color: #ff7f00;
+    float: right;
+    width: 40px;
+    height: 20px;
+    border-radius: 40px;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 2s;
+}
+.search-txt{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 20px;
+    width:0px;
+}
+.search-box:hover > .search-txt{
+    width: 240px;
+    padding: 0 6px;
+}
+.search-box:hover > .search-btn{
+    background: 353535;
+}
+.search-box > .search-btn{
+    background: #f2f2f2;
 }
 
 .logo{
   cursor: pointer;
   max-width:237px;
-  max-height:400px;
+  max-height: 120px;
 
 }
 .itens{
@@ -114,36 +142,6 @@ header{
   text-decoration: none;
   color: #ffffff;
 
-}
-.caixa-search {
-    background-color: #333;
-    border-radius: 40px;
-
-}
-.caixa-search:hover > .caixa-texto {
-    width: 240px;
-    padding: 0 5px;
-
-}
-
-.botao-search {
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    align-items: center;
-    transition: 0.4s;
-    color: white;
-
-      }
-
-
-.fas {
-    color:#FF7F00;
 }
 
 
