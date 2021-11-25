@@ -3,164 +3,91 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 
+
+a:link, {
+    text-decoration: none;
 }
 
-a:link, a:visited, .entrar, .registrar, .sair {
-  text-decoration: none;
-  color: white;
-}
-header{
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0px 30px;
-  height: 125px;
-  background: white;
-
-
-}
-
-.logo{
-  cursor: pointer;
-  max-width:237px;
-  max-height:400px;
-
-}
-.itens{
-  list-style: none;
-}
-
-.itens li{
-  font-family: "Montserrat";
-  font-size: 22px;
-  display: inline-block;
-  padding: 0 20px;
-  text-transform: uppercase;
-}
-
-.itens li a{
-  transition: .3s;
-  color: #d57700;
-  font-family: "Montserrat";
-  font-weight: bolder;
-}
-
-.itens li a:hover{
-  color: #d57700;
-  text-decoration: none;
-
-}
-
-.registrar{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  position: relative;
-  right: 10px;
-  color: #bf902a;
-}
-
-.entrar{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.sair{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-
-}
-.caixa-search {
-    background-color: #333;
+.search-box{
+    position: relative;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%,-50%);
+    background: #f2f2f2;
+    height: 40px;
     border-radius: 40px;
-
+    padding: 10px;
 }
-.caixa-search:hover > .caixa-texto {
-    width: 240px;
-    padding: 0 5px;
-
-}
-
-.botao-search {
+.search-btn{
+    color: #ff7f00;
     float: right;
     width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #333;
+    height: 20px;
+    border-radius: 40px;
+    background: #f2f2f2;
     display: flex;
     justify-content: center;
-    text-decoration: none;
     align-items: center;
-    transition: 0.4s;
-    color: white;
-
-      }
-
-
-.fas {
-    color:#FF7F00;
+    transition: 2s;
 }
-
-
-.caixa-texto {
+.search-txt{
     border: none;
-    background-color: #333;
+    background: none;
     outline: none;
     float: left;
     padding: 0;
-    color: white;
+    color: black;
     font-size: 16px;
     transition: 0.4s;
-    line-height: 40px;
-    cursor: pointer;
-    border-radius: 20px;
+    line-height: 20px;
+    width:0px;
+}
+.search-box:hover > .search-txt{
+    width: 240px;
+    padding: 0 6px;
 }
 
+
+.search-box > .search-btn{
+    background: #f2f2f2;
+}
+.search-btn:hover {
+    color: #ffa062;
+}
+
+.logo {
+  cursor: pointer;
+  max-width:237px;
+  max-height: 120px;
+
+}
+
+.nav-link {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff7f00 !important;
+  text-transform: uppercase;
+
+}
+.nav-link:hover {
+    color: #ffa062 !important;
+}
+
+.dropdown-item {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff7f00;
+  text-transform: uppercase;
+
+}
+
+.dropdown-item:hover {
+
+    color: #ffa062
+}
 
 .footer {
   position: relative;
@@ -200,7 +127,10 @@ header{
 .redes_link:hover {
   transform: translateY(-10px);
 }
+.redes_link:hover {
+  color: white;
 
+}
 .links_link {
   font-size: 1.2rem;
   color: #fff;
@@ -214,6 +144,7 @@ header{
 
 .links_link:hover {
   opacity: 1;
+  color: white;
 }
 
 .footer p {

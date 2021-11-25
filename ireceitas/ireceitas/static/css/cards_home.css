@@ -5,7 +5,9 @@
   box-sizing: border-box;
 }
 
-
+a:link {
+    text-decoration: none;
+}
 
 .main{
   max-width: 1200px;
@@ -36,6 +38,7 @@ img {
   cursor: pointer;
   border: 1px solid rgba(255, 240, 230);
   background: transparent;
+  text-decoration: none;
 }
 
 .btn:hover {

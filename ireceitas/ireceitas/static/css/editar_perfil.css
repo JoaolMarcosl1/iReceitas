@@ -38,8 +38,8 @@ body {
     width: 900x;
 }
 
-.titulo {
+#titulo {
   font-family: "Poppins";
-  font-weight: 2000;
+  font-weight: 600;
 }
 
