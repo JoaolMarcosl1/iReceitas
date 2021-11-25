@@ -3,18 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 
-*{
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  text-decoration: none ;
 
+
+a:link, {
+    text-decoration: none;
 }
 
 .search-box{
-    position: absolute;
+    position: relative;
     top: 50%;
-    left: 63%;
+    left: 40%;
     transform: translate(-50%,-50%);
     background: #f2f2f2;
     height: 40px;
@@ -49,116 +47,47 @@
     width: 240px;
     padding: 0 6px;
 }
-.search-box:hover > .search-btn{
-    background: 353535;
-}
+
+
 .search-box > .search-btn{
     background: #f2f2f2;
 }
+.search-btn:hover {
+    color: #ffa062;
+}
 
-.logo{
+.logo {
   cursor: pointer;
   max-width:237px;
   max-height: 120px;
 
 }
-.itens{
-  list-style: none;
-}
 
-.itens li{
-  font-family: "Montserrat";
-  font-size: 22px;
-  display: inline-block;
-  padding: 0 20px;
+.nav-link {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff7f00 !important;
   text-transform: uppercase;
-}
-
-.itens li a{
-  transition: .3s;
-  color: #d57700;
-  font-family: "Montserrat";
-  font-weight: bolder;
-}
-
-.itens li a:hover{
-  color: #d57700;
-  text-decoration: none;
 
 }
+.nav-link:hover {
+    color: #ffa062 !important;
+}
 
-.registrar{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
+.dropdown-item {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 700;
+  color: #ff7f00;
   text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  position: relative;
-  right: 10px;
-  color: #bf902a;
-}
-
-.entrar{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-}
-
-.sair{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  color: #fff;
-  font-size: 16px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 10px 30px;
-  border-radius: 20px;
-  background: #d57700;
-  position: center;
-  list-style: none;
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
 
 }
 
+.dropdown-item:hover {
 
-.caixa-texto {
-    border: none;
-    background-color: #333;
-    outline: none;
-    float: left;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    transition: 0.4s;
-    line-height: 40px;
-    cursor: pointer;
-    border-radius: 20px;
+    color: #ffa062
 }
-
 
 .footer {
   position: relative;
@@ -198,7 +127,10 @@
 .redes_link:hover {
   transform: translateY(-10px);
 }
+.redes_link:hover {
+  color: white;
 
+}
 .links_link {
   font-size: 1.2rem;
   color: #fff;
@@ -212,6 +144,7 @@
 
 .links_link:hover {
   opacity: 1;
+  color: white;
 }
 
 .footer p {

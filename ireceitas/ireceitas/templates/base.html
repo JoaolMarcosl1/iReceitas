@@ -26,21 +26,23 @@
       <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" alt="..." class="logo">
     </a>
 
- <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Procure uma receita">
-            <a class="search-btn" href="#">
-                <i class="fas fa-search"></i>
-            </a>
-
-        </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
 
+<li class="nav-item">
+         <div class="search-box">
+            <input class="search-txt" type="text" name="" placeholder="Procure uma receita">
+            <a class="search-btn" href="#">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+</li>
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/"> Início </a>
+          <a class="nav-link" href="/"> Início </a>
         </li>
 
 
@@ -65,8 +67,8 @@
           </ul>
         </li>
       {% if current_user.is_authenticated %}
-        <li class="nav-item">
-          <a class="nav-link" href="  {{url_for('usuario.perfil')}} "> Perfil</a>
+        <li class="nav-item ">
+          <a class="nav-link perfil" href="  {{url_for('usuario.perfil')}} "> Perfil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="  {{url_for('contato.contato')}} "> Contato</a>
