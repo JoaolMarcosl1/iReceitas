@@ -130,20 +130,35 @@ def edit_receita(id):
 
     return render_template("editarReceita.html", receita = receita)
 
-@bp.post('/addComentario/<int:id_receita>/<int:id_usuario>/<name>/<img>')
+#----------comentarios do usuarios nas receitas----------
+@bp.post('/addComentario/<int:id_receita>/<int:id_usuario>')
 @login_required
-def addComentario(id_receita, id_usuario, name, img):
+def addComentario(id_receita, id_usuario):
+
     comentario = request.form['comentario']
+
     publicar_comentario = Comentarios()
     publicar_comentario.comentario = comentario
     publicar_comentario.receitaID = id_receita
     publicar_comentario.userID = id_usuario
-    publicar_comentario.nameUser = name
-    publicar_comentario.imgUser = img
+
     db.session.add(publicar_comentario)
     db.session.commit()
     return redirect(f'/receitasUsuario/receitaPublica/{id_receita}')
 
+@bp.post('/editarComentario')
+@login_required
+def editarComentario():
+    idComentario = request.form['idComentario']
+    comentario_editado = request.form['comentario']
+    idReceita = request.form['idReceita']
+    comentario = Comentarios.query.get(idComentario)
+
+    comentario.comentario = comentario_editado
+
+    db.session.commit()
+
+    return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
 
 
 def init_app(app):

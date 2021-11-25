@@ -18,17 +18,65 @@
         <div class="row">
                 {% for comentario in receita.comentario %}
                  <div class="col-2">
-                    <img src="/usuario/imagem/{{comentario.imgUser}}" class="img-thumbnail"
+                    <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail"
                     style="width:200px" alt="...">
                 </div>
                 <div class="col-10">
-                    <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.nameUser}}</a></strong></p>
+                    <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.user.name}}</a></strong></p>
                     <p>{{comentario.comentario}}</p>
 
                     <p>24/11/21</p>
                     {% if comentario.userID == current_user.id %}
-                        <button type="button" class="btn btn-outline-warning">Editar</button>
-                        <button type="button" class="btn btn-outline-danger">Apagar</button>
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarComentario">Editar</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="editarComentario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Comentário</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                 <form action="/receitasUsuario/editarComentario" method="POST" class="form-row row">
+                                  <div class="form-group col-sm-12">
+                                    <!--         <label for="Comentario" class="form-label">Editar</label> -->
+                                    <input type="hidden"  name="idReceita" value="{{receita.id}}">
+                                    <input type="hidden"  name="idComentario" value="{{comentario.id}}">
+                                    <textarea class="form-control" id="editarComentario" rows="5" name="comentario"></textarea>
+                                  </div>
+
+                                  <div class="form-group col-12 text-center">
+                                    <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Editar</span></button>
+                                  </div>
+                               </form>
+                              </div>
+                              <!--<div class="modal-footer">-->
+                              <!--  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+                              <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+                              <!--</div>-->
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#apagarComentario">Apagar</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="apagarComentario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Apagar Comentário</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                 <p>apagar</p>
+                              </div>
+                              <!--<div class="modal-footer">-->
+                              <!--  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+                              <!--  <button type="button" class="btn btn-primary">Save changes</button>-->
+                              <!--</div>-->
+                            </div>
+                          </div>
+                        </div>
                     {% endif %}
 
                 </div>
@@ -38,7 +86,7 @@
       </div>
 
       <h4 class="text-center my-3"><strong>Adicione um comentário:</strong></h4>
-      <form action="/receitasUsuario/addComentario/{{receita.id}}/{{current_user.id}}/{{current_user.name}}/{{current_user.profile_img}}" method="POST" class="form-row row">
+      <form action="/receitasUsuario/addComentario/{{receita.id}}/{{current_user.id}}" method="POST" class="form-row row">
           <div class="form-group col-sm-12">
             <!--         <label for="Comentario" class="form-label">Comentário</label> -->
             <textarea class="form-control" id="comentario" rows="5" name="comentario"></textarea>
