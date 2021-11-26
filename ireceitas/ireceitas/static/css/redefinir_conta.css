@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 body {
     background: #f2f2f2;
     height:100%
@@ -8,9 +8,8 @@ body {
 .geral {
     min-height:100%;
     position:relative;
-    width: 800px;
     margin: 0 auto;
-
+    min-width: 100%;
 }
 
 .form-control:focus {
@@ -18,10 +17,10 @@ body {
     border-color: #ffa430;
 }
 
-.botao-enviar{
-    background: #bf902a;
+.botao{
+    background: #ff7f00;
     box-shadow: none;
-    border: none
+    border: none;
 }
 
 .voltar {
@@ -43,7 +42,7 @@ body {
 }
 */
 
-#h2, .titulo {
+#titulo {
   font-family: "Poppins";
+  font-weight: 600;
 }
-

@@ -3,8 +3,6 @@
 
 {% block css %}<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
 
-{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
-
 {% block icon %} <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
 
 {% block titulo %}Editar perfil{% endblock %}
@@ -35,7 +33,7 @@
           </div>
           <form action="/usuario/edit/{{current_user.id}} " method="post" enctype="multipart/form-data">
             <div class="row mt-2">
-              <div class="col-md-6"> <input type="text" name="name" value="{{ current_user.name }}" class="form-control" placeholder="Nome de usuário" required> </div>
+              <div class="col-md-6"> <input type="text" name="name" value="{{ current_user.name }}" maxlength="80" class="form-control" placeholder="Nome de usuário" required> </div>
             </div>
 
             <div class="row mt-3">
