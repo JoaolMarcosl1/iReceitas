@@ -42,6 +42,7 @@ class Receitas(db.Model):
     rendimento = db.Column(db.String(50), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     img = db.Column(db.String(100))
+    comentario_ativado = db.Column(db.String(10), default="sim")
     comentario = db.relationship('Comentarios', backref='receitas', lazy=True, cascade="all, delete")
 
     def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):

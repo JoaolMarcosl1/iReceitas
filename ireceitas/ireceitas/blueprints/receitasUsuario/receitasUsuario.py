@@ -186,5 +186,17 @@ def apagarComentario():
     db.session.commit()
     return redirect(f'/receitasUsuario/receita/{idReceita}')
 
+@bp.post('desativar_ativar_Comentario')
+@login_required
+def desativar_ativar_Comentario():
+    idReceita = request.form['idReceita']
+    ativar = request.form['ativar']
+    receita = Receitas.query.get(idReceita)
+    receita.comentario_ativado = ativar
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+#----------comentarios do usuarios nas receitas----------
+
 def init_app(app):
     app.register_blueprint(bp)
