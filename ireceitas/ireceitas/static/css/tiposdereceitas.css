@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 
@@ -49,4 +50,66 @@ color: #333;
     padding-left:1rem;
     padding-right:1rem;
   }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
+
+
+body{
+  background: #f2f2f2;
+}
+
+.card{
+  margin-bottom: 13px;
+  margin-left: 290px;
+  margin-top: 60px;
+  max-width: 1150px;
+  border:10px;
+  border-radius:10px;
+  padding: 20px;
+  height:230px;
+}
+
+.card-title{
+  font-size:23px;
+   height:38px;
+   margin-bottom: 5px;
+   margin-top: 5px;
+   margin-left: 25px;
+   font-family:Zen Antique Soft;
+}
+
+.card-text{
+  font-size:23px;
+  height:30px;
+  margin-left: 25px;
+  font-family:Zen Kaku Gothic Antique;
+}
+
+.img-fluid{
+  height:230px;
+  border-radius:30px;
+  width:1000px;
+  margin-bottom: 10px;
+  margin-top: -18px;
+  margin-left: 10px;
+  padding: 17px;
+}
+
+img:hover {
+  opacity: 0.5;
+  border-radius:30px;
+}
+
+.cadastrar_receita{
+  font-family: "Montserrat";
+  font-weight: bolder;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 30px;
+  background: #d57700;
+  position: center;
+  height: -150;
+  border-radius: 10px;
+>>>>>>> main
 }

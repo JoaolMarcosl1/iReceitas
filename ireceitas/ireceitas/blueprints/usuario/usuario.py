@@ -1,11 +1,13 @@
+import os
 from flask import Blueprint, render_template, flash, request, url_for, redirect, send_from_directory
 from flask_login import current_user, login_required
-from ...ext.database import db
-from .entidades import User
+from PIL import Image
 from sqlalchemy.exc import IntegrityError
-from ... import create_app
-import os
 from werkzeug.utils import secure_filename
+from .entidades import User
+from ...ext.database import db
+from ... import create_app
+
 
 bp = Blueprint('usuario', __name__, url_prefix='/usuario', template_folder='templates')
 
@@ -15,6 +17,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/perfil')
+@login_required
 def perfil():
     if not current_user.is_authenticated:
         flash("\nSomente quem esta logado pode acessar o seu perfil.")
@@ -23,6 +26,7 @@ def perfil():
     return render_template("perfil_user.html")
 
 @bp.route("/edit/<int:id>", methods=['GET', 'POST'])
+@login_required
 def edit(id):
     user = User.query.get(id)
     if request.method == 'POST':
@@ -44,10 +48,12 @@ def edit(id):
                 filename = filename.split(".")
                 id = user.id
                 filename = 'PerfilUser' + str(id) + '.' + filename[1]
-                user.profile_img = filename
-
-                # app = create_app()
                 foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+
+                imagem = Image.open(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+                imagem.thumbnail((300,300))
+                imagem.save(os.path.join(app.config['UPLOAD_PERFIL'],filename))
+                user.profile_img = filename
                 db.session.commit()
 
             if resetar_imagem == "sim":
@@ -74,6 +80,27 @@ def edit(id):
            # return "E-mail existe"
       #  else:
     return render_template("edit.html", user=user)
+
+@bp.route('/perfil_publico/<int:id>', methods=['GET', 'POST'])
+@login_required
+def perfil_publico(id):
+    user = User.query.get(id)
+
+    return render_template("perfil_publico.html", usuario = user)
+
+@bp.route('/buscar_usuario', methods=['GET', 'POST'])
+@login_required
+def buscar_usuario():
+    usuarios = User.query.all()
+    nomes_usuarios = [usuario.name for usuario in usuarios]
+    id_usuarios = [usuario.id for usuario in usuarios]
+    fotos_usuarios = [usuario.profile_img for usuario in usuarios]
+    if request.method == 'POST':
+        nome = request.form["nome"]
+        search = "%{}%".format(nome)
+        user = User.query.filter(User.name.like(search)).all()
+        return render_template("listaDeUsuarios.html", usuarios = user)
+    return render_template("buscar_usuario.html", nomes_usuarios = nomes_usuarios, id_usuarios = id_usuarios, fotos_usuarios = fotos_usuarios)
 
 @bp.get('/imagem/<nome>')
 @login_required

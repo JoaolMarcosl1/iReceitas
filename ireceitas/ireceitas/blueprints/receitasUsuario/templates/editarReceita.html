@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block titulo %}cadastrar Receita{% endblock %}
+{% block css %}<link rel="stylesheet" href="/static/css/tiposdereceitas.css"> {% endblock %}
+
+{% block titulo %}Editar Receita{% endblock %}
 
 {% block conteudo %}
 
@@ -14,50 +16,52 @@
 {% endif %}
 {% endwith %}
 
-<div class="row justify-content-center my-5 font-monospace ">
+<div class="container py-3 cadastrar_receita bordas-arredondadas">
+    <div class="row d-flex justify-content-center  h-100">
+        <div class="col-14 col-md-8 col-lg-6 col-xl-5">
+            <div class="text-white text-center">
+                <div class="card-body p-5">
+                    <div class="mb-md-5 mt-md-4 pb-5">
 
-  <div class="col-sm-6  col-lg-5 formulario bg-secondary">
+                        <form action="/receitasUsuario/edit_receita/{{receita.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
 
-    <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" class="rounded mx-auto d-block my-3" alt="..." height="200">
+                            <h3 class="text-center fs-1 my-3 cadastrar_receita">EDITAR RECEITAS</h3>
 
-    <form action="/receitasUsuario/edit_receita/{{receita.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
+                            <div class="form-group col-sm-12 mb-3">
+                                <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas"> </center>
+                                <label for="imagem" class="form-label my-3">Escolha uma imagem</label>
+                                <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/"  >
+                            </div>
 
-      <h3 class="text-center fs-1 my-3">Editar receitas</h3>
+                            <div class="form-group mb-3">
+                                <label for="tituloReceita" class="form-label">Título:</label>
+                                <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}">
+                            </div>
 
-       <div class="form-group col-sm-12">
-         <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas"> </center>
-          <label for="imagem" class="form-label my-3">Escolha uma imagem</label>
-          <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/"  >
+                            <div class="form-group my-3 col-sm-5 mb-3">
+                                <label for="TempoDePreparo" class="form-label">Tempo de preparo:</label>
+                                <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}">
+                            </div>
+
+                            <div class="form-group my-3 col-sm-7 mb-3">
+                                <label for="rendimento" class="form-label">Rendimento:</label>
+                                <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}">
+                            </div>
+
+                            <div class="form-group col-sm-12 mb-3">
+                                <label for="Descricao" class="form-label">Descrição</label>
+                                <textarea class="form-control entrada" id="Descricao" rows="5"  name="descricao"  placeholder="{{receita.descricao}}"></textarea>
+                            </div>
+
+                            <div class="form-group col-12 text-center">
+                                <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Enviar</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      <div class="form-group">
-        <label for="tituloReceita" class="form-label">Título:</label>
-        <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}">
-      </div>
-
-      <div class="form-group my-3 col-sm-5">
-        <label for="TempoDePreparo" class="form-label">Tempo de preparo:</label>
-        <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}">
-      </div>
-
-      <div class="form-group my-3 col-sm-7">
-        <label for="rendimento" class="form-label">Rendimento:</label>
-        <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}">
-      </div>
-
-      <div class="form-group col-sm-12">
-        <label for="Descricao" class="form-label">Descrição</label>
-        <textarea class="form-control entrada" id="Descricao" rows="5"  name="descricao"  placeholder="{{receita.descricao}}"></textarea>
-      </div>
-
-      <div class="form-group col-12 text-center">
-        <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Cadastrar</span></button>
-      </div>
-
-    </form>
-
-  </div>
-
+    </div>
 </div>
 
 <script>

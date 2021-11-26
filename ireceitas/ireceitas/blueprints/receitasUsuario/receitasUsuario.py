@@ -1,10 +1,12 @@
+import os
 from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory, url_for
 from flask_login import login_required
+from PIL import Image
+from werkzeug.utils import secure_filename
 from ..usuario.entidades import Receitas, User
 from ...ext.database import db
 from ... import create_app
-import os
-from werkzeug.utils import secure_filename
+
 bp = Blueprint('receitasUsuario', __name__, url_prefix='/receitasUsuario', template_folder='templates')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
@@ -13,6 +15,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/cadastrarReceitas/<int:id>', methods=['GET', 'POST'])
+@login_required
 def cadastrarReceitas(id):
     if request.method == 'POST':
         titulo = request.form['titulo']
@@ -33,13 +36,18 @@ def cadastrarReceitas(id):
             idReceitas = receitas.id
 
             filename = 'User' + str(id) + 'Receita' + str(idReceitas) + '.' + filename[1]
-            receitas.img = filename
 
             app = create_app()
             img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
 
+            imagem = Image.open(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
+            imagem.thumbnail((1280,720))
+            imagem.save(os.path.join(app.config['UPLOAD_RECEITAS'],filename))
+
+            receitas.img = filename
             db.session.add(receitas)
             db.session.commit()
+            return redirect(f'/receitasUsuario/minhasReceitas/{id}')
         else:
             flash("A extensão deste arquivo não é permitida!")
             return redirect(f'/receitasUsuario/cadastrarReceitas/{id}')
@@ -49,6 +57,7 @@ def cadastrarReceitas(id):
 
 
 @bp.get('/minhasReceitas/<int:id>')
+@login_required
 def minhasReceitas(id):
     usuario = User.query.get(id)
     return render_template('receitasUsuario.html', usuario=usuario)
@@ -58,6 +67,12 @@ def receita(id):
     receita = Receitas.query.get(id)
     return render_template("receita.html", receita = receita)
 
+@bp.get('/receitaPublica/<int:id>')
+@login_required
+def receitaPublica(id):
+    receita = Receitas.query.get(id)
+    return render_template("receitaPublica.html", receita = receita)
+
 @bp.get('/imagemReceitas/<nome>')
 @login_required
 def imagens(nome):
@@ -65,6 +80,7 @@ def imagens(nome):
     return send_from_directory(app.config['UPLOAD_RECEITAS'], nome)
 
 @bp.route("/delete_receita/<int:id>", methods=['GET', 'POST'])
+@login_required
 def delete_receita(id):
     receita = Receitas.query.get(id)
     app = create_app()
@@ -74,6 +90,7 @@ def delete_receita(id):
     return redirect(url_for('usuario.perfil'))
 
 @bp.route("/edit_receita/<int:id>", methods=['GET', 'POST'])
+@login_required
 def edit_receita(id):
     receita = Receitas.query.get(id)
     user = User.query.get(receita.userID)
@@ -100,6 +117,9 @@ def edit_receita(id):
                     filename = 'User' + str(user.id) + 'Receita' + str(receita.id) + '.' + filename[1]
                     receita.img = filename
                     img.save(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
+                    imagem = Image.open(os.path.join(app.config['UPLOAD_RECEITAS'], filename))
+                    imagem.thumbnail((1280,720))
+                    imagem.save(os.path.join(app.config['UPLOAD_RECEITAS'],filename))
                 else:
                     flash("A extensão deste arquivo não é permitida!")
                     return redirect(f'/receitasUsuario/edit_receita/{id}')
@@ -109,5 +129,7 @@ def edit_receita(id):
         return redirect(f'/receitasUsuario/minhasReceitas/{user.id}')
 
     return render_template("editarReceita.html", receita = receita)
+
+
 def init_app(app):
     app.register_blueprint(bp)

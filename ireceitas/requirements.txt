@@ -9,3 +9,4 @@ flask-bcrypt
 flask-mail
 flask-login
 flask-recaptcha
+pillow
