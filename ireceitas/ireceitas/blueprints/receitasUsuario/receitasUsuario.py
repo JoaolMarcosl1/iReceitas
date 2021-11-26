@@ -2,6 +2,7 @@ import os
 from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory, url_for
 from flask_login import login_required
 from PIL import Image
+from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
 from ..usuario.entidades import Receitas, User, Comentarios
 from ...ext.database import db
@@ -134,12 +135,20 @@ def edit_receita(id):
 @bp.post('/addComentario')
 @login_required
 def addComentario():
-    comentario = request.form['comentario']
 
     publicar_comentario = Comentarios()
+
+    data_atual = datetime.now()
+    diferenca = timedelta(hours=-3)
+    fuso_horario = timezone(diferenca)
+    data = data_atual.astimezone(fuso_horario)
+    data = data.strftime('%d/%m/%Y %H:%M:%S')
+
+    comentario = request.form['comentario']
     idReceita = request.form['idReceita']
     publicar_comentario.comentario = comentario
     publicar_comentario.receitaID = idReceita
+    publicar_comentario.data_hora = data
     publicar_comentario.userID = request.form['idUsuario']
 
     db.session.add(publicar_comentario)
@@ -149,13 +158,20 @@ def addComentario():
 @bp.post('/editarComentario')
 @login_required
 def editarComentario():
+
+    data_atual = datetime.now()
+    diferenca = timedelta(hours=-3)
+    fuso_horario = timezone(diferenca)
+    data = data_atual.astimezone(fuso_horario)
+    data = data.strftime('%d/%m/%Y %H:%M:%S')
+
     idComentario = request.form['idComentario']
     comentario_editado = request.form['comentario']
     idReceita = request.form['idReceita']
     comentario = Comentarios.query.get(idComentario)
 
     comentario.comentario = comentario_editado
-
+    comentario.data_hora = data
     db.session.commit()
 
     return redirect(f'/receitasUsuario/receita/{idReceita}')

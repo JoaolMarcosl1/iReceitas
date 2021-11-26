@@ -54,5 +54,6 @@ class Receitas(db.Model):
 class Comentarios(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     comentario = db.Column(db.Text())
+    data_hora = db.Column(db.String(20))
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)

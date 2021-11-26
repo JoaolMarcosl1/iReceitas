@@ -40,6 +40,7 @@
             </div>
           </div>
       {% endif %}
+
       <h4 class="text-center my-3"><strong>Adicione um comentário:</strong></h4>
       <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
           <div class="form-group col-sm-12">
@@ -64,8 +65,8 @@
                 <div class="col-10">
                     <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.user.name}}</a></strong></p>
                     <p>{{comentario.comentario}}</p>
+                    <p>{{comentario.data_hora}}</p>
 
-                    <p>24/11/21</p>
                     {% if comentario.userID == current_user.id %}
                         <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarComentario{{comentario.id}}">Editar</button>
                         <!-- Modal -->
