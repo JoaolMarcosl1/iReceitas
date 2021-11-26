@@ -142,7 +142,7 @@ def addComentario():
     diferenca = timedelta(hours=-3)
     fuso_horario = timezone(diferenca)
     data = data_atual.astimezone(fuso_horario)
-    data = data.strftime('%d/%m/%Y %H:%M:%S')
+    data = data.strftime('%d/%m/%Y %H:%M')
 
     comentario = request.form['comentario']
     idReceita = request.form['idReceita']
@@ -163,7 +163,7 @@ def editarComentario():
     diferenca = timedelta(hours=-3)
     fuso_horario = timezone(diferenca)
     data = data_atual.astimezone(fuso_horario)
-    data = data.strftime('%d/%m/%Y %H:%M:%S')
+    data = data.strftime('%d/%m/%Y %H:%M')
 
     idComentario = request.form['idComentario']
     comentario_editado = request.form['comentario']
