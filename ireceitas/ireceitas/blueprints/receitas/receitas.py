@@ -4,10 +4,6 @@ from flask import Blueprint, render_template
 bp = Blueprint('receitas', __name__, url_prefix='/receitas', template_folder='templates')
 
 
-# @bp.route('/')
-# def root():
-#     return 'Hello from receitas'
-
 @bp.route('/acompanhamentos')
 def acompanhamentos ():
     return render_template("acompanhamentos.html")

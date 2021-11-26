@@ -63,10 +63,6 @@ def minhasReceitas(id):
     usuario = User.query.get(id)
     return render_template('receitasUsuario.html', usuario=usuario)
 
-# @bp.get('/receita/<int:id>')
-# def receita(id):
-#     receita = Receitas.query.get(id)
-#     return render_template("receita.html", receita = receita)
 
 @bp.get('/receita/<int:id>')
 @login_required
@@ -186,7 +182,7 @@ def apagarComentario():
     db.session.commit()
     return redirect(f'/receitasUsuario/receita/{idReceita}')
 
-@bp.post('desativar_ativar_Comentario')
+@bp.post('/desativar_ativar_Comentario')
 @login_required
 def desativar_ativar_Comentario():
     idReceita = request.form['idReceita']
@@ -196,7 +192,14 @@ def desativar_ativar_Comentario():
     db.session.commit()
     return redirect(f'/receitasUsuario/receita/{idReceita}')
 
-#----------comentarios do usuarios nas receitas----------
+#--------------Buscar receita---------------
+@bp.post("/buscarReceita")
+@login_required
+def buscarReceita():
+    titulo = request.form["titulo"]
+    search = "%{}%".format(titulo)
+    receita = Receitas.query.filter(Receitas.titulo.like(search)).all()
+    return render_template("listaDeReceitas.html", receitas = receita)
 
 def init_app(app):
     app.register_blueprint(bp)
