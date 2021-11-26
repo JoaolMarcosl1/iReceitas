@@ -22,6 +22,7 @@ body {
 .main{
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 100px;
 }
 
 h1 {
@@ -113,7 +114,7 @@ a:link {
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;    
+  margin-bottom: 1.25rem;
   font-weight: 400;
 }
 .made_by{
