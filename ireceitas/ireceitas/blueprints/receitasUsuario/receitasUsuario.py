@@ -62,12 +62,12 @@ def minhasReceitas(id):
     usuario = User.query.get(id)
     return render_template('receitasUsuario.html', usuario=usuario)
 
-@bp.get('/receita/<int:id>')
-def receita(id):
-    receita = Receitas.query.get(id)
-    return render_template("receita.html", receita = receita)
+# @bp.get('/receita/<int:id>')
+# def receita(id):
+#     receita = Receitas.query.get(id)
+#     return render_template("receita.html", receita = receita)
 
-@bp.get('/receitaPublica/<int:id>')
+@bp.get('/receita/<int:id>')
 @login_required
 def receitaPublica(id):
     receita = Receitas.query.get(id)
@@ -144,7 +144,7 @@ def addComentario():
 
     db.session.add(publicar_comentario)
     db.session.commit()
-    return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
 
 @bp.post('/editarComentario')
 @login_required
@@ -158,7 +158,7 @@ def editarComentario():
 
     db.session.commit()
 
-    return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
 
 @bp.post('/apagarComentario')
 @login_required
@@ -168,7 +168,7 @@ def apagarComentario():
     comentario = Comentarios.query.get(idComentario)
     db.session.delete(comentario)
     db.session.commit()
-    return redirect(f'/receitasUsuario/receitaPublica/{idReceita}')
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
 
 def init_app(app):
     app.register_blueprint(bp)

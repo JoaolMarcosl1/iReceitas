@@ -13,6 +13,33 @@
       <p class="my-3 fs-3 text-center"><strong>Descrição</strong></p>
       <p class="my-3 fs-4">{{receita.descricao}}</p>
 
+      {% if receita.userID == current_user.id %}
+          <div class="mt-3 text-center">
+              <a class="btn " type="button" href="/receitasUsuario/edit_receita/{{receita.id}}" style="background-color: D57700">Editar Receita</a>
+          <!--</div>-->
+          <!--<div class="mt-3 text-center">-->
+            <button type="button" class="btn btn-danger text-light" data-bs-toggle="modal" data-bs-target="#excluirReceita">
+              Excluir Receita
+            </button>
+          </div>
+          <div class="modal fade" id="excluirReceita" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Tem certeza de que deseja excluir a receita?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <h5>Ao clicar em "excluir" a receita irá ser excluída permanentemente.</h5>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">Cancelar</button>
+                  <a class="btn btn-danger" type="button" href="/receitasUsuario/delete_receita/{{receita.id}}" >Excluir Receita</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
       <h4 class="text-center my-3"><strong>Adicione um comentário:</strong></h4>
       <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
           <div class="form-group col-sm-12">
