@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+a:link {
+    text-decoration: none;
 }
 
 .main{
@@ -34,6 +39,7 @@ img {
   cursor: pointer;
   border: 1px solid rgba(255, 240, 230);
   background: transparent;
+  text-decoration: none;
 }
 
 .btn:hover {
