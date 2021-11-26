@@ -16,6 +16,7 @@
   {% block css2 %} {% endblock %}
   {% block icon %} {% endblock %}
   <title> {% block titulo %}{% endblock %} </title>
+
 </head>
 
 <body>
@@ -32,15 +33,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
 
-<li class="nav-item">
-         <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Procure uma receita">
-            <a class="search-btn" href="#">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
-</li>
+ <form action="/receitasUsuario/buscarReceita" method="POST" class="form-row row">
+    <li class="nav-item">
+        <div class="search-box">
 
+            <input class="search-txt" type="text" name="titulo" placeholder="Procure uma receita">
+            <button>
+                <input type="submit" class="search-btn fas fa-search" id="lupa" value="">
+            </button>
+
+        </div>
+    </li>
+ </form>
         <li class="nav-item">
           <a class="nav-link" href="/"> Início </a>
         </li>

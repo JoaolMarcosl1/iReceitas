@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block css %}
+
+    <link rel="stylesheet" href="/static/css/tiposdereceitas.css">
+{% endblock %}
+
+{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
+
+{% block icon %} <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+
+{% block titulo %}Lista de usuários{% endblock %}
+
+{% block conteudo %}
+
+{% for receita in receitas %}
+     <div class="container py-3">
+        <div class="card" >
+          <div class="row ">
+            <div class="col-md-4 bg-scuba">
+                <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-thumbnail" alt="...">
+              </div>
+              <div class="col-md-8 px-3">
+                <div class="card-block px-3">
+                  <h4 class="card-title py-3">{{receita.titulo}}</h4>
+                  <p class="card-text">{{receita.descricao}}</p>
+                  <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post">Saber mais</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+{% endfor %}
+
+
+{% endblock %}
