@@ -2,19 +2,7 @@ from ...ext.database import db
 from ...ext.auth import login_manager
 from flask_login import UserMixin
 
-# from app import db, login_manager
-# from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash #senha hash
-
-    # blueprint for auth routes in our app
-   # from .auth import auth as auth_blueprint
-   # app.register_blueprint(auth_blueprint)
-
-    # blueprint for non-auth parts of app
-   # from .main import main as main_blueprint
-    #app.register_blueprint(main_blueprint)
-
-   # return app
 
 @login_manager.user_loader
 def get_user(user_id):
@@ -29,12 +17,7 @@ class User(db.Model, UserMixin): #usuarios
     isactive = db.Column(db.Boolean, default=False)
     profile_img = db.Column(db.String(100), default="default_perfil.png")
     receitas = db.relationship('Receitas', backref='user', lazy=True, cascade="all, delete")
-#class Receitas(db.Model):
-   # id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-   # titulo = db.Column(db.String(50), nullable=False)
-    #desc = db.Column(db.String(100), nullable=False)
-    #tempo_preparo = db.Column(db.DateTime(), nullable=False)
-    #rendimento = db.Column(db.String(50), nullable=False)
+    comentario = db.relationship('Comentarios', backref='user', lazy=True, cascade="all, delete")
 
     def __init__(self, name, email, password, sobre):
         self.name = name
@@ -44,10 +27,6 @@ class User(db.Model, UserMixin): #usuarios
 
     def setPassword(self, senhanova):
         self.password = generate_password_hash(senhanova)
-
-
-
-    #def __init__(self, name, email, password):
 
     def verify_password(self, pwd):
         return check_password_hash(self.password, pwd)
@@ -63,6 +42,8 @@ class Receitas(db.Model):
     rendimento = db.Column(db.String(50), nullable=False)
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     img = db.Column(db.String(100))
+    comentario_ativado = db.Column(db.String(10), default="sim")
+    comentario = db.relationship('Comentarios', backref='receitas', lazy=True, cascade="all, delete")
 
     def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
         self.titulo = titulo
@@ -70,3 +51,10 @@ class Receitas(db.Model):
         self.tempo_preparo = tempo_preparo
         self.rendimento = rendimento
         self.userID = userID
+
+class Comentarios(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    comentario = db.Column(db.Text())
+    data_hora = db.Column(db.String(20))
+    userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)

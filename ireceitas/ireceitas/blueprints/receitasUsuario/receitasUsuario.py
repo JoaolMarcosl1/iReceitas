@@ -2,8 +2,9 @@ import os
 from flask import Blueprint, request, redirect, render_template, flash,  send_from_directory, url_for
 from flask_login import login_required
 from PIL import Image
+from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User
+from ..usuario.entidades import Receitas, User, Comentarios
 from ...ext.database import db
 from ... import create_app
 
@@ -62,12 +63,12 @@ def minhasReceitas(id):
     usuario = User.query.get(id)
     return render_template('receitasUsuario.html', usuario=usuario)
 
-@bp.get('/receita/<int:id>')
-def receita(id):
-    receita = Receitas.query.get(id)
-    return render_template("receita.html", receita = receita)
+# @bp.get('/receita/<int:id>')
+# def receita(id):
+#     receita = Receitas.query.get(id)
+#     return render_template("receita.html", receita = receita)
 
-@bp.get('/receitaPublica/<int:id>')
+@bp.get('/receita/<int:id>')
 @login_required
 def receitaPublica(id):
     receita = Receitas.query.get(id)
@@ -130,6 +131,72 @@ def edit_receita(id):
 
     return render_template("editarReceita.html", receita = receita)
 
+#----------comentarios do usuarios nas receitas----------
+@bp.post('/addComentario')
+@login_required
+def addComentario():
+
+    publicar_comentario = Comentarios()
+
+    data_atual = datetime.now()
+    diferenca = timedelta(hours=-3)
+    fuso_horario = timezone(diferenca)
+    data = data_atual.astimezone(fuso_horario)
+    data = data.strftime('%d/%m/%Y %H:%M')
+
+    comentario = request.form['comentario']
+    idReceita = request.form['idReceita']
+    publicar_comentario.comentario = comentario
+    publicar_comentario.receitaID = idReceita
+    publicar_comentario.data_hora = data
+    publicar_comentario.userID = request.form['idUsuario']
+
+    db.session.add(publicar_comentario)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+@bp.post('/editarComentario')
+@login_required
+def editarComentario():
+
+    data_atual = datetime.now()
+    diferenca = timedelta(hours=-3)
+    fuso_horario = timezone(diferenca)
+    data = data_atual.astimezone(fuso_horario)
+    data = data.strftime('%d/%m/%Y %H:%M')
+
+    idComentario = request.form['idComentario']
+    comentario_editado = request.form['comentario']
+    idReceita = request.form['idReceita']
+    comentario = Comentarios.query.get(idComentario)
+
+    comentario.comentario = comentario_editado
+    comentario.data_hora = data
+    db.session.commit()
+
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+@bp.post('/apagarComentario')
+@login_required
+def apagarComentario():
+    idComentario = request.form['idComentario']
+    idReceita = request.form['idReceita']
+    comentario = Comentarios.query.get(idComentario)
+    db.session.delete(comentario)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+@bp.post('desativar_ativar_Comentario')
+@login_required
+def desativar_ativar_Comentario():
+    idReceita = request.form['idReceita']
+    ativar = request.form['ativar']
+    receita = Receitas.query.get(idReceita)
+    receita.comentario_ativado = ativar
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+#----------comentarios do usuarios nas receitas----------
 
 def init_app(app):
     app.register_blueprint(bp)
