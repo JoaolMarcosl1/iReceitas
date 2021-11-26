@@ -65,5 +65,7 @@ def acompanhamentos5():
     return render_template("5°acompanhamento_farora_aveia.html")
 
 
+
+
 def init_app(app):
     app.register_blueprint(bp)

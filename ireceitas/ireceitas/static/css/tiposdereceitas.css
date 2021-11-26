@@ -1,52 +1,54 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 
-
-body{
-  background: #f2f2f2;
+body {
+  font-family: 'Quicksand', serif;
+  background-color: #f2f2f2;
 }
 
-.card{
-  margin-bottom: 13px;
-  margin-left: 290px;
-  margin-top: 60px;
-  max-width: 1150px;
-  border:10px;
-  border-radius:10px;
-  padding: 20px;
-  height:230px;
+.card {
+  overflow: hidden;
+  border-radius:15px;
+  margin-bottom: 35px;
 }
 
-.card-title{
-  font-size:23px;
-   height:38px;
-   margin-bottom: 5px;
-   margin-top: 5px;
-   margin-left: 25px;
-   font-family:Zen Antique Soft;
+h4 {
+font-size: 26px;
+margin-bottom: 0;
+font-weight: 700;
+letter-spacing: 1px;
+color: #333;
+ font-family:'Zen Antique Soft';
 }
 
-.card-text{
-  font-size:23px;
-  height:30px;
-  margin-left: 25px;
-  font-family:Zen Kaku Gothic Antique;
+.card-text {
+  color: #262626;
+  font-size: 20px;
 }
 
-.img-fluid{
-  height:230px;
-  border-radius:30px;
-  width:1000px;
-  margin-bottom: 10px;
-  margin-top: -18px;
-  margin-left: 10px;
-  padding: 17px;
+.blog-post{
+  display: inline-block;
+  padding: 0.5rem 0.6rem;
+  letter-spacing: 1px;
+  font-size: 1rem;
+  color: #fff;
+  background-image: linear-gradient( to right, #ffa366 0%, #ff6600 100%);
+  border-radius: 12px;
+  text-decoration: none;
 }
 
-img:hover {
-  opacity: 0.5;
-  border-radius:30px;
+.blog-post:hover{
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
 }
+
+@media (max-width:756px) {
+  .col-md-4 {
+    height:300px;
+    overflow:hidden;
+    padding-left:1rem;
+    padding-right:1rem;
+  }
 
 .cadastrar_receita{
   font-family: "Montserrat";
@@ -58,4 +60,5 @@ img:hover {
   position: center;
   height: -150;
   border-radius: 10px;
+
 }
