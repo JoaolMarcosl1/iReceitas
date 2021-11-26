@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+body {
+    background: #f2f2f2;
+    height: 100%;
+}
+
+
+.cadastrar_receita{
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 30px;
+  position: center;
+  height: -150;
+  border-radius: 10px;
+
+}
+
+.geral {
+    min-height: 900px;
+    max-height: 100%;
+    position: relative;
+    margin: 0 auto;
+    min-width: 100%;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ffa430;
+}
+
+.botao{
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+    min-height: 128x;
+    min-width: 128px;
+}
+
+#Descricao{
+    height: 120x;
+    max-height: 220px;
+}

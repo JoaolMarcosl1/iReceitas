@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block css %}<link rel="stylesheet" href="/static/css/tiposdereceitas.css"> {% endblock %}
+{% block css %}<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css"> {% endblock %}
 
-{% block titulo %}Editar Receita{% endblock %}
+{% block titulo %} Editar Receita {% endblock %}
 
 {% block conteudo %}
 
@@ -15,54 +15,55 @@
 </div>
 {% endif %}
 {% endwith %}
+<body>
 
-<div class="container py-3 cadastrar_receita bordas-arredondadas">
-    <div class="row d-flex justify-content-center  h-100">
-        <div class="col-14 col-md-8 col-lg-6 col-xl-5">
-            <div class="text-white text-center">
-                <div class="card-body p-5">
-                    <div class="mb-md-5 mt-md-4 pb-5">
+<div class="container rounded bg-white mt-5 geral">
+   <div class="row">
+      <div class="col-md-0">
+      </div>
+      <div class="col-md-0">
+        <div class="px-3 py-10">
 
                         <form action="/receitasUsuario/edit_receita/{{receita.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
 
-                            <h3 class="text-center fs-1 my-3 cadastrar_receita">EDITAR RECEITAS</h3>
+                            <h3 class="text-center fs-1 my-3 cadastrar_receita">Editar receita </h3>
 
                             <div class="form-group col-sm-12 mb-3">
-                                <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas"> </center>
-                                <label for="imagem" class="form-label my-3">Escolha uma imagem</label>
-                                <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/"  >
+                                <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas" class="mb-3"> </center>
+                                <label for="imagem" class="form-control">Escolha uma foto para receita</label>
+                                <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/">
                             </div>
 
-                            <div class="form-group mb-3">
+                            <div class="form-group mb-3" >
                                 <label for="tituloReceita" class="form-label">Título:</label>
-                                <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}">
+                                <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}" minlength="3" maxlength="40" required>
                             </div>
 
-                            <div class="form-group my-3 col-sm-5 mb-3">
-                                <label for="TempoDePreparo" class="form-label">Tempo de preparo:</label>
-                                <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}">
+                            <div class="form-group my-3 col-sm-5 mb-3" >
+                                <label for="TempoDePreparo" class="form-control">Tempo de preparo (clique no relógio) </label>
+                                <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}" required>
                             </div>
 
-                            <div class="form-group my-3 col-sm-7 mb-3">
-                                <label for="rendimento" class="form-label">Rendimento:</label>
-                                <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}">
+                            <div class="form-group my-3 col-sm-7 mb-3" >
+                                <label for="rendimento" class="form-control">Rendimento:</label>
+                                <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}" maxlength="60" required>
                             </div>
 
-                            <div class="form-group col-sm-12 mb-3">
+                            <div class="form-group col-sm-12"  >
                                 <label for="Descricao" class="form-label">Descrição</label>
-                                <textarea class="form-control entrada" id="Descricao" rows="5"  name="descricao"  placeholder="{{receita.descricao}}"></textarea>
+                                <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" value="{{receita.descricao}}" placeholder="{{receita.descricao}}" minlength="10" maxlength="800"></textarea>
                             </div>
 
                             <div class="form-group col-12 text-center">
-                                <button type="submit" class="btn my-3  btn-lg btn-secondary"><span class="mx-5">Enviar</span></button>
+                                <div class="mt-3 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
                             </div>
                         </form>
+                        <div class="mt-2 text-center"><a class="btn btn-warning botao text-light" type="button" href="/receitasUsuario/receita/{{receita.id}}"> Voltar </a> </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+
 
 <script>
   function previewImagem() {
@@ -79,5 +80,5 @@
     }
   }
 </script>
-
+</body>
 {% endblock %}

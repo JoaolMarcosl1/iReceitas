@@ -50,15 +50,5 @@ color: #333;
     padding-right:1rem;
   }
 
-.cadastrar_receita{
-  font-family: "Montserrat";
-  font-weight: bolder;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px 30px;
-  background: #d57700;
-  position: center;
-  height: -150;
-  border-radius: 10px;
 
-}
+
