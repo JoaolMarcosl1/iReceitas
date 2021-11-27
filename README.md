@@ -10,8 +10,8 @@
 
 - João Marcos
 - Francisco Lucas
-- Eduardo Arruado
-- Mirela Vitalino
+- Eduardo Arruda
+- Mirella Vitalino
 - Danielly Sousa
 - Mônica Naiane
 
