@@ -104,7 +104,7 @@ def login():
                 flash("Email ou senha inválidos!")
                 return redirect(url_for('autenticacao.login'))
             login_user(user)
-            flash('Você foi logado com sucesso :)\n')
+            flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
             return redirect(url_for('root'))
         else:
             flash("Sua conta não foi ativada")
