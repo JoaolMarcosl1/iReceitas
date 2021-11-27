@@ -21,41 +21,40 @@
 
 <body>
   <header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" alt="..." class="logo">
-    </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://media.discordapp.net/attachments/719989066808164492/895300449488494622/unknown__1_-removebg-preview_1.png" alt="..." class="logo">
+        </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto">
 
- <form action="/receitasUsuario/buscarReceita" method="POST" class="form-row row">
-    <li class="nav-item">
-        <div class="search-box">
+            <form action="/receitasUsuario/buscarReceita" method="POST" class="form-row row">
+              <li class="nav-item">
+                <div class="search-box">
 
-            <input class="search-txt" type="text" name="titulo" placeholder="Procure uma receita">
-            <button>
-                <input type="submit" class="search-btn fas fa-search" id="lupa" value="">
-            </button>
+                  <input class="search-txt" type="text" name="titulo" placeholder="Procure uma receita">
+                  <button>
+                    <input type="submit" class="search-btn fas fa-search" id="lupa" value="">
+                  </button>
 
-        </div>
-    </li>
- </form>
-        <li class="nav-item">
-          <a class="nav-link" href="/"> Início </a>
-        </li>
+                </div>
+              </li>
+            </form>
+            <li class="nav-item">
+              <a class="nav-link" href="/"> Início </a>
+            </li>
 
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Tópicos
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{url_for('receitas.acompanhamentos')}}">Acompanhamentos</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tópicos
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{url_for('receitas.acompanhamentos')}}">Acompanhamentos</a></li>
                 <li><a class="dropdown-item" href="{{url_for('receitas.cafedamanha')}}">Café da manhã</a></li>
                 <li><a class="dropdown-item" href="{{url_for('receitas.sopas')}}">Sopas</a></li>
                 <li><a class="dropdown-item" href="{{url_for('receitas.comidasveganas')}}">Comidas veganass</a></li>
@@ -64,37 +63,37 @@
                 <li><a class="dropdown-item" href="{{url_for('receitas.lanches')}}">Lanches</a></li>
                 <li><a class="dropdown-item" href="{{url_for('receitas.docesesobremesas')}}">Doces e sobremesas</a></li>
                 <li><a class="dropdown-item" href="{{url_for('receitas.massas_topicos')}}">Massas</a></li>
-            <li>
-              <hr class="dropdown-divider">
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"> Outros</a></li>
+              </ul>
             </li>
-            <li><a class="dropdown-item" href="#"> Outros</a></li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item ">
+              <a class="nav-link perfil" href="  {{url_for('usuario.perfil')}} "> Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="  {{url_for('contato.contato')}} "> Contato</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/usuario/buscar_usuario"> Buscar Usuário </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="  {{url_for('autenticacao.logout')}} "> Sair</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="  {{url_for('autenticacao.register')}} "> Registrar </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="  {{url_for('autenticacao.login')}} "> Entrar</a>
+            </li>
+            {% endif %}
           </ul>
-        </li>
-      {% if current_user.is_authenticated %}
-        <li class="nav-item ">
-          <a class="nav-link perfil" href="  {{url_for('usuario.perfil')}} "> Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="  {{url_for('contato.contato')}} "> Contato</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/usuario/buscar_usuario"> Buscar Usuário </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="  {{url_for('autenticacao.logout')}} "> Sair</a>
-        </li>
-       {% else %}
-        <li class="nav-item">
-          <a class="nav-link" href="  {{url_for('autenticacao.register')}} "> Registrar </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="  {{url_for('autenticacao.login')}} "> Entrar</a>
-        </li>
-    {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
+        </div>
+      </div>
+    </nav>
 
   </header>
 
@@ -107,26 +106,26 @@
       <div class="onda" id="onda3"></div>
       <div class="onda" id="onda4"></div>
     </div>
+
     <ul class="redes">
       <li class="redes_item"><a class="redes_link" href="#">
           <ion-icon name="logo-whatsapp"></ion-icon>
-
-             <li class="redes_item"><a class="redes_link" href="https://br.pinterest.com/receitasprojetoint/_saved/">
+        </a></li>
+      <li class="redes_item"><a class="redes_link" href="https://br.pinterest.com/receitasprojetoint/_saved/">
           <ion-icon name="logo-pinterest"></ion-icon>
-
-
-        <li class="redes_item"><a class="redes_link" href="#">
+        </a></li>
+      <li class="redes_item"><a class="redes_link" href="#">
           <ion-icon name="logo-discord"></ion-icon>
-
         </a></li>
       <li class="redes_item"><a class="redes_link" href="https://twitter.com/iReceitas_">
           <ion-icon name="logo-twitter"></ion-icon>
         </a></li>
 
-        <li class="redes_item"><a class="redes_link" href="https://www.instagram.com/i.receitas_/">
+      <li class="redes_item"><a class="redes_link" href="https://www.instagram.com/i.receitas_/">
           <ion-icon name="logo-instagram"></ion-icon>
         </a></li>
     </ul>
+
     <ul class="links">
       <li class="links_item"><a class="links_link" href="/">Início</a></li>
       <li class="links_item"><a class="links_link" href="/contato/contato">Contato</a></li>

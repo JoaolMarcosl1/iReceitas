@@ -1,34 +1,37 @@
 {% extends 'base.html' %}
 
-{% block css %}<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
 
-{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
+{% block css2 %}
+<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
 
-{% block icon %} <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
 
 {% block titulo %}Editar perfil{% endblock %}
 
 {% block conteudo %}
-    <div class="row my-3">
-      <div class="col ">
-        <img src="/usuario/imagem/{{usuario.profile_img}}" class="rounded mx-auto d-block" alt="..." style="width: 20rem;">
-        <p class="text-center fs-4 my-3">{{usuario.name}}</p>
+<div class="row my-3">
+  <div class="col ">
+    <img src="/usuario/imagem/{{usuario.profile_img}}" class="rounded mx-auto d-block" alt="..." style="width: 20rem;">
+    <p class="text-center fs-4 my-3">{{usuario.name}}</p>
 
-        <p class="text-center fs-1">Receitas</p>
-        <div class="row g-3">
-        {% for receita in usuario.receitas %}
-          <div class="col-12 col-sm-6 col-xl-3 mt-3">
-            <div class="text-center">
-              <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
-              <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
-            </div>
-          </div>
-         {% endfor %}
-        </div>
-        <p class="text-center fs-1 my-3">Sobre</p>
-        <div class="container">
-            <p class="fs-4">{{usuario.sobre}}</p>
+    <p class="text-center fs-1">Receitas</p>
+    <div class="row g-3">
+      {% for receita in usuario.receitas %}
+      <div class="col-12 col-sm-6 col-xl-3 mt-3">
+        <div class="text-center">
+          <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
+          <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
         </div>
       </div>
+      {% endfor %}
     </div>
+    <p class="text-center fs-1 my-3">Sobre</p>
+    <div class="container">
+      <p class="fs-4">{{usuario.sobre}}</p>
+    </div>
+  </div>
+</div>
 {% endblock %}
