@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 {% block css %}
-  <link rel="stylesheet" href="/static/css/buscar_usuario.css">
-  <script src="/static/js/jquery-3.6.0.slim.min.js"
-  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/static/css/buscar_usuario.css">
+<script src="/static/js/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 {% endblock %}
-{% block css2 %}<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
-{% block icon %} <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+{% block css2 %}
+<link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
 {% block titulo %}Buscar usuário{% endblock %}
 {% block conteudo %}
-  <div id="area-de-busca">
+<div id="area-de-busca">
   <div class="container">
     <div class="row">
       <div class="col">
         <form action="/usuario/buscar_usuario" method="post" class="row g-3">
           <div class="mb-3">
             <h1 class="my-5">Pesquisar usuários</h1>
-<!--             <label for="nome" class="form-label fs-2">Nome:</label> -->
-            <input type="text"  id="nome-input" name="nome">
+            <!--             <label for="nome" class="form-label fs-2">Nome:</label> -->
+            <input type="text" id="nome-input" name="nome">
             <input type="submit" value="buscar" id="buscar-btn"></input>
           </div>
         </form>
         <hr>
         <strong id="quantidade"></strong>
         <ul class="list-group list-unstyled">
-            <span id="saidaTxt" class="list-group-item fs-5">Nenhum resultado...</span><br>
+          <span id="saidaTxt" class="list-group-item fs-5">Nenhum resultado...</span><br>
         </ul>
       </div>
     </div>
@@ -31,49 +32,49 @@
 </div>
 
 <script>
-    var busca = null;
-    var array = JSON.parse('{{nomes_usuarios|tojson}}');
-    var id = JSON.parse('{{id_usuarios|tojson}}');
-    var foto  = JSON.parse('{{fotos_usuarios|tojson}}');
-    $(document).ready(function(){
-      $('#nome-input').bind('input',function(){
-        busca = $(this).val().toLowerCase();
-        if(busca !== ''){
-          var corresponde = false;
-          var saida = Array();
-          var ids = Array();
-          var fotos = Array();
-          var quantidade = 0;
-          var j = 0;
-          for(var key in array){
-            corresponde = array[key].toLowerCase().indexOf(busca) >= 0;
-            if(corresponde){
-              saida.push(array[key]);
-              ids.push(id[j]);
-              fotos.push(foto[j]);
-              quantidade += 1;
-            }
-            j+=1;
+  var busca = null;
+  var array = JSON.parse('{{nomes_usuarios|tojson}}');
+  var id = JSON.parse('{{id_usuarios|tojson}}');
+  var foto = JSON.parse('{{fotos_usuarios|tojson}}');
+  $(document).ready(function() {
+    $('#nome-input').bind('input', function() {
+      busca = $(this).val().toLowerCase();
+      if (busca !== '') {
+        var corresponde = false;
+        var saida = Array();
+        var ids = Array();
+        var fotos = Array();
+        var quantidade = 0;
+        var j = 0;
+        for (var key in array) {
+          corresponde = array[key].toLowerCase().indexOf(busca) >= 0;
+          if (corresponde) {
+            saida.push(array[key]);
+            ids.push(id[j]);
+            fotos.push(foto[j]);
+            quantidade += 1;
           }
-          if(quantidade){
-            var i = 0;
-            $('#saidaTxt').text('');
-            $('#quantidade').html(quantidade+' resultados!<br><br>');
-            for(var ind in saida){
-              $('#saidaTxt').append('<img src="/usuario/imagem/'+fotos[i]+'" class="rounded mx-auto d-block" alt="..." style="width: 10rem;">')
-              $('#saidaTxt').append('<li>'+'<a href="/usuario/perfil_publico/'+ids[i]+'"style="color: #D57700">'+saida[ind]+'</a>'+'</li>'+'<br>');
-              i +=1;
-            }
-          }else{
-            $('#quantidade').html('');
-            $('#saidaTxt').text('Nenhum resultado...');
+          j += 1;
+        }
+        if (quantidade) {
+          var i = 0;
+          $('#saidaTxt').text('');
+          $('#quantidade').html(quantidade + ' resultados!<br><br>');
+          for (var ind in saida) {
+            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block" alt="..." style="width: 10rem;">')
+            $('#saidaTxt').append('<li>' + '<a href="/usuario/perfil_publico/' + ids[i] + '"style="color: #D57700">' + saida[ind] + '</a>' + '</li>' + '<br>');
+            i += 1;
           }
-        }else{
+        } else {
           $('#quantidade').html('');
           $('#saidaTxt').text('Nenhum resultado...');
         }
-      });
+      } else {
+        $('#quantidade').html('');
+        $('#saidaTxt').text('Nenhum resultado...');
+      }
     });
-  </script>
+  });
+</script>
 
 {% endblock %}
