@@ -20,16 +20,16 @@ def comidasfitness():
 def comidasveganas():
     return render_template("comidasveganas.html")
 
-@bp.route('/docesesobremesas')
-def docesesobremesas():
-    return render_template("docesesobremesas.html")
+@bp.route('/sobremesas')
+def sobremesas():
+    return render_template("sobremesas.html")
 
 @bp.route('/lanches')
 def lanches():
     return render_template("lanches.html")
 
-@bp.route('/massas_topicos')
-def massas_topicos():
+@bp.route('/massas')
+def massas():
     return render_template("massas.html")
 
 @bp.route('/sopas')

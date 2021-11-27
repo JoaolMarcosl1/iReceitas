@@ -14,7 +14,17 @@
 }
 
 .img-fluid{
-  height:850px;
+  height:950px;
+}
+
+a {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color:white;
 }
 
 .textoTopo {
