@@ -1,64 +1,47 @@
-
-<!--<html lang="PT-BR">-->
-
-<!--<head>-->
-<!--  <meta charset="utf-8">-->
-<!--  <meta name="viewport" content="width=device-width">-->
-<!--  <link href="/static/css/bootstrap.min.css" rel="stylesheet">-->
-<!--  <link rel="stylesheet" href="/static/css/editar_perfil.css">-->
-<!--  <script src="/static/js/bootstrap.bundle.min.js"></script>-->
-<!--  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">-->
-
-<!--  <title> Contato </title>-->
-
-<!--</head>-->
-
-<!--<body>-->
 {% extends 'base.html' %}
 
-{% block css %}<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
 
-{% block icon %} <link rel="icon" href="/static/imagens/icons/contato.ico"> {% endblock %}
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/contato.ico"> {% endblock %}
 
 {% block titulo %} Contato{% endblock %}
 
-
 {% block conteudo %}
-  {% if current_user.is_authenticated %}
-  <div class="container rounded bg-white mt-5 geral">
-    <div class="row">
-      <div class="col-md-4 border-right">
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="/static/imagens/icon_contato.png" width="190" height="190" alt"x"> </div>
-      </div>
-      <div class="col-md-8">
-        <div class="p-3 py-5">
-          <div class="d-flex justify-content-between align-items-center mb-3 titulo">
-            <h2 id="titulo"> Contato </h2>
-            <div class="d-flex flex-row align-items-center back">
-            </div>
+{% if current_user.is_authenticated %}
+<body>
+<div class="container rounded bg-white mt-5 geral">
+  <div class="row">
+    <div class="col-md-4 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="/static/imagens/icon_contato.png" width="190" height="190" alt"x"> </div>
+    </div>
+    <div class="col-md-8">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 titulo">
+          <h2 id="titulo"> Contato </h2>
+          <div class="d-flex flex-row align-items-center back">
           </div>
-          <form action="" method="POST">
-            <div class="row mt-2">
-              <div class="col-md-6"> <input type="tittle" name="tittle" placeholder="Título da mensagem" class="form-control" required id=""> </div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-6"> <textarea id="caixaTextoContato" name="message" maxlength="400" class="form-control" placeholder="Mensagem" required> </textarea> </div>
-            </div>
-<div class="mt-5 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
-          </form>
-        <div class="mt-2 text-right"><a class="btn btn-warning botao text-light" type="button" href="/"> Voltar </a> </div>
         </div>
+        <form action="" method="POST">
+          <div class="row mt-2">
+            <div class="col-md-6"> <input type="tittle" name="tittle" placeholder="Título da mensagem" class="form-control" required id=""> </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6"> <textarea id="caixaTextoContato" name="message" maxlength="400" class="form-control" placeholder="Mensagem" required> </textarea> </div>
+          </div>
+          <div class="mt-5 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
+        </form>
+        <div class="mt-2 text-right"><a class="btn btn-warning botao text-light" type="button" href="/"> Voltar </a> </div>
       </div>
     </div>
   </div>
+</div>
 
-  {% else %}
+{% else %}
 
-  <h1>Somente quem esta logado pode enviar um e-mail para a nossa central</h1>
+<h1>Somente quem esta logado pode enviar um e-mail para a nossa central</h1>
 
-  {% endif %}
-
-<!--</body>-->
-  {% endblock %}
-
-<!--</html>-->
+{% endif %}
+</body>
+{% endblock %}
