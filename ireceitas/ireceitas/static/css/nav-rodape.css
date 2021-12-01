@@ -65,7 +65,7 @@ a:link, {
   cursor: pointer;
   max-width: 500px;
   max-height: 200px;
-  left: -50%;
+  left: -10%;
   position: relative;
 
 }
@@ -79,9 +79,8 @@ a:link, {
 }
 
 
-}
 .nav-link:hover {
-    color: #ffca2c !important;
+    color: #ffca2c  !important;
 }
 
 .receita {
