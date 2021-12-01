@@ -13,6 +13,7 @@ a:link, {
     text-decoration: none;
 }
 
+
 .search-box{
     position: relative;
     top: 50%;
@@ -62,8 +63,10 @@ a:link, {
 
 .logo {
   cursor: pointer;
-  max-width:237px;
-  max-height: 120px;
+  max-width: 500px;
+  max-height: 200px;
+  left: -50%;
+  position: relative;
 
 }
 
@@ -73,10 +76,16 @@ a:link, {
   font-weight: 700;
   color: #ff7f00 !important;
   text-transform: uppercase;
+}
+
 
 }
 .nav-link:hover {
-    color: #ffa062 !important;
+    color: #ffca2c !important;
+}
+
+.receita {
+   font-size: 15px;
 }
 
 .dropdown-item {
@@ -89,8 +98,8 @@ a:link, {
 }
 
 .dropdown-item:hover {
-
-    color: #ffa062
+    background-color: #ffca2c;
+    color: white;
 }
 
 .footer {
