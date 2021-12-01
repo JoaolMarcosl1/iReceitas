@@ -10,3 +10,5 @@ flask-mail
 flask-login
 flask-recaptcha
 pillow
+flask-admin
+Flask-BasicAuth

@@ -14,15 +14,17 @@ class User(db.Model, UserMixin): #usuarios
     password = db.Column(db.String(2048), nullable=False)
     sobre = db.Column(db.String(100), nullable=False)
     isactive = db.Column(db.Boolean, default=False)
+    isadmin = db.Column(db.Boolean, default=False)
     profile_img = db.Column(db.String(100), default="default_perfil.png")
     receitas = db.relationship('Receitas', backref='user', lazy=True, cascade="all, delete")
     comentario = db.relationship('Comentarios', backref='user', lazy=True, cascade="all, delete")
 
-    def __init__(self, name, email, password, sobre):
+    def __init__(self, name, email, password, sobre, isadmin=False):
         self.name = name
         self.email = email
         self.password = generate_password_hash(password)
         self.sobre = sobre
+        self.isadmin = isadmin
 
     def setPassword(self, senhanova):
         self.password = generate_password_hash(senhanova)
