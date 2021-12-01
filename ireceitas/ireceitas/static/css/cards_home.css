@@ -44,6 +44,7 @@ img {
 
 .btn:hover {
   background-color: rgba(255, 194, 153);
+  color:white;
 }
 
 .cards {
