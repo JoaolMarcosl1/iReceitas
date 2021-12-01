@@ -8,10 +8,10 @@ body {
 .geral {
     min-height:100%;
     position:relative;
-     margin: 0 auto;
+    margin: 0 auto;
     min-width: 100%;
 }
-
+.container
 .form-control:focus {
     box-shadow: none;
     border-color: #ffa430;
@@ -21,6 +21,56 @@ body {
     background: #ff7f00;
     box-shadow: none;
     border: none;
+
+}
+.botao_perfil{
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+    width: 140px;
+
+}
+.deletar:hover {
+    background :#730002;
+}
+
+.card#perfil {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.card#perfil:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #e7d5be;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card#perfil:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #fd9c3d;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card#perfil:hover::after {
+    transform: scaleY(1)
+
 
 }
 
@@ -44,4 +94,11 @@ body {
   font-family: "Poppins";
   font-weight: 600;
 }
+
+
+.opusuario {
+    text-align: center;
+
+}
+
 
