@@ -14,10 +14,6 @@ s = URLSafeTimedSerializer('123456')
 bp = Blueprint('usuario_admin', __name__, url_prefix='/usuario_admin', template_folder='templates')
 
 
-# @bp.route('/')
-# def root():
-#     return 'Hello from usuario_admin'
-
 @bp.route('/secret', methods=['GET', 'POST'])
 @basic_auth.required
 def secret_view():
@@ -81,7 +77,8 @@ class controller(ModelView):
 #Admin geral usando bootstrap para template personalizado
 
 admin.add_view(controller(User, db.session))
-# admin.add_view(controller(Receitas, db.session))
+admin.add_view(ModelView(Comentarios, db.session))
+# admin.add_view(ModelView(Receitas, db.session))
 # admin.add_view(controller(Comentarios, db.session))
 
 
