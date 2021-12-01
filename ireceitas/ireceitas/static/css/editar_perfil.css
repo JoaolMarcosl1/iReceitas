@@ -73,7 +73,10 @@ body {
 
 
 }
-
+.foto {
+     width: 160px;
+     height: 160px;
+}
 #caixaTextoSobre {
     height: 100px;
     max-height: 100px;
