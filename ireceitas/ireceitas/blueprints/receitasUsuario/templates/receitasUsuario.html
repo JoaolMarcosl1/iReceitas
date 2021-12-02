@@ -2,8 +2,11 @@
 
 {% block titulo %}Minhas receitas{% endblock %}
 
-{% block conteudo %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/receitasUsuario.css"> {% endblock %}
 
+{% block conteudo %}
+<center><h1>Minhas Receitas</h1></center>
 {% with mensagens = get_flashed_messages() %}
 {% if mensagens %}
 <div class="alert alert-warning text-center" role="alert">
@@ -13,17 +16,21 @@
 </div>
 {% endif %}
 {% endwith %}
-
 <div class="row g-3">
   {% for receita in usuario.receitas %}
-  <div class="col-12 col-sm-6 col-xl-3 mt-3">
-    <div class="text-center">
-      <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
-      <!--<div class="card-body">-->
-      <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
-      <!--</div>-->
+
+   <div class="container">
+      <div class="square">
+        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="mask">
+     <div class="h1"><a href="/receitasUsuario/receita/{{receita.id}}" class="text-center fs-3">{{receita.titulo}}</a>
+     <div class="button"><a href="/receitasUsuario/receita/{{receita.id}}">Saber mais</a></div>
+      </div>
     </div>
-  </div>
+    </div>
+
+
+
+
   {% endfor %}
 </div>
 
