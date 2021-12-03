@@ -50,3 +50,9 @@ body{
   margin-bottom: 80px;
 
 }
+
+.botao{
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+}
