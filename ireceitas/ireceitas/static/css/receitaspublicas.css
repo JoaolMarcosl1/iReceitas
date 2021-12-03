@@ -18,11 +18,11 @@ body{
   margin-left:1115px;
   font-family:IBM Plex Serif;
   margin-top: -480px;
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   }
 
 .descricao{
-  margin-left:1115px;
+  margin-left:1090px;
   width:600px;
   font-family:Nanum Myeongjo;
   margin-top: 40px;
@@ -33,7 +33,7 @@ body{
   font-family:Nanum Myeongjo;
   margin-left:200px;
   font-size:25px;
-  margin-top: 250px;
+  margin-top:250px;
 }
 
 .especificacoes{
