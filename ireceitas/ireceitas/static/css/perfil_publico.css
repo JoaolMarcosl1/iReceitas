@@ -65,7 +65,10 @@ body {
     align-content: center;
 }
 .sobre {
-    font-size: 11px
+    font-size: 15px;
 }
 
+.foto {
+     width: 160px;
+     height: 160px;
 
