@@ -18,7 +18,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-md-7">
             <div class="card p-3 py-4" id="perfil">
-                <div class="text-center"> <img src="/usuario/imagem/{{usuario.profile_img}}" width="200" class="rounded-circle" alt="..."> </div>
+                <div class="text-center"> <img src="/usuario/imagem/{{usuario.profile_img}}" width="200" class="rounded-circle foto" alt="..."> </div>
                 <div class="text-center mt-3">
                     <h5 class="mt-2 mb-0">{{usuario.name}}</h5> <span> Sobre </span>
                     <div class="px-4 mt-1">
@@ -29,21 +29,7 @@
         </div>
     </div>
 </div>
-<div class="row g-3">
-{% for receita in usuario.receitas %}
-<div class="col-12 col-sm-6 col-xl-3 mt-3">
-<div class="card" style="width: 18rem;" id="receita">
-  <img class="card-img-top" src="/receitasUsuario/imagemReceitas/{{receita.img}}" width:"290" height"180"alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"> {{receita.titulo}} </h5>
-    <p class="card-text"> Descrição receita</p>
-    <a href="/receitasUsuario/receita/{{receita.id}}" class="btn btn-warning botao text-light"> Ver mais</a>
-  </div>
-</div>
-</div>
-</div>
 
-{% endfor %}
 
 
 
