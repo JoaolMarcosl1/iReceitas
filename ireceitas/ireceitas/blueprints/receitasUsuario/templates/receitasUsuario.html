@@ -22,8 +22,11 @@
    <div class="container">
       <div class="square">
         <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="mask">
-     <div class="h1"><a href="/receitasUsuario/receita/{{receita.id}}" class="text-center fs-3">{{receita.titulo}}</a>
-     <div class="button"><a href="/receitasUsuario/receita/{{receita.id}}">Saber mais</a></div>
+     <div class="h1"><strong><a href="/receitasUsuario/receita/{{receita.id}}" class="text-center fs-3">{{receita.titulo}}</strong></a>
+        <li><strong>Tempo de preparo:</li></strong>
+        <div class="teste"><strong>{{receita.tempo_preparo}} </strong></div>
+        <li><strong>Rendimento: </strong></li>
+        <div class="teste"><strong>{{receita.rendimento}}</strong></div>
       </div>
     </div>
     </div>

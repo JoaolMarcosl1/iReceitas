@@ -1,46 +1,36 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
 center{
-    color:orange;
+    color: #ff6600;
+    margin-top: 20px;
+    font-family: 'Merriweather';
+    font-size: 34px;
 }
 
 .text-center{
     text-decoration: none;
-    font-family: 'Quicksand', serif;
+    font-family: 'Josefin Sans';
+    color: #595959;
 }
 
-.button {
-    background-color: #ff751a;
-    color: white;
-    width: 100px;
-    padding: 15px 8px;
-    border-radius: 3px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin-top: 45px;
-    margin-left: 35%;
-    margin-right: 70px;
-    font-size: 13px;
-    cursor: pointer;
-    font-family: 'Poppins';
-    border-radius:10px;
-}
-
-.button:hover{
-  text-decoration: none;
-  background-color: rgba(255, 102, 0);
-  color: white;
+li{
+ text-align: justify;
+ padding-left: 30px;
+ padding-right: 30px;
+ font-family: 'Merriweather';
+ font-size: 18px;
+ color: #ff6600;
+ line-height: 18px;
+  margin-top: 20px;
 }
 
 a{
-  color:#404040;
+  color:#ff6600;
 }
 
 a:hover{
-  color:#404040;
+  color: #595959;
   text-decoration: none;
 }
 
@@ -62,7 +52,7 @@ a:hover{
 
 .square{
   width: 460px;
-  height: 400px;
+  height: 450px;
   background: white;
   border-radius: 15px;
   box-shadow: 0px 20px 50px #D9DBDF;
@@ -89,8 +79,18 @@ img{
   text-align: left;
   margin-top: 240px;
   padding-left: 30px;
-  font-family: 'Merriweather', serif;
-  font-size: 24px;
-  color:#404040;
+  font-family: 'Josefin Sans';
+  font-size: 30px;
+  color:#ff6600;
 }
 
+.teste{
+  text-align: justify;
+ padding-left: 30px;
+ padding-right: 30px;
+ font-family: 'Merriweather';
+ font-size: 18px;
+ color: #595959;
+ line-height: 18px;
+  margin-top: 20px;
+}
