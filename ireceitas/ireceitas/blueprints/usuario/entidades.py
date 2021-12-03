@@ -19,12 +19,13 @@ class User(db.Model, UserMixin): #usuarios
     receitas = db.relationship('Receitas', backref='user', lazy=True, cascade="all, delete")
     comentario = db.relationship('Comentarios', backref='user', lazy=True, cascade="all, delete")
 
-    def __init__(self, name, email, password, sobre, isadmin=False):
+    def __init__(self, name, email, password, sobre, isadmin=False, isactive =False):
         self.name = name
         self.email = email
         self.password = generate_password_hash(password)
         self.sobre = sobre
         self.isadmin = isadmin
+        self.isactive = isactive
 
     def setPassword(self, senhanova):
         self.password = generate_password_hash(senhanova)
