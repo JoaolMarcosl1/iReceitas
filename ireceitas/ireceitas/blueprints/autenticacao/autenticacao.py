@@ -228,9 +228,6 @@ def redefinir_senha(token, id):
 
 # --------------------LOGIN GOOGLE--------------------------
 
-
-
-
 @bp.route('/contagoogle', methods=['GET', 'POST'])
 def contagoogle():
     if current_user.is_authenticated:
