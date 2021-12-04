@@ -19,6 +19,18 @@
 <div class="row g-3">
   {% for receita in usuario.receitas %}
 
+   <div class="container">
+      <div class="square">
+        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="mask">
+     <div class="h1"><strong><a href="/receitasUsuario/receita/{{receita.id}}" class="text-center fs-3">{{receita.titulo}}</strong></a>
+        <li><strong>Tempo de preparo:</li></strong>
+        <div class="teste"><strong>{{receita.tempo_preparo}} </strong></div>
+        <li><strong>Rendimento: </strong></li>
+        <div class="teste"><strong>{{receita.rendimento}}</strong></div>
+      </div>
+    </div>
+    </div>
+
   <body>
       <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
@@ -31,6 +43,7 @@
   </div>
 </div>
 </body>
+
 
 
   {% endfor %}
