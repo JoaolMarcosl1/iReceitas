@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, request, redirect, url_for, flash, render_template
+from flask import Blueprint, request, redirect, url_for, flash, render_template, abort, session
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from flask_login import login_user, logout_user, login_required, current_user
@@ -7,6 +7,7 @@ from PIL import Image
 from werkzeug.utils import secure_filename
 from ireceitas.ext.database import db
 from ireceitas.ext.mail import mail
+from ireceitas.ext.googleLogin import oauth
 from ..usuario.entidades import User
 from ... import create_app
 
@@ -225,11 +226,65 @@ def redefinir_senha(token, id):
     except SignatureExpired:
             return '<h1>Seu token foi expirado! </h1>'
 
+# --------------------LOGIN GOOGLE--------------------------
+
+@bp.route('/contagoogle', methods=['GET', 'POST'])
+def contagoogle():
+    if current_user.is_authenticated:
+        return abort(404)
+
+    email = dict(session).get('email', None)
+    if email == None:
+        return abort(404)
+    else:
+        if request.method == 'POST':
+            name = request.form['name']
+            email = email
+            pwd = request.form['password']
+            sobre = ""
+
+            user = User(name, email, pwd, sobre, isactive=True)
+            db.session.add(user)
+            db.session.commit()
+            login_user(user)
+            flash(f"Olá {name}, sua conta do google foi criada com sucesso!")
+            return redirect(url_for('root'))
+
+    return render_template("criar_conta_google.html", email=email)
+
+
+@bp.route('/loginn')
+def loginn():
+    if current_user.is_authenticated:
+        return abort(404)
+    else:
+        google = oauth.create_client('google')
+        redirect_uri = url_for('autenticacao.authorize', _external=True)
+        return google.authorize_redirect(redirect_uri)
+
+@bp.route('/authorize')
+def authorize():
+    google = oauth.create_client('google')
+    token = google.authorize_access_token()
+    resp = google.get('userinfo')
+    user_info = resp.json()
+    session['email'] = user_info['email']
+
+    jatem = User.query.filter_by(email=user_info['email']).first()
+
+    if jatem is not None:
+        login_user(jatem)
+        flash(f"Bem vindo(a) de volta {current_user.name}")
+        return redirect(url_for("root"))
+    else:
+        return redirect('/autenticacao/contagoogle')
 
 @bp.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('root'))
+
+
 
 def init_app(app):
     app.register_blueprint(bp)

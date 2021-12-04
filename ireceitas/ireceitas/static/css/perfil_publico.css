@@ -1,0 +1,74 @@
+body {
+    background: #eee;
+
+}
+
+
+
+.container#geral {
+    position:relative;
+    margin: 0 auto;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+}
+.card#perfil {
+    border: none;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.card#perfil:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #e7d5be;
+    transform: scaleY(1);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card#perfil:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #fd9c3d;
+    transform: scaleY(0);
+    transition: all 0.5s;
+    transform-origin: bottom
+}
+
+.card#perfil:hover::after {
+    transform: scaleY(1)
+}
+.card-img-top {
+    width: 290px;
+    height: 180px;
+}
+.botao{
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+
+}
+.card#receita {
+    position: relative
+    align-content: center;
+}
+.sobre {
+    font-size: 15px;
+}
+
+.foto {
+     width: 160px;
+     height: 160px;
+

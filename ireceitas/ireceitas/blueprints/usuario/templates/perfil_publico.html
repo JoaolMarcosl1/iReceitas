@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+<link rel="stylesheet" href="/static/css/perfil_publico.css"> {% endblock %}
 
 {% block css2 %}
 <link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
@@ -9,29 +9,32 @@
 {% block icon %}
 <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
 
-{% block titulo %}Editar perfil{% endblock %}
+{% block titulo %} Perfil {% endblock %}
 
 {% block conteudo %}
-<div class="row my-3">
-  <div class="col ">
-    <img src="/usuario/imagem/{{usuario.profile_img}}" class="rounded mx-auto d-block" alt="..." style="width: 20rem;">
-    <p class="text-center fs-4 my-3">{{usuario.name}}</p>
 
-    <p class="text-center fs-1">Receitas</p>
-    <div class="row g-3">
-      {% for receita in usuario.receitas %}
-      <div class="col-12 col-sm-6 col-xl-3 mt-3">
-        <div class="text-center">
-          <center><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="..." style="width: 18rem;"></center>
-          <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
+<body>
+<div class="container mt-5" id="geral">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="card p-3 py-4" id="perfil">
+                <div class="text-center"> <img src="/usuario/imagem/{{usuario.profile_img}}" width="200" class="rounded-circle foto" alt="..."> </div>
+                <div class="text-center mt-3">
+                    <h5 class="mt-2 mb-0">{{usuario.name}}</h5> <span> Sobre </span>
+                    <div class="px-4 mt-1">
+                        <p class="sobre"> {{usuario.sobre}} </p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      {% endfor %}
     </div>
-    <p class="text-center fs-1 my-3">Sobre</p>
-    <div class="container">
-      <p class="fs-4">{{usuario.sobre}}</p>
-    </div>
-  </div>
 </div>
+
+
+
+
+
+
+
+</body>
 {% endblock %}

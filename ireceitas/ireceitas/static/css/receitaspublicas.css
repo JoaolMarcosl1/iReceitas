@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@700&display=swap');
+
+body{
+  background:#f2f2f2;
+}
+
+.fotos{
+  width:853px;
+  height:480px;
+  margin-left:200px;
+  border-radius: 10px;
+  margin-bottom: 80px;
+  margin-top: 120px;
+}
+
+.titulo{
+  margin-left:1115px;
+  font-family:IBM Plex Serif;
+  margin-top: -480px;
+  margin-bottom: 35px;
+  }
+
+.descricao{
+  margin-left:1115px;
+  width:600px;
+  font-family:Nanum Myeongjo;
+  margin-top: 40px;
+  margin-bottom: 55px;
+ }
+
+.especificacoes1{
+  font-family:Nanum Myeongjo;
+  margin-left:200px;
+  font-size:25px;
+  margin-top: 250px;
+}
+
+.especificacoes{
+  font-family:Nanum Myeongjo;
+  margin-left:200px;
+  font-size:25px;
+}
+
+#linha-horizontal{
+  width: 853px;
+  border: 1px solid #ff6600;
+  margin-left:200px;
+  margin-top: 95px;
+  margin-bottom: 80px;
+
+}
