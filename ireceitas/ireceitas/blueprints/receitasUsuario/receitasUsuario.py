@@ -4,7 +4,7 @@ from flask_login import login_required
 from PIL import Image
 from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User, Comentarios
+from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao
 from ...ext.database import db
 from ... import create_app
 
@@ -200,6 +200,51 @@ def buscarReceita():
     search = "%{}%".format(titulo)
     receita = Receitas.query.filter(Receitas.titulo.like(search)).all()
     return render_template("listaDeReceitas.html", receitas = receita)
+
+# -----------------Avaliação receita---------------
+@bp.post("/avaliarReceita")
+@login_required
+def avaliarReceita():
+    avaliacao = Avaliacao()
+    nota = request.form["nota"]
+    idUsuario = request.form['idUsuario']
+    idReceita = request.form['idReceita']
+
+    avaliacao.userID = idUsuario
+    avaliacao.receitaID = idReceita
+    avaliacao.nota = nota
+
+    db.session.add(avaliacao)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+@bp.post("/iditarAvalicao")
+@login_required
+def iditarAvalicao():
+
+   nota = request.form["nota"]
+   idUsuario = request.form['idUsuario']
+   idReceita = request.form['idReceita']
+
+   avaliacao = Avaliacao.query.filter_by(userID=idUsuario, receitaID=idReceita).first()
+
+   avaliacao.nota = nota
+
+   db.session.commit()
+   return redirect(f'/receitasUsuario/receita/{idReceita}')
+
+@bp.post("/apagarAvaliacao")
+@login_required
+def apagarAvaliacao():
+   idUsuario = request.form['idUsuario']
+   idReceita = request.form['idReceita']
+
+   avaliacao = Avaliacao.query.filter_by(userID=idUsuario, receitaID=idReceita).first()
+
+   db.session.delete(avaliacao)
+   db.session.commit()
+   return redirect(f'/receitasUsuario/receita/{idReceita}')
+
 
 def init_app(app):
     app.register_blueprint(bp)

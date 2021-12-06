@@ -1,23 +1,128 @@
 {% extends 'base.html' %}
 
-{% block css %}<link rel="stylesheet" href="/static/css/receitaspublicas.css"> {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/receitaspublicas.css">
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+   <style>
+   /* body {
+      background-color: #eee;
+    } */
+
+    div.stars {
+      width: 270px;
+      display: inline-block;
+    }
+
+    /* .mt-200 {
+      margin-top: 200px;
+    }
+     */
+    input.star {
+      display: none;
+    }
+
+    label.star {
+      float: right;
+      padding: 10px;
+      font-size: 36px;
+      color: #4a148c;
+      transition: all 0.2s;
+    }
+
+    input.star:checked ~ label.star:before {
+      content: "\f005";
+      color: #fd4;
+      /*color: #FF7F00;*/
+      transition: all 0.25s;
+    }
+
+    input.star-5:checked ~ label.star:before {
+      color: #fe7;
+      /*color: #FF7F00;*/
+      text-shadow: 0 0 20px #952;
+    }
+
+    input.star-1:checked ~ label.star:before {
+      color: #f62;
+      /*color: #FF7F00;*/
+    }
+
+    label.star:hover {
+      transform: rotate(-15deg) scale(1.3);
+    }
+
+    label.star:before {
+      content: "\f006";
+      font-family: FontAwesome;
+    }
+    </style>
+
+{% endblock %}
 
 {% block titulo %}Receitas{% endblock %}
 
 {% block conteudo %}
 
-<!--<html>-->
-<!--<head>-->
-<!--<body>-->
+
 
 <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="fotos" alt="...">
 
 <h1 class="titulo">{{receita.titulo}}</h1>
 <h3 class="descricao p-4">{{receita.descricao}}</h3>
 
-<p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo}}</span></strong></h3>
+<p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo | formatar_tempo}}</span></strong></h3>
 <h3 class="especificacoes">Rendimento <strong><span class="fs-4">{{receita.rendimento}}</span></strong></h3></p>
+<!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
 
+<p class="fs-1">Classificação: {{receita.id | classificacao}}<p>
+     <p class="fs-1">{{receita.id | quantidade_avalicoes}}<p>
+
+    <h2 class="text-center">Avaliação</h2>
+
+    <div class="container d-flex justify-content-center mt-200">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="stars">
+
+            {% if current_user.id | avaliacao(idReceita=receita.id)%}
+            <form action="/receitasUsuario/avaliarReceita"  method="POST" >
+              <h4>Avalie esta receita</h4>
+
+            {% else %}
+            <form action="/receitasUsuario/iditarAvalicao"  method="POST" >
+              <h4>Edite sua avaliação</h4>
+              <center> <h1> {{current_user.id | nota_usuario(receita.id)}}</h1></center>
+
+            {% endif %}
+              <input type="hidden" name="idReceita" value="{{receita.id}}">
+              <input type="hidden" name="idUsuario" value="{{current_user.id}}">
+              <input class="star star-5" id="star-5" type="radio" name="nota" value="5" {% if current_user.id | nota_usuario(receita.id) == 5 %} checked {% endif %} required/>
+              <label class="star star-5" for="star-5"></label>
+              <input class="star star-4" id="star-4" type="radio" name="nota" value="4" {% if current_user.id | nota_usuario(receita.id) == 4 %} checked {% endif %} required/>
+              <label class="star star-4" for="star-4"></label>
+              <input class="star star-3" id="star-3" type="radio" name="nota" value="3" {% if current_user.id | nota_usuario(receita.id) == 3 %} checked {% endif %} required/>
+              <label class="star star-3" for="star-3"></label>
+              <input class="star star-2" id="star-2" type="radio" name="nota" value="2" {% if current_user.id | nota_usuario(receita.id) == 2 %} checked {% endif %} required/>
+              <label class="star star-2" for="star-2"> </label>
+              <input class="star star-1" id="star-1" type="radio" name="nota" value="1" {% if current_user.id | nota_usuario(receita.id) == 1 %} checked {% endif %} required/>
+              <label class="star star-1" for="star-1"></label>
+              <center><button type="submit" class="btn btn-lg btn-outline-primary my-3 ">Avaliar</button></center>
+            </form>
+          </div>
+           {% if not(current_user.id | avaliacao(idReceita=receita.id))%}
+            <form action="/receitasUsuario/apagarAvaliacao"  method="POST" >
+                <input type="hidden" name="idReceita" value="{{receita.id}}">
+                <input type="hidden" name="idUsuario" value="{{current_user.id}}">
+                <center><button type="submit" class="btn btn-lg btn-outline-danger my-3 ">Apagar avaliação</button></center>
+            </form>
+            {% endif %}
+        </div>
+      </div>
+    </div>
+
+
+<!---------------------------------------------------------FIM AVALICAO----------------------------------------------------------------->
 <div id="linha-horizontal"></div>
 
     {% if receita.userID == current_user.id %}
@@ -78,7 +183,7 @@
     <h3 class="text-center"><strong>Comentários</strong></h3>
     <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
       <div class="row">
-        {% for comentario in receita.comentario %}
+        {% for comentario in receita.comentario | reverse %}
         <div class="col-2">
           <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail" style="width:200px" alt="...">
         </div>
@@ -154,6 +259,3 @@
 
 {% endblock %}
 
-<!--</body>-->
-<!--</head>-->
-<!--</html>-->
