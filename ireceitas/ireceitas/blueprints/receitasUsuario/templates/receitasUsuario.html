@@ -16,21 +16,20 @@
 </div>
 {% endif %}
 {% endwith %}
-<div class="row g-3">
+
   {% for receita in usuario.receitas %}
 
-  <body>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
+<div class="row">
+  <div class="col-sm-6">
     <div class="card">
-      <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="card-img-top" alt="...">
       <div class="card-body">
-          <a href="/receitasUsuario/receita/{{receita.id}}" class="text-warning text-center fs-3 font-monospace">{{receita.titulo}}</a>
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
-</div>
-</body>
+
 
 
   {% endfor %}
