@@ -18,6 +18,7 @@ class User(db.Model, UserMixin): #usuarios
     profile_img = db.Column(db.String(100), default="default_perfil.png")
     receitas = db.relationship('Receitas', backref='user', lazy=True, cascade="all, delete")
     comentario = db.relationship('Comentarios', backref='user', lazy=True, cascade="all, delete")
+    avaliacao = db.relationship('Avaliacao', backref='user', lazy=True, cascade="all, delete")
 
     def __init__(self, name, email, password, sobre, isadmin=False, isactive =False):
         self.name = name
@@ -46,6 +47,7 @@ class Receitas(db.Model):
     img = db.Column(db.String(100))
     comentario_ativado = db.Column(db.String(10), default="sim")
     comentario = db.relationship('Comentarios', backref='receitas', lazy=True, cascade="all, delete")
+    avaliacao = db.relationship('Avaliacao', backref='receitas', lazy=True, cascade="all, delete")
 
     def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
         self.titulo = titulo
@@ -60,3 +62,10 @@ class Comentarios(db.Model):
     data_hora = db.Column(db.String(20))
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
+
+class Avaliacao(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
+    nota = db.Column(db.Integer)
+
