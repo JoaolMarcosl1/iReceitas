@@ -49,12 +49,6 @@
                 </div>
               </li>
             </form>
-{% if current_user.isadmin == True %}
-             <li class="nav-item">
-            <a class="nav-link" href="/admin"> Admin </a>
-             </li>
-            {% endif %}
-
 {% if current_user.is_authenticated %}
 
              <li class="nav-item">
@@ -89,6 +83,11 @@
               </ul>
             </li>
             {% if current_user.is_authenticated %}
+            {% if current_user.isadmin == True %}
+             <li class="nav-item">
+            <a class="nav-link" href="/admin"> Admin </a>
+             </li>
+            {% endif %}
             <li class="nav-item ">
               <a class="nav-link perfil" href="  {{url_for('usuario.perfil')}} "> Perfil</a>
             </li>
