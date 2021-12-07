@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css"> {% endblock %}
+<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css">
+<script src="/static/js/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block titulo %}Cadastrar Receita{% endblock %}
 
@@ -55,6 +57,16 @@
               <label for="Descricao" class="form-label">Descrição</label>
               <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" minlength="10" maxlength="800"> </textarea>
             </div>
+            <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
+              <label for="igrediente" class="form-label mt-2">Igredientes</label>
+              <table class="table" id="dynamic_field">
+                <tr>
+                  <td> <input type="text" class="form-control" id="igrediente" name="igredientes1" required></td>
+                  <td><button type="button" name="add" id="add" class="btn btn-outline-primary">+</button></td>
+                </tr>
+              </table>
+
+            <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
 
             <div class="form-group col-12 text-center">
               <div class="mt-3 text-right"><button class="btn btn-warning botao text-light" type="submit"> Cadastrar </button> </div>
@@ -80,6 +92,28 @@
         preview.src = "https://cdn.pixabay.com/photo/2017/12/29/19/37/food-3048440_960_720.jpg";
       }
     }
+
+    $(document).ready(function () {
+    var i = 1;
+    $("#add").click(function () {
+    i++;
+    $("#dynamic_field").append(
+      '<tr id="row' +
+        i +
+        '"><td> <input type="text" class="form-control" id="igrediente" name="igredientes' +
+        i +
+        '" required></td><td><button type="button" name="remove" id="' +
+        i +
+        '" class="btn btn-outline-danger btn_remove">-</button></td></tr>'
+        );
+      });
+    });
+
+    $(document).on("click", ".btn_remove", function () {
+      var button_id = $(this).attr("id");
+      $("#row" + button_id + "").remove();
+    });
+
   </script>
 </body>
 {% endblock %}
