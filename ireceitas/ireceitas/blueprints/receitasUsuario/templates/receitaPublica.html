@@ -205,7 +205,7 @@
     {% endif %}
 
     {% if receita.comentario_ativado == 'sim' %}
-    <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
+
     <h4 class="text-center my-3 fonte"><strong>Adicione um comentário:</strong></h4>
     <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
       <div class="form-group col-sm-12">
@@ -218,6 +218,8 @@
         <button type="submit" class="btn my-3  btn-lg btn-secondary botao"><span class="mx-5">Publicar</span></button>
       </div>
     </form>
+
+    <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
 
     <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
       <div class="row">
