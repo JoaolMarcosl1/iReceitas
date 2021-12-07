@@ -74,19 +74,23 @@
       height: 40px;
     }
 
-    .avaliacao1{
-      font-family:Nanum Myeongjo;
-      margin-left: 200px;
-      height: 40px;
-      margin-bottom: 100px;
-    }
-
     .deletar:hover {
     background :#730002;
     }
 
     .fonte{
       font-family:IBM Plex Serif;
+    }
+
+    .classificacao{
+      font-family:Nanum Myeongjo;
+      margin-left: 200px;
+    }
+
+    .classificacao1{
+      font-family:Nanum Myeongjo;
+      margin-left: 200px;
+      margin-bottom: 100px;
     }
     </style>
 
@@ -108,10 +112,10 @@
 <!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
     <div id="linha-horizontal"></div>
 
-    <h1 class="avalia">AVALIAÇÕES</h1>
+    <h3 class="avalia">AVALIAÇÕES</h3>
 
-    <p class="fs-1 avaliacao"><strong>Classificação:</strong> {{receita.id | classificacao}} (estrelas)<p>
-     <p class="fs-1 avaliacao1">{{receita.id | quantidade_avalicoes}}<p>
+     <h3 class="classificacao"><strong>Classificação:</strong> {{receita.id | classificacao}} (estrelas)</h3>
+     <h3 class="classificacao1">{{receita.id | quantidade_avalicoes}}</h3>
 
     <div class="container d-flex justify-content-center mt-200">
       <div class="row">
@@ -201,6 +205,7 @@
     {% endif %}
 
     {% if receita.comentario_ativado == 'sim' %}
+    <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
     <h4 class="text-center my-3 fonte"><strong>Adicione um comentário:</strong></h4>
     <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
       <div class="form-group col-sm-12">
@@ -213,7 +218,7 @@
         <button type="submit" class="btn my-3  btn-lg btn-secondary botao"><span class="mx-5">Publicar</span></button>
       </div>
     </form>
-    <h3 class="text-center fonte"><strong>Comentários</strong></h3>
+
     <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
       <div class="row">
         {% for comentario in receita.comentario | reverse %}
