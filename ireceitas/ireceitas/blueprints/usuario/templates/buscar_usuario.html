@@ -8,7 +8,19 @@
 {% block icon %}
 <link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
 {% block titulo %}Buscar usuário{% endblock %}
+
 {% block conteudo %}
+
+{% with mensagens = get_flashed_messages() %}
+{% if mensagens %}
+<div class="alert alert-warning text-center" role="alert">
+  {% for mensagem in mensagens %}
+  <h2>{{mensagem}}</h2>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
 <div id="area-de-busca">
   <div class="container">
     <div class="row">

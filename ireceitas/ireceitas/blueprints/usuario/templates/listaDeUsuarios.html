@@ -12,13 +12,18 @@
 {% block titulo %}Lista de usuários{% endblock %}
 
 {% block conteudo %}
+
 <div class="row g-3">
-  <div class="col">
-    <ul class="list-group">
-      {% for usuario in usuarios %}
-      <li class="list-group-item"><a href="/usuario/perfil_publico/{{usuario.id}}" class="text-warning">{{usuario.name}}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
+     {% for usuario in usuarios %}
+    <div class="col-12 col-sm-6 col-xl-4">
+        <div class="card">
+            <img src="/usuario/imagem/{{usuario.profile_img}}" alt="...">
+            <div class="card-body">
+                <h3 class="text-center"><a href="/usuario/perfil_publico/{{usuario.id}}" class="text-warning">{{usuario.name}}</a></h3>
+              <p class="card-text">{{usuario.sobre}}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
