@@ -69,16 +69,24 @@
               <!--</table>-->
 
 
-                <div class="row gy-2" id="dynamic_field">
-                    <div class="col-11">
-                       <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required>
-                    </div>
-                     <div class="col-1">
-                    <button type="button" name="add" id="add" class="btn btn-outline-primary">+</button>
-                    </div>
+            <div class="row gy-2" id="dynamic_field">
+                <div class="col-11">
+                   <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required>
                 </div>
+                 <div class="col-1">
+                    <button type="button" name="addIgrediente" id="addIgrediente" class="btn btn-outline-primary">+</button>
+                </div>
+            </div>
 
-
+             <label for="etapa" class="form-label mt-2">Etapas</label>
+             <div class="row gy-2" id="campo_dinamico">
+                <div class="col-11">
+                   <input type="text" class="form-control" id="etapa" name="etapa1" required>
+                </div>
+                 <div class="col-1">
+                    <button type="button" name="adicionarEtapa" id="adicionarEtapa" class="btn btn-outline-primary">+</button>
+                </div>
+            </div>
             <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
 
             <div class="form-group col-12 text-center">
@@ -109,33 +117,34 @@
 
     $(document).ready(function () {
     var i = 1;
-    $("#add").click(function () {
-    i++;
-    // $('#dynamic_field').append(
-    //   '<tr id="row' +
-    //     i +
-    //     '"><td> <input type="text" class="form-control" id="ingrediente" name="ingrediente' +
-    //     i +
-    //     '" required></td><td><button type="button" name="remove" id="' +
-    //     i +
-    //     '" class="btn btn-outline-danger btn_remove">-</button></td></tr>'
-    //     );
-    //     });
-    // });
-    $('#dynamic_field').append(
-      '<div class="col-11 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-outline-danger btn_remove">-</button></div>');
-
-
+        $("#addIgrediente").click(function () {
+            i++;
+            $('#dynamic_field').append(
+              '<div class="col-11 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-outline-danger btn_remove_igrediente">X</button></div>');
         });
     });
-    // $(document).on("click", ".btn_remove", function () {
-    //   var button_id = $(this).attr("id");
-    //   $("#row" + button_id + "").remove();
-    // });
-    $(document).on("click", ".btn_remove", function () {
+
+
+
+    $(document).ready(function () {
+    var j = 1;
+        $("#adicionarEtapa").click(function () {
+            j++;
+            $('#campo_dinamico').append(
+                 '<div class="col-11 linhaEtapa'+j+'" ><input type="text" class="form-control" id="etapa" name="etapa'+j+'" required></div><div class="col-1 linhaEtapa'+j+'"><button type="button" name="removeEtapa" id="'+j+'" class="btn btn-outline-danger btn_remover_etapa">X</button></div>');
+        });
+    });
+
+    $(document).on("click", ".btn_remove_igrediente", function () {
       var button_id = $(this).attr("id");
       $(".linha" + button_id + "").remove();
     });
+
+     $(document).on("click", ".btn_remover_etapa", function () {
+      var button_id = $(this).attr("id");
+      $(".linhaEtapa" + button_id + "").remove();
+    });
+
 
   </script>
 </body>

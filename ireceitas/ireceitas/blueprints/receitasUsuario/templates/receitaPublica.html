@@ -109,6 +109,33 @@
 
 <p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo | formatar_tempo}}</span></strong></h3>
 <h3 class="especificacoes">Rendimento <strong><span class="fs-4">{{receita.rendimento}}</span></strong></h3></p>
+
+    <div id="linha-horizontal"></div>
+
+    <!-----------------------------------------INICIO INGREDIENTE----------------------------------------------------------->
+    <h4 class="especificacoes"><strong>INGREDIENTES</strong></h4>
+    <ul class="especificacoes">
+      <h4>
+
+        {% for ingrediente in receita.ingrediente %}
+          <li>{{ingrediente.nome}}</li>
+        {% endfor %}
+      </h4>
+    </ul>
+    <!-----------------------------------------FIM INGREDIENTE----------------------------------------------------------->
+
+     <!-----------------------------------------INICIO ETAPA----------------------------------------------------------->
+    <h4 class="especificacoes mt-5"><strong>MODO DE PREPARO</strong></h4>
+    <ol class="especificacoes">
+      <h4>
+
+        {% for etapa in receita.etapa %}
+          <li>{{etapa.descricao}}</li>
+        {% endfor %}
+      </h4>
+    </ol>
+    <!-----------------------------------------FIM ETAPA----------------------------------------------------------->
+
 <!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
     <div id="linha-horizontal"></div>
 

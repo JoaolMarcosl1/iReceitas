@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css"> {% endblock %}
+<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css">
+<script src="/static/js/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block titulo %} Editar Receita {% endblock %}
 
@@ -56,6 +58,23 @@
               <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" value="{{receita.descricao}}" placeholder="{{receita.descricao}}" minlength="10" maxlength="800"> {{receita.descricao}} </textarea>
             </div>
 
+             <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
+
+              <label for="igrediente" class="form-label mt-2">Igredientes</label>
+
+                <div class="row gy-2" id="dynamic_field">
+                    <div class="col-11">
+                       <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required>
+                    </div>
+                     <div class="col-1">
+                    <button type="button" name="add" id="add" class="btn btn-outline-primary">+</button>
+                    </div>
+                </div>
+
+
+            <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
+
+
             <div class="form-group col-12 text-center">
               <div class="mt-3 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
             </div>
@@ -80,6 +99,23 @@
         preview.src = "/receitasUsuario/imagemReceitas/{{receita.img}}";
       }
     }
+
+    $(document).ready(function () {
+    var i = 1;
+    $("#add").click(function () {
+    i++;
+    $('#dynamic_field').append(
+      '<div class="col-11 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-outline-danger btn_remove">-</button></div>');
+
+
+        });
+    });
+
+    $(document).on("click", ".btn_remove", function () {
+      var button_id = $(this).attr("id");
+      $(".linha" + button_id + "").remove();
+    });
+
   </script>
 </body>
 {% endblock %}

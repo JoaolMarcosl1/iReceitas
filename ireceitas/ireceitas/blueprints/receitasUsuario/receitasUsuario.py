@@ -4,7 +4,7 @@ from flask_login import login_required
 from PIL import Image
 from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao, Ingrediente
+from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao, Ingrediente, Etapa
 from ...ext.database import db
 from ... import create_app
 
@@ -57,6 +57,16 @@ def cadastrarReceitas(id):
                 ingrediente = request.form[ingr]
                 instancia_igrediente.nome = ingrediente
                 db.session.add(instancia_igrediente)
+                db.session.commit()
+
+            #------------- Para adicionar etapas em uma receita -----------------
+
+            for etapa in  [x for x in request.form if 'ingrediente' in x]:
+                instancia_etapa = Etapa()
+                instancia_etapa.receitaID = idReceitas
+                ETAPA = request.form[etapa]
+                instancia_etapa.descricao = ETAPA
+                db.session.add(instancia_etapa)
                 db.session.commit()
 
 
