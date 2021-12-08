@@ -1,26 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
 
+* {
+  font-family: 'Overpass', sans-serif;
+   }
 
+img {
+ height: 280px;
+     }
 
-.linha-horizontal{
-    width: 100%;
-    border: 0.1px solid #f2f2f2;
-}
+body {
+  background: #f2f2f2;
+      }
 
-.carousel-caption{
-  font-family:"Poppins";
-}
-
-.img-fluid{
-  height:850px;
-}
-
-.textoTopo {
- font-family:"Montserrat";
-
-}
 
 
 

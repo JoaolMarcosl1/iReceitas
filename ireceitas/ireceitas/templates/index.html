@@ -27,55 +27,150 @@
 </center>
 {%endfor%}
 
-<!--<h5>Seja bem vindo(a) {# {{ current_user.name }} #}</h5>-->
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-  </div>
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="https://cdn.pixabay.com/photo/2017/01/26/02/06/platter-2009590_960_720.jpg" class="img-fluid d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.pexels.com/photos/2747591/pexels-photo-2747591.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
-        <div class="carousel-caption">
-          <h5>Comidas fitness</h5>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.pexels.com/photos/3992132/pexels-photo-3992132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
-        <div class="carousel-caption">
-          <h5>Sobremesas</h5>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://cdn.pixabay.com/photo/2021/10/16/12/51/pomelo-salad-6714965_960_720.jpg" class="img-fluid d-block w-100" alt="...">
-        <div class="carousel-caption">
-          <h5>Frutos do mar</h5>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="https://images.pexels.com/photos/5949885/pexels-photo-5949885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="img-fluid d-block w-100" alt="...">
-        <div class="carousel-caption">
-          <h5>Massas</h5>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/static/js/carrossel_coruja.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+  <title>Owl Carousel</title>
+</head>
+
+<body>
+
+  <div class="container-fluid my-5">
+    <div class="row">
+      <div class="col-12 m-auto">
+        <div class="owl-carousel owl-theme">
+          <div class="item mb-4">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/6544227/pexels-photo-6544227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Acompanhamentos</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://cdn.pixabay.com/photo/2017/08/02/00/51/food-2569257_960_720.jpg" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Café da manhã</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/2747591/pexels-photo-2747591.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Comidas fitness</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/6128868/pexels-photo-6128868.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Comidas veganas</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/3992132/pexels-photo-3992132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Sobremesas</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://cdn.pixabay.com/photo/2021/10/16/12/51/pomelo-salad-6714965_960_720.jpg" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Frutos do mar</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/2271106/pexels-photo-2271106.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Lanches</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/5949885/pexels-photo-5949885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Massas</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="card border-0 shadow">
+              <img src="https://images.pexels.com/photos/5605569/pexels-photo-5605569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
+              <div class="card-body">
+                <div class="card-title text-center">
+                  <h4>Sopas</h4>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
   </div>
-</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous"></script>
+  <script>
+  $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        })
+
+  </script>
+</body>
+
+</html>
 
 <br>
 <br>
@@ -90,10 +185,10 @@
             <img src="https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title"> Acompanhamentos </h2>
+            <h2 class="texto"> Acompanhamentos </h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.acompanhamentos')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -103,10 +198,10 @@
             <img src="https://images.pexels.com/photos/4915571/pexels-photo-4915571.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Café da manhã</h2>
+            <h2 class="texto">Café da manhã</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.cafedamanha')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -116,10 +211,10 @@
             <img src="https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Comidas fitness</h2>
+            <h2 class="texto">Comidas fitness</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.comidasfitness')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -129,10 +224,10 @@
             <img src="https://images.pexels.com/photos/7172067/pexels-photo-7172067.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Comidas veganas</h2>
+            <h2 class="texto">Comidas veganas</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.comidasveganas')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -142,10 +237,10 @@
             <img src="https://images.pexels.com/photos/827513/pexels-photo-827513.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Sobremesas</h2>
+            <h2 class="texto">Sobremesas</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.docesesobremesas')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -155,10 +250,10 @@
             <img src="https://images.pexels.com/photos/3843224/pexels-photo-3843224.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Frutos do mar</h2>
+            <h2 class="texto">Frutos do mar</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.frutosdomar')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -168,10 +263,10 @@
             <img src="https://images.pexels.com/photos/1600727/pexels-photo-1600727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Lanches</h2>
+            <h2 class="texto">Lanches</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.lanches')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -181,10 +276,10 @@
             <img src="https://images.pexels.com/photos/5949889/pexels-photo-5949889.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Massas</h2>
+            <h2 class="texto">Massas</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.massas_topicos')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
@@ -194,10 +289,10 @@
             <img src="https://images.pexels.com/photos/539451/pexels-photo-539451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=210" alt="...">
           </div>
           <div class="card_content">
-            <h2 class="card_title">Sopas</h2>
+            <h2 class="texto">Sopas</h2>
             <p class="card_text">várias receitas de todos os tipos, venha conferir!</p>
             <a target="_blank" href="{{url_for('receitas.sopas')}}">
-              <button class="btn card_btn">Saber mais</button></a>
+              <button class="botao card_btn">Saber mais</button></a>
           </div>
         </div>
       </li>
