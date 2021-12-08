@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block css %}
-    <link rel="stylesheet" href="/static/css/receitaspublicas.css">
+   <link rel="stylesheet" href="/static/css/receitaspublicas.css">
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
    <style>
@@ -56,6 +56,42 @@
       content: "\f006";
       font-family: FontAwesome;
     }
+
+    .avalia{
+      font-family:IBM Plex Serif;
+      margin-left: 500px;
+      margin-bottom: 50px;
+    }
+
+    .avalia1{
+      font-family:IBM Plex Serif;
+      text-align: center;
+    }
+
+    .avaliacao{
+      font-family:Nanum Myeongjo;
+      margin-left: 200px;
+      height: 40px;
+    }
+
+    .deletar:hover {
+    background :#730002;
+    }
+
+    .fonte{
+      font-family:IBM Plex Serif;
+    }
+
+    .classificacao{
+      font-family:Nanum Myeongjo;
+      margin-left: 200px;
+    }
+
+    .classificacao1{
+      font-family:Nanum Myeongjo;
+      margin-left: 200px;
+      margin-bottom: 100px;
+    }
     </style>
 
 {% endblock %}
@@ -74,11 +110,12 @@
 <p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo | formatar_tempo}}</span></strong></h3>
 <h3 class="especificacoes">Rendimento <strong><span class="fs-4">{{receita.rendimento}}</span></strong></h3></p>
 <!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
+    <div id="linha-horizontal"></div>
 
-<p class="fs-1">Classificação: {{receita.id | classificacao}}<p>
-     <p class="fs-1">{{receita.id | quantidade_avalicoes}}<p>
+    <h3 class="avalia">AVALIAÇÕES</h3>
 
-    <h2 class="text-center">Avaliação</h2>
+     <h3 class="classificacao"><strong>Classificação:</strong> {{receita.id | classificacao}} (estrelas)</h3>
+     <h3 class="classificacao1">{{receita.id | quantidade_avalicoes}}</h3>
 
     <div class="container d-flex justify-content-center mt-200">
       <div class="row">
@@ -87,11 +124,11 @@
 
             {% if current_user.id | avaliacao(idReceita=receita.id)%}
             <form action="/receitasUsuario/avaliarReceita"  method="POST" >
-              <h4>Avalie esta receita</h4>
+              <h4 class="avalia1">Avalie esta receita</h4>
 
             {% else %}
             <form action="/receitasUsuario/iditarAvalicao"  method="POST" >
-              <h4>Edite sua avaliação</h4>
+              <h4 class="avalia1">Edite sua avaliação</h4>
               <center> <h1> {{current_user.id | nota_usuario(receita.id)}}</h1></center>
 
             {% endif %}
@@ -107,14 +144,14 @@
               <label class="star star-2" for="star-2"> </label>
               <input class="star star-1" id="star-1" type="radio" name="nota" value="1" {% if current_user.id | nota_usuario(receita.id) == 1 %} checked {% endif %} required/>
               <label class="star star-1" for="star-1"></label>
-              <center><button type="submit" class="btn btn-lg btn-outline-primary my-3 ">Avaliar</button></center>
+              <center><button type="submit" class="btn btn-lg btn-outline-primary my-3 botao text-light">Avaliar</button></center>
             </form>
           </div>
            {% if not(current_user.id | avaliacao(idReceita=receita.id))%}
             <form action="/receitasUsuario/apagarAvaliacao"  method="POST" >
                 <input type="hidden" name="idReceita" value="{{receita.id}}">
                 <input type="hidden" name="idUsuario" value="{{current_user.id}}">
-                <center><button type="submit" class="btn btn-lg btn-outline-danger my-3 ">Apagar avaliação</button></center>
+                <center><button type="submit" class="btn btn-lg btn-outline-danger my-3 deletar">Apagar avaliação</button></center>
             </form>
             {% endif %}
         </div>
@@ -168,7 +205,8 @@
     {% endif %}
 
     {% if receita.comentario_ativado == 'sim' %}
-    <h4 class="text-center my-3"><strong>Adicione um comentário:</strong></h4>
+
+    <h4 class="text-center my-3 fonte"><strong>Adicione um comentário:</strong></h4>
     <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
       <div class="form-group col-sm-12">
         <input type="hidden" name="idReceita" value="{{receita.id}}">
@@ -180,7 +218,9 @@
         <button type="submit" class="btn my-3  btn-lg btn-secondary botao"><span class="mx-5">Publicar</span></button>
       </div>
     </form>
-    <h3 class="text-center"><strong>Comentários</strong></h3>
+
+    <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
+
     <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
       <div class="row">
         {% for comentario in receita.comentario | reverse %}
