@@ -57,14 +57,27 @@
               <label for="Descricao" class="form-label">Descrição</label>
               <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" minlength="10" maxlength="800"> </textarea>
             </div>
+
             <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
+
               <label for="igrediente" class="form-label mt-2">Igredientes</label>
-              <table class="table" id="dynamic_field">
-                <tr>
-                  <td> <input type="text" class="form-control" id="igrediente" name="igredientes1" required></td>
-                  <td><button type="button" name="add" id="add" class="btn btn-outline-primary">+</button></td>
-                </tr>
-              </table>
+              <!--<table class="table" id="dynamic_field">-->
+              <!--  <tr>-->
+              <!--    <td> <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required></td>-->
+              <!--    <td><button type="button" name="add" id="add" class="btn btn-outline-primary">+</button></td>-->
+              <!--  </tr>-->
+              <!--</table>-->
+
+
+                <div class="row gy-2" id="dynamic_field">
+                    <div class="col-11">
+                       <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required>
+                    </div>
+                     <div class="col-1">
+                    <button type="button" name="add" id="add" class="btn btn-outline-primary">+</button>
+                    </div>
+                </div>
+
 
             <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
 
@@ -93,25 +106,35 @@
       }
     }
 
+
     $(document).ready(function () {
     var i = 1;
     $("#add").click(function () {
     i++;
-    $("#dynamic_field").append(
-      '<tr id="row' +
-        i +
-        '"><td> <input type="text" class="form-control" id="igrediente" name="igredientes' +
-        i +
-        '" required></td><td><button type="button" name="remove" id="' +
-        i +
-        '" class="btn btn-outline-danger btn_remove">-</button></td></tr>'
-        );
-      });
-    });
+    // $('#dynamic_field').append(
+    //   '<tr id="row' +
+    //     i +
+    //     '"><td> <input type="text" class="form-control" id="ingrediente" name="ingrediente' +
+    //     i +
+    //     '" required></td><td><button type="button" name="remove" id="' +
+    //     i +
+    //     '" class="btn btn-outline-danger btn_remove">-</button></td></tr>'
+    //     );
+    //     });
+    // });
+    $('#dynamic_field').append(
+      '<div class="col-11 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-outline-danger btn_remove">-</button></div>');
 
+
+        });
+    });
+    // $(document).on("click", ".btn_remove", function () {
+    //   var button_id = $(this).attr("id");
+    //   $("#row" + button_id + "").remove();
+    // });
     $(document).on("click", ".btn_remove", function () {
       var button_id = $(this).attr("id");
-      $("#row" + button_id + "").remove();
+      $(".linha" + button_id + "").remove();
     });
 
   </script>

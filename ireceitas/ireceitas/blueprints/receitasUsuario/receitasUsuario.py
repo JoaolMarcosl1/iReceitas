@@ -4,7 +4,7 @@ from flask_login import login_required
 from PIL import Image
 from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao
+from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao, Ingrediente
 from ...ext.database import db
 from ... import create_app
 
@@ -48,6 +48,21 @@ def cadastrarReceitas(id):
             receitas.img = filename
             db.session.add(receitas)
             db.session.commit()
+
+            #------------- Para adicionar igredientes em uma receita -----------------
+
+            for ingr in  [x for x in request.form if 'ingrediente' in x]:
+                instancia_igrediente = Ingrediente()
+                instancia_igrediente.receitaID = idReceitas
+                ingrediente = request.form[ingr]
+                instancia_igrediente.nome = ingrediente
+                db.session.add(instancia_igrediente)
+                db.session.commit()
+
+
+
+
+
             return redirect(f'/receitasUsuario/minhasReceitas/{id}')
         else:
             flash("A extensão deste arquivo não é permitida!")

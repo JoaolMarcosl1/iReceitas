@@ -48,6 +48,7 @@ class Receitas(db.Model):
     comentario_ativado = db.Column(db.String(10), default="sim")
     comentario = db.relationship('Comentarios', backref='receitas', lazy=True, cascade="all, delete")
     avaliacao = db.relationship('Avaliacao', backref='receitas', lazy=True, cascade="all, delete")
+    ingrediente = db.relationship('Ingrediente', backref='receitas', lazy=True, cascade="all, delete")
 
     def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
         self.titulo = titulo
@@ -68,4 +69,9 @@ class Avaliacao(db.Model):
     userID = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
     nota = db.Column(db.Integer)
+
+class Ingrediente(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
 
