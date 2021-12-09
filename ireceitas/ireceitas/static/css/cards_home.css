@@ -27,7 +27,7 @@ img {
   vertical-align: middle;
 }
 
-.btn {
+.botao {
   color: #f2f2f2;
   padding: 0.8rem;
   font-size: 14px;
@@ -42,7 +42,7 @@ img {
   text-decoration: none;
 }
 
-.btn:hover {
+.botao:hover {
   background-color: rgba(255, 194, 153);
   color:white;
 }
@@ -86,9 +86,10 @@ img {
   background: linear-gradient(to bottom left, #ff8533 40%,  #ffa366 100%);
 }
 
-.card_title {
+.texto {
   color: #ffffff;
-  font-size: 1.3rem;
+  font-family: 'Quicksand', serif;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -97,7 +98,8 @@ img {
 
 .card_text {
   color: #ffffff;
-  font-size: 0.965rem;
+  font-family: 'Quicksand', serif;
+  font-size: 0.975rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
   font-weight: 400;
