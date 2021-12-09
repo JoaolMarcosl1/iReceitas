@@ -61,7 +61,7 @@ def cadastrarReceitas(id):
 
             #------------- Para adicionar etapas em uma receita -----------------
 
-            for etapa in  [x for x in request.form if 'ingrediente' in x]:
+            for etapa in  [x for x in request.form if 'etapa' in x]:
                 instancia_etapa = Etapa()
                 instancia_etapa.receitaID = idReceitas
                 ETAPA = request.form[etapa]
@@ -147,6 +147,31 @@ def edit_receita(id):
                     return redirect(f'/receitasUsuario/edit_receita/{id}')
 
         db.session.commit()
+
+        #------------- Para editar igredientes em uma receita -----------------
+
+        for ingr in  [x for x in request.form if 'ingrediente' in x]:
+            instancia_igrediente = Ingrediente()
+            instancia_igrediente.receitaID = id
+            ingrediente = request.form[ingr]
+            instancia_igrediente.nome = ingrediente
+            db.session.add(instancia_igrediente)
+            db.session.commit()
+
+        for IngrAtual in  [x for x in request.form if 'IngrAtual' in x]:
+            idIngrediente = IngrAtual.split("l")[1]
+            ingrediente = Ingrediente.query.get(idIngrediente)
+            ingrediente.nome = request.form[IngrAtual]
+            db.session.commit()
+
+        for apagarIngr in  [x for x in request.form if 'apagarIngr' in x]:
+            idIngrediente = apagarIngr.split("r")[1]
+            ingrediente = Ingrediente.query.get(idIngrediente)
+            db.session.delete(ingrediente)
+            db.session.commit()
+
+
+
         flash("Edição feita com sucesso")
         return redirect(f'/receitasUsuario/minhasReceitas/{user.id}')
 

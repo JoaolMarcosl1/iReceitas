@@ -60,15 +60,37 @@
 
              <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
 
-              <label for="igrediente" class="form-label mt-2">Igredientes</label>
+              <label for="ingrediente" class="form-label mt-2">Igredientes</label>
 
                 <div class="row gy-2" id="dynamic_field">
-                    <div class="col-11">
-                       <input type="text" class="form-control" id="ingrediente" name="ingrediente1" required>
-                    </div>
-                     <div class="col-1">
-                    <button type="button" name="add" id="add" class="btn btn-outline-primary">+</button>
-                    </div>
+
+                    <!--Entre com os dados: <input type="text" id="campo" name="campo"> -->
+                    <!--  <a href="#" id="disable">Desabilitar campo</a>-->
+
+                   {% for ingrediente in receita.ingrediente %}
+
+                        {% if ingrediente.id == receita.ingrediente | primeiro %}
+                        <div class="col-11">
+                           <input type="text" class="form-control" id="ingrediente" name="IngrAtual{{ingrediente.id}}" value={{ingrediente.nome}} required>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" name="add" id="add" class="btn btn-outline-primary">+</button>
+                        </div>
+
+                        {% else %}
+                          <div class="col-10">
+                           <input type="text" class="form-control " id="campo{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value={{ingrediente.nome}} required>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" name="add" id="{{ingrediente.id}}" class="btn btn-outline-danger desativar">Apagar</button>
+                        </div>
+                        <!--<div class="col-1">-->
+                        <!--    <button type="button" name="add" id="" class="btn btn-outline-success ativar">Ativar</button>-->
+                        <!--</div>-->
+
+
+                        {% endif %}
+                    {% endfor %}
                 </div>
 
 
@@ -115,6 +137,30 @@
       var button_id = $(this).attr("id");
       $(".linha" + button_id + "").remove();
     });
+
+    $(document).ready(function() {
+   $(".desativar").click(function (){
+        var botao = $(this).attr("id");
+	$('#campo'+botao).prop('disabled', true);
+	// mudando a cor do campo
+        $('#campo'+botao).css("background-color", "#eb616c");
+        $('#campo'+botao).attr('name', 'apagarIngr'+botao)
+          $('#campo'+botao).attr('value', 'apagar'+botao)
+       });
+    });
+
+    $(document).ready(function() {
+   $(".ativar").click(function (){
+        var botao = $(this).attr("id");
+	$('#campo'+botao).prop("disabled", false);
+	// mudando a cor do campo
+        // $('#campo'+botao).css("background-color", "#cccccc");
+       });
+    });
+
+
+
+
 
   </script>
 </body>
