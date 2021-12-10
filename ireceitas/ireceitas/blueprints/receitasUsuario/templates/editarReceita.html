@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css"> {% endblock %}
+<link rel="stylesheet" href="/static/css/edit_cadastro_receita.css">
+<script src="/static/js/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+{% endblock %}
 
 {% block titulo %} Editar Receita {% endblock %}
 
@@ -17,14 +19,18 @@
 {% endif %}
 {% endwith %}
 
-<body>
+<!--<body>-->
 
-  <div class="container rounded bg-white mt-5 geral">
-    <div class="row">
-      <div class="col-md-0">
-      </div>
-      <div class="col-md-0">
-        <div class="px-3 py-10">
+  <!--<div class="container rounded bg-white mt-5 geral">-->
+  <!--  <div class="row">-->
+  <!--    <div class="col-md-0">-->
+  <!--    </div>-->
+  <!--    <div class="col-md-0">-->
+  <!--      <div class="px-3 py-10">-->
+
+         <div class="row justify-content-center my-5 ">
+
+        <div class="col-sm-12  col-lg-8 rounded-2 " style="background-color: #f2f2f2;">
 
           <form action="/receitasUsuario/edit_receita/{{receita.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
 
@@ -32,7 +38,7 @@
 
             <div class="form-group col-sm-12 mb-3">
               <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas" class="mb-3"> </center>
-              <label for="imagem" class="form-control">Escolha uma foto para receita</label>
+              <label for="imagem" class="form-label">Escolha uma foto para receita</label>
               <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/">
             </div>
 
@@ -42,12 +48,12 @@
             </div>
 
             <div class="form-group my-3 col-sm-5 mb-3">
-              <label for="TempoDePreparo" class="form-control">Tempo de preparo (clique no relógio) </label>
+              <label for="TempoDePreparo" class="form-label">Tempo de preparo (clique no relógio) </label>
               <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}" required>
             </div>
 
             <div class="form-group my-3 col-sm-7 mb-3">
-              <label for="rendimento" class="form-control">Rendimento:</label>
+              <label for="rendimento" class="form-label">Rendimento:</label>
               <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}" maxlength="60" required>
             </div>
 
@@ -56,15 +62,73 @@
               <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" value="{{receita.descricao}}" placeholder="{{receita.descricao}}" minlength="10" maxlength="800"> {{receita.descricao}} </textarea>
             </div>
 
+             <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
+
+              <label for="ingrediente" class="form-label mt-2">Adicione novos Ingredientes ou edite os antigos:</label>
+
+                <div class="row gy-2" id="dynamic_field">
+
+                   {% for ingrediente in receita.ingrediente %}
+
+                        {% if ingrediente.id == receita.ingrediente | primeiro %}
+                        <div class="col-10">
+                           <input type="text" class="form-control" id="ingrediente" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" name="add" id="add" class="btn btn-primary">+</button>
+                        </div>
+
+                        {% else %}
+                        <div class="col-10">
+                           <input type="text" class="form-control " id="campo{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required disabled>
+                        </div>
+                        <!--<div class="col-1">-->
+                        <!--    <button type="button" name="add" id="{{ingrediente.id}}" class="btn btn-outline-danger desativar">Apagar</button>-->
+                        <!--</div>-->
+                        <div class="col-1">
+                            <button type="button" name="add" id="{{ingrediente.id}}" class="btn btn-secondary ativar">Editar</button>
+                        </div>
+
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
             <div class="form-group col-12 text-center">
               <div class="mt-3 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
             </div>
+            <div class="mt-2 text-center"><a class="btn btn-warning botao text-light" type="button" href="/receitasUsuario/receita/{{receita.id}}"> Voltar </a> </div>
           </form>
-          <div class="mt-2 text-center"><a class="btn btn-warning botao text-light" type="button" href="/receitasUsuario/receita/{{receita.id}}"> Voltar </a> </div>
+
+            {% if  receita.ingrediente | length > 1 %}
+
+            <label for="campo" class="form-label mt-2">Apague os ingredientes cadastrasdos:</label>
+            {% for ingrediente in receita.ingrediente %}
+
+
+            <form action="/receitasUsuario/apagarIngrediente" method="POST" class="form-row row">
+                <input type="hidden" name="idReceita" value="{{receita.id}}">
+                <input type="hidden" name="idIngrediente" value="{{ingrediente.id}}"/>
+                 <div class="col-xs-6   col-sm-10">
+                   <input type="text" class="form-control form_del_igr" id="apagarIngrediente{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required>
+                </div>
+                <div class="col-xs-1  col-sm-1">
+                    <button type="submit" name="add" id="{{ingrediente.id}}" class="btn btn-danger apagarIngrediente">Apagar</button>
+                </div>
+            </form>
+
+        {% endfor %}
+         {% endif %}
+
+             <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
+
         </div>
-      </div>
     </div>
-  </div>
+        <!--</div>-->
+    <!--  </div>-->
+    <!--</div>-->
+  <!--</div>-->
 
   <script>
     function previewImagem() {
@@ -80,6 +144,66 @@
         preview.src = "/receitasUsuario/imagemReceitas/{{receita.img}}";
       }
     }
+
+    $(document).ready(function () {
+    var i = 1;
+    $("#add").click(function () {
+    i++;
+    $('#dynamic_field').append(
+      '<div class="col-10 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></div>');
+
+
+        });
+    });
+
+    $(document).on("click", ".btn_remove", function () {
+      var button_id = $(this).attr("id");
+      $(".linha" + button_id + "").remove();
+    });
+
+    $(document).ready(function() {
+   $(".apagarIngrediente").click(function (){
+        var botao = $(this).attr("id");
+	$('#apagarIngrediente'+botao).prop('disabled', true);
+	// mudando a cor do campo
+        $('#apagarIngrediente'+botao).css("background-color", "#eb616c");
+        // $('#apagarIngrediente'+botao).attr('name', 'apagarIngr'+botao);
+        // $('#apagarIngrediente'+botao).attr('value', 'apagar'+botao);
+
+       });
+    });
+
+   $(document).ready(function() {
+   $(".ativar").click(function (){
+        var botao = $(this).attr("id");
+	$('#campo'+botao).prop('disabled', false);
+       });
+    });
+
+    $(document).ready(function() {
+        function ajax_login(){
+            $.ajax({
+                url: '/receitasUsuario/apagarIngrediente',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(){
+                    alert("Deu certo");
+                },
+                error: function(error){
+                     console.log(error);
+                }
+            });
+        }
+        var b = $(this).attr("id");
+        $('#form_apagar_ingrediente'+b).submit(function(event){
+            event.preventDefault();
+            ajax_login();
+        });
+
+    });
+
+    //  var x = $("input.form_del_igr ").length;
+    // console.log(x)
   </script>
-</body>
+<!--</body>-->
 {% endblock %}

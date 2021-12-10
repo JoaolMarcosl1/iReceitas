@@ -41,8 +41,12 @@ def nota_usuario(idUser, idReceita):
 def quantidade_avalicoes(idReceita):
     qtd_av = Avaliacao.query.with_entities(func.count(Avaliacao.nota)).filter(Avaliacao.receitaID==idReceita).scalar()
     if qtd_av == 0:
-        return ''
-    return f'Quantidade de avaliações: {qtd_av}'
+        return False
+    return qtd_av
+
+def primeiro(ingredientes):
+    i = ingredientes[0].id
+    return i
 
 
 def create_app():
@@ -56,6 +60,7 @@ def create_app():
     app.jinja_env.filters['classificacao'] = classificacao
     app.jinja_env.filters['nota_usuario'] = nota_usuario
     app.jinja_env.filters['quantidade_avalicoes'] = quantidade_avalicoes
+    app.jinja_env.filters['primeiro'] = primeiro
 
     @app.errorhandler(404)#Caso usuário acesse uma pagina que não existe
     def not_found(e):

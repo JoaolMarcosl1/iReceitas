@@ -100,7 +100,15 @@
 
 {% block conteudo %}
 
-
+{% with mensagens = get_flashed_messages() %}
+{% if mensagens %}
+<div class="alert alert-warning text-center" role="alert">
+  {% for mensagem in mensagens %}
+  <h2>{{mensagem}}</h2>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="fotos" alt="...">
 
@@ -109,14 +117,41 @@
 
 <p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo | formatar_tempo}}</span></strong></h3>
 <h3 class="especificacoes">Rendimento <strong><span class="fs-4">{{receita.rendimento}}</span></strong></h3></p>
+
+    <div id="linha-horizontal"></div>
+
+    <!-----------------------------------------INICIO INGREDIENTE----------------------------------------------------------->
+    <h4 class="especificacoes"><strong>INGREDIENTES</strong></h4>
+    <ul class="especificacoes">
+      <h4>
+
+        {% for ingrediente in receita.ingrediente %}
+          <li>{{ingrediente.nome}}</li>
+        {% endfor %}
+      </h4>
+    </ul>
+    <!-----------------------------------------FIM INGREDIENTE----------------------------------------------------------->
+
+     <!-----------------------------------------INICIO ETAPA----------------------------------------------------------->
+    <h4 class="especificacoes mt-5"><strong>MODO DE PREPARO</strong></h4>
+    <ol class="especificacoes">
+      <h4>
+
+        {% for etapa in receita.etapa %}
+          <li>{{etapa.descricao}}</li>
+        {% endfor %}
+      </h4>
+    </ol>
+    <!-----------------------------------------FIM ETAPA----------------------------------------------------------->
+
 <!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
     <div id="linha-horizontal"></div>
 
     <h3 class="avalia">AVALIAÇÕES</h3>
 
      <h3 class="classificacao"><strong>Classificação:</strong> {{receita.id | classificacao}} (estrelas)</h3>
-     <h3 class="classificacao1">{{receita.id | quantidade_avalicoes}}</h3>
-
+     <!--<h3 class="classificacao1">{{receita.id | quantidade_avalicoes}}</h3>-->
+    {% if receita.id | quantidade_avalicoes %} <h3 class="classificacao1"> <strong>Quantidade de avaliações: </strong>{{receita.id | quantidade_avalicoes}} </h3> {% else %} <br>{% endif %}
     <div class="container d-flex justify-content-center mt-200">
       <div class="row">
         <div class="col-md-12">
@@ -129,7 +164,7 @@
             {% else %}
             <form action="/receitasUsuario/iditarAvalicao"  method="POST" >
               <h4 class="avalia1">Edite sua avaliação</h4>
-              <center> <h1> {{current_user.id | nota_usuario(receita.id)}}</h1></center>
+              <!--<center> <h1> {# {{current_user.id | nota_usuario(receita.id)}}#}</h1></center>-->
 
             {% endif %}
               <input type="hidden" name="idReceita" value="{{receita.id}}">
