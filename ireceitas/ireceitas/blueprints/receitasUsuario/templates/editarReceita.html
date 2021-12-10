@@ -19,80 +19,117 @@
 {% endif %}
 {% endwith %}
 
-<!--<body>-->
 
-  <!--<div class="container rounded bg-white mt-5 geral">-->
-  <!--  <div class="row">-->
-  <!--    <div class="col-md-0">-->
-  <!--    </div>-->
-  <!--    <div class="col-md-0">-->
-  <!--      <div class="px-3 py-10">-->
-
-         <div class="row justify-content-center my-5 ">
+        <div class="row justify-content-center my-5 ">
 
         <div class="col-sm-12  col-lg-8 rounded-2 " style="background-color: #f2f2f2;">
-
+        <div class="container">
           <form action="/receitasUsuario/edit_receita/{{receita.id}}" method="POST" enctype="multipart/form-data" class="form-row row">
 
             <h3 class="text-center fs-1 my-3 cadastrar_receita">Editar receita </h3>
 
             <div class="form-group col-sm-12 mb-3">
               <center> <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="Imagem do animal" height="200" id="imagemReceitas" class="mb-3"> </center>
-              <label for="imagem" class="form-label">Escolha uma foto para receita</label>
+              <label for="imagem" class="form-label"><strong>Escolha uma foto para receita:</strong></label>
               <input class="form-control" type="file" id="imagem" name="imagemReceitas" onchange="previewImagem()" accept=".png, .jpg, .jpeg, .gif/">
             </div>
 
             <div class="form-group mb-3">
-              <label for="tituloReceita" class="form-label">Título:</label>
+              <label for="tituloReceita" class="form-label"><strong>Título:</strong></label>
               <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}" minlength="3" maxlength="40" required>
             </div>
 
             <div class="form-group my-3 col-sm-5 mb-3">
-              <label for="TempoDePreparo" class="form-label">Tempo de preparo (clique no relógio) </label>
+              <label for="TempoDePreparo" class="form-label"><strong>Tempo de preparo (clique no relógio):</strong></label>
               <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}" required>
             </div>
 
             <div class="form-group my-3 col-sm-7 mb-3">
-              <label for="rendimento" class="form-label">Rendimento:</label>
+              <label for="rendimento" class="form-label"><strong>Rendimento:</strong></label>
               <input type="text" class="form-control" id="rendimento" name="rendimento" value="{{receita.rendimento}}" placeholder="{{receita.rendimento}}" maxlength="60" required>
             </div>
 
             <div class="form-group col-sm-12">
-              <label for="Descricao" class="form-label">Descrição</label>
-              <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" value="{{receita.descricao}}" placeholder="{{receita.descricao}}" minlength="10" maxlength="800"> {{receita.descricao}} </textarea>
+              <label for="Descricao" class="form-label"><strong>Descrição:</strong></label>
+              <textarea class="form-control entrada" id="Descricao" rows="5" name="descricao" value="{{receita.descricao}}" placeholder="{{receita.descricao}}" minlength="10" maxlength="800">{{receita.descricao}}</textarea>
             </div>
 
              <!-------------------------------------------------INICIO IGREDIENTES---------------------------------------------->
 
-              <label for="ingrediente" class="form-label mt-2">Adicione novos Ingredientes ou edite os antigos:</label>
+              <label for="ingrediente" class="form-label mt-2"><strong>Ingredientes:</strong></label>
 
                 <div class="row gy-2" id="dynamic_field">
 
                    {% for ingrediente in receita.ingrediente %}
 
                         {% if ingrediente.id == receita.ingrediente | primeiro %}
-                        <div class="col-10">
+                        <div class="col-sm-9 col-7">
                            <input type="text" class="form-control" id="ingrediente" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required>
                         </div>
-                        <div class="col-1">
+                        <div class="col-sm-1 col-2">
                             <button type="button" name="add" id="add" class="btn btn-primary">+</button>
                         </div>
+                        {% if  receita.ingrediente | length > 1 %}
+                           <div class="col-sm-1 col-3">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ingrediente{{ingrediente.id}}">
+                                        Apagar
+                                </button>
+                            </div>
+                        {% endif %}
 
                         {% else %}
                         <div class="col-10">
-                           <input type="text" class="form-control " id="campo{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required disabled>
-                        </div>
-                        <!--<div class="col-1">-->
-                        <!--    <button type="button" name="add" id="{{ingrediente.id}}" class="btn btn-outline-danger desativar">Apagar</button>-->
-                        <!--</div>-->
-                        <div class="col-1">
-                            <button type="button" name="add" id="{{ingrediente.id}}" class="btn btn-secondary ativar">Editar</button>
+                           <input type="text" class="form-control " id="campo{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required >
                         </div>
 
+                        <!--BOTAO PARA ABRIR O MODAL-->
+                        <div class="col-1">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ingrediente{{ingrediente.id}}">
+                                Apagar
+                        </button>
+                        </div>
 
                         {% endif %}
                     {% endfor %}
                 </div>
+                <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
+
+                 <!----------------------------------------------------- INICIO ETAPAS ------------------------------------------------- -->
+             <label for="etapa" class="form-label mt-2"><strong>Etapas:</strong></label>
+
+
+             <div class="row gy-2" id="campo_dinamico">
+                {% for etapa in receita.etapa %}
+                  {% if etapa.id == receita.etapa | primeiro %}
+                    <div class="col-sm-9 col-7">
+                       <input type="text" class="form-control" id="etapa" name="EtAtual{{etapa.id}}" value ="{{etapa.descricao}}" required>
+                    </div>
+                     <div class="col-sm-1 col-2">
+                        <button type="button" name="adicionarEtapa" id="adicionarEtapa" class="btn btn-primary">+</button>
+                    </div>
+                     {% if  receita.etapa | length > 1 %}
+                        <div class="col-sm-1 col-3">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#etapa{{etapa.id}}">
+                                Apagar
+                        </button>
+                        </div>
+                     {% endif %}
+                     {% else %}
+                     <div class="col-10">
+                       <input type="text" class="form-control" id="etapa" name="EtAtual{{etapa.id}}" value ="{{etapa.descricao}}" required>
+                    </div>
+
+                    <!--BOTAO PARA ABRIR O MODAL-->
+                    <div class="col-1">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#etapa{{etapa.id}}">
+                            Apagar
+                    </button>
+                    </div>
+
+                  {% endif %}
+                {% endfor %}
+            </div>
+            <!-----------------------------------------------------FIM ETAPAS------------------------------------------------->
 
 
             <div class="form-group col-12 text-center">
@@ -101,34 +138,67 @@
             <div class="mt-2 text-center"><a class="btn btn-warning botao text-light" type="button" href="/receitasUsuario/receita/{{receita.id}}"> Voltar </a> </div>
           </form>
 
-            {% if  receita.ingrediente | length > 1 %}
+            {% for etapa in receita.etapa %}
+            <!--MODAL COM O FORM PARA DELETAR UMA ETAPA-->
+            <div class="modal fade" id="etapa{{etapa.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apagar Etapa</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p class="fs-4">Tem certeza de que quer excluir esta etapa?</p>
+                    <p>{{etapa.descricao}}</p>
+                    <form action="/receitasUsuario/apagarEtapa" method="POST" class="form-row row">
+                        <input type="hidden" name="idReceita" value="{{receita.id}}">
+                        <input type="hidden" name="idEtapa" value="{{etapa.id}}"/>
+                        <div class="modal-footer">
+                          <button type="button" class="btn botao" data-bs-dismiss="modal">Cancelar</button>
+                          <button type="submit" name="add" id="" class="btn btn-danger apagarEtapa">Apagar</button>
+                        </div>
 
-            <label for="campo" class="form-label mt-2">Apague os ingredientes cadastrasdos:</label>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+
+
+
             {% for ingrediente in receita.ingrediente %}
-
-
-            <form action="/receitasUsuario/apagarIngrediente" method="POST" class="form-row row">
-                <input type="hidden" name="idReceita" value="{{receita.id}}">
-                <input type="hidden" name="idIngrediente" value="{{ingrediente.id}}"/>
-                 <div class="col-xs-6   col-sm-10">
-                   <input type="text" class="form-control form_del_igr" id="apagarIngrediente{{ingrediente.id}}" name="IngrAtual{{ingrediente.id}}" value="{{ingrediente.nome}}" required>
+            <!--MODAL COM O FORM PARA DELETAR UMA ETAPA-->
+            <div class="modal fade" id="ingrediente{{ingrediente.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Apagar Ingrediente</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <p class="fs-4">Tem certeza de que quer excluir este ingrediente ?</p>
+                     <p>{{ingrediente.nome}}</p>
+                     <form action="/receitasUsuario/apagarIngrediente" method="POST" class="form-row row">
+                        <input type="hidden" name="idReceita" value="{{receita.id}}">
+                        <input type="hidden" name="idIngrediente" value="{{ingrediente.id}}"/>
+                        <div class="modal-footer">
+                          <button type="button" class="btn botao" data-bs-dismiss="modal">Cancelar</button>
+                         <button type="submit" name="add" id="{{ingrediente.id}}" class="btn btn-danger apagarIngrediente">Apagar</button>
+                        </div>
+                    </form>
+                  </div>
                 </div>
-                <div class="col-xs-1  col-sm-1">
-                    <button type="submit" name="add" id="{{ingrediente.id}}" class="btn btn-danger apagarIngrediente">Apagar</button>
-                </div>
-            </form>
-
+              </div>
+            </div>
         {% endfor %}
-         {% endif %}
 
-             <!-----------------------------------------------------FIM IGREDIENTES------------------------------------------------->
+
 
         </div>
+        </div>
     </div>
-        <!--</div>-->
-    <!--  </div>-->
-    <!--</div>-->
-  <!--</div>-->
 
   <script>
     function previewImagem() {
@@ -150,7 +220,7 @@
     $("#add").click(function () {
     i++;
     $('#dynamic_field').append(
-      '<div class="col-10 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></div>');
+      '<div class="col-10 linha'+i+'" ><input type="text" class="form-control" id="ingrediente" name="ingrediente'+i+'" required></div><div class="col-1 linha'+i+'"><button type="button" name="remove" id="'+i+'" class="btn btn-secondary btn_remove">X</button></div>');
 
 
         });
@@ -161,49 +231,62 @@
       $(".linha" + button_id + "").remove();
     });
 
-    $(document).ready(function() {
-   $(".apagarIngrediente").click(function (){
-        var botao = $(this).attr("id");
-	$('#apagarIngrediente'+botao).prop('disabled', true);
-	// mudando a cor do campo
-        $('#apagarIngrediente'+botao).css("background-color", "#eb616c");
-        // $('#apagarIngrediente'+botao).attr('name', 'apagarIngr'+botao);
-        // $('#apagarIngrediente'+botao).attr('value', 'apagar'+botao);
+//     $(document).ready(function() {
+//   $(".apagarIngrediente").click(function (){
+//         var botao = $(this).attr("id");
+// // 	$('#apagarIngrediente'+botao).prop('disabled', true);
+// 	// mudando a cor do campo
+//         $('#apagarIngrediente'+botao).css("background-color", "#eb616c");
+//         // $('#apagarIngrediente'+botao).attr('name', 'apagarIngr'+botao);
+//         // $('#apagarIngrediente'+botao).attr('value', 'apagar'+botao);
 
-       });
-    });
+//       });
+//     });
 
-   $(document).ready(function() {
-   $(".ativar").click(function (){
-        var botao = $(this).attr("id");
-	$('#campo'+botao).prop('disabled', false);
-       });
-    });
+//   $(document).ready(function() {
+//   $(".ativar").click(function (){
+//         var botao = $(this).attr("id");
+// 	$('#campo'+botao).prop('disabled', false);
+//       });
+//     });
 
-    $(document).ready(function() {
-        function ajax_login(){
-            $.ajax({
-                url: '/receitasUsuario/apagarIngrediente',
-                data: $('form').serialize(),
-                type: 'POST',
-                success: function(){
-                    alert("Deu certo");
-                },
-                error: function(error){
-                     console.log(error);
-                }
-            });
-        }
-        var b = $(this).attr("id");
-        $('#form_apagar_ingrediente'+b).submit(function(event){
-            event.preventDefault();
-            ajax_login();
+    // $(document).ready(function() {
+    //     function ajax_login(){
+    //         $.ajax({
+    //             url: '/receitasUsuario/apagarIngrediente',
+    //             data: $('form').serialize(),
+    //             type: 'POST',
+    //             success: function(){
+    //                 alert("Deu certo");
+    //             },
+    //             error: function(error){
+    //                  console.log(error);
+    //             }
+    //         });
+    //     }
+    //     var b = $(this).attr("id");
+    //     $('#form_apagar_ingrediente'+b).submit(function(event){
+    //         event.preventDefault();
+    //         ajax_login();
+    //     });
+
+    // });
+
+    $(document).ready(function () {
+    var j = 1;
+        $("#adicionarEtapa").click(function () {
+            j++;
+            $('#campo_dinamico').append(
+                 '<div class="col-10 linhaEtapa'+j+'" ><input type="text" class="form-control" id="etapa" name="ETAPA'+j+'" required></div><div class="col-1 linhaEtapa'+j+'"><button type="button" name="removeEtapa" id="'+j+'" class="btn btn-secondary btn_remover_etapa">X</button></div>');
         });
-
     });
 
-    //  var x = $("input.form_del_igr ").length;
-    // console.log(x)
+     $(document).on("click", ".btn_remover_etapa", function () {
+      var button_id = $(this).attr("id");
+      $(".linhaEtapa" + button_id + "").remove();
+    });
+
+
   </script>
-<!--</body>-->
+
 {% endblock %}
