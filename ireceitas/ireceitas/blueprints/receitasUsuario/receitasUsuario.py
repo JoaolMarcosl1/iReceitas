@@ -173,9 +173,21 @@ def edit_receita(id):
 
 
         flash("Edição feita com sucesso")
-        return redirect(f'/receitasUsuario/minhasReceitas/{user.id}')
+        return redirect(f'/receitasUsuario/receita/{id}')
 
     return render_template("editarReceita.html", receita = receita)
+
+# ------------PARA APAGAR INGREDIENTE----------------
+@bp.post('/apagarIngrediente')
+@login_required
+def apagarIngrediente():
+    idIngrediente = request.form['idIngrediente']
+    idReceita = request.form['idReceita']
+    ingrediente = Ingrediente.query.get(idIngrediente)
+    db.session.delete(ingrediente)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/edit_receita/{idReceita}')
+
 
 #----------comentarios do usuarios nas receitas----------
 @bp.post('/addComentario')

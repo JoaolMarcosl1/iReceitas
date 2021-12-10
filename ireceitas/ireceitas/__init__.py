@@ -46,8 +46,8 @@ def quantidade_avalicoes(idReceita):
 
 def primeiro(ingredientes):
     i = ingredientes[0].id
-
     return i
+
 
 def create_app():
     app = Flask(__name__)

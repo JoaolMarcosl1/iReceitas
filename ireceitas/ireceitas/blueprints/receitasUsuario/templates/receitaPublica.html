@@ -100,7 +100,15 @@
 
 {% block conteudo %}
 
-
+{% with mensagens = get_flashed_messages() %}
+{% if mensagens %}
+<div class="alert alert-warning text-center" role="alert">
+  {% for mensagem in mensagens %}
+  <h2>{{mensagem}}</h2>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="fotos" alt="...">
 
