@@ -21,11 +21,25 @@
 
 .login-heading {
   font-weight: 900;
-  font-family: "Montserrat"
+  font-family: "IBM Plex Serif"
 }
+
+.login-nome{
+  font-family: "IBM Plex Serif"
+}
+
+.login-google{
+  font-family: "IBM Plex Serif"
+  color: black;
+}
+
 .registro-heading {
   font-weight: 900;
-  font-family: "Montserrat"
+  font-family: "IBM Plex Serif"
+}
+
+.registro-nome{
+  font-family: "IBM Plex Serif"
 }
 
 .container {
@@ -33,9 +47,8 @@
   margin-bottom: 1rem;
 }
 
-
 .botao {
-  background-color: #e6ac00;
+  background-color: #ff7f00;
   padding: 5px 2px;
   text-align: center;
   text-decoration: none;
