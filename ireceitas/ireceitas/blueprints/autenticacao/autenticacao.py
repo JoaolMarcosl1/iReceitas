@@ -94,21 +94,24 @@ def confirm_email(token):
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        email = request.form['email']
-        pwd = request.form['password']
-        user = User.query.filter_by(email=email).first()
-        if not user or not user.verify_password(pwd):
-            flash("Email ou senha inválidos!")
-            return redirect(url_for('autenticacao.login'))
-        if user.isactive:
+        if not current_user.is_authenticated:
+            email = request.form['email']
+            pwd = request.form['password']
+            user = User.query.filter_by(email=email).first()
             if not user or not user.verify_password(pwd):
                 flash("Email ou senha inválidos!")
                 return redirect(url_for('autenticacao.login'))
-            login_user(user)
-            flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
-            return redirect(url_for('root'))
+            if user.isactive:
+                if not user or not user.verify_password(pwd):
+                    flash("Email ou senha inválidos!")
+                    return redirect(url_for('autenticacao.login'))
+                login_user(user)
+                flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
+                return redirect(url_for('root'))
+            else:
+                flash("Sua conta não foi ativada")
         else:
-            flash("Sua conta não foi ativada")
+            return abort(404)
     return render_template('login.html')
 
 @bp.route("/delete/<int:id>", methods=['GET', 'POST'])

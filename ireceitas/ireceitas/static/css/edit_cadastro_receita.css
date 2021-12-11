@@ -6,6 +6,13 @@ body {
     height: 100%;
 }
 
+.geral {
+    min-height:100%;
+    position:relative;
+    margin: 0 auto;
+    min-width: 100%;
+}
+
 
 .cadastrar_receita{
   font-family: "Poppins";
@@ -18,13 +25,6 @@ body {
 
 }
 
-.geral {
-    min-height: 900px;
-    max-height: 100%;
-    position: relative;
-    margin: 0 auto;
-    min-width: 100%;
-}
 
 .form-control:focus {
     box-shadow: none;

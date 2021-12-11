@@ -15,7 +15,7 @@
 - Danielly Sousa
 - Mônica Naiane
 
-## Ferramentas utilzadas
+## Ferramentas utilizadas
 
 - Codepen
 - Pythonanywhere 

@@ -164,13 +164,27 @@ def edit_receita(id):
             ingrediente.nome = request.form[IngrAtual]
             db.session.commit()
 
-        for apagarIngr in  [x for x in request.form if 'apagarIngr' in x]:
-            idIngrediente = apagarIngr.split("r")[1]
-            ingrediente = Ingrediente.query.get(idIngrediente)
-            db.session.delete(ingrediente)
+        # for apagarIngr in  [x for x in request.form if 'apagarIngr' in x]:
+        #     idIngrediente = apagarIngr.split("r")[1]
+        #     ingrediente = Ingrediente.query.get(idIngrediente)
+        #     db.session.delete(ingrediente)
+        #     db.session.commit()
+
+        # ----------------------Para editar uma etapa------------------------
+        for etapaAtual in  [x for x in request.form if 'EtAtual' in x]:
+            idEtapa = etapaAtual.split("l")[1]
+            etapa = Etapa.query.get(idEtapa)
+            etapa.descricao = request.form[etapaAtual]
             db.session.commit()
 
-
+        # #------------- Para adicionar etapas em uma receita -----------------
+        for etapa in  [x for x in request.form if 'ETAPA' in x]:
+            instancia_etapa = Etapa()
+            instancia_etapa.receitaID = id
+            ETAPA = request.form[etapa]
+            instancia_etapa.descricao = ETAPA
+            db.session.add(instancia_etapa)
+            db.session.commit()
 
         flash("Edição feita com sucesso")
         return redirect(f'/receitasUsuario/receita/{id}')
@@ -185,6 +199,17 @@ def apagarIngrediente():
     idReceita = request.form['idReceita']
     ingrediente = Ingrediente.query.get(idIngrediente)
     db.session.delete(ingrediente)
+    db.session.commit()
+    return redirect(f'/receitasUsuario/edit_receita/{idReceita}')
+
+# ------------PARA APAGAR UMA ETAPA---------
+@bp.post('/apagarEtapa')
+@login_required
+def apagarEtapa():
+    idEtapa = request.form['idEtapa']
+    idReceita = request.form['idReceita']
+    etapa = Etapa.query.get(idEtapa)
+    db.session.delete(etapa)
     db.session.commit()
     return redirect(f'/receitasUsuario/edit_receita/{idReceita}')
 
