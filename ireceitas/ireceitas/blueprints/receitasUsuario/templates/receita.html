@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 
 {% block css %}
-   <link rel="stylesheet" href="/static/css/receitaspublicas.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>
+    .container {
+      background-image: url(https://cdn.pixabay.com/photo/2018/04/28/08/26/menu-3356826_960_720.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
 
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-   <style>
-   /* body {
-      background-color: #eee;
-    } */
+    .cor_fundo {
+      background-color: rgba(248, 248, 255, 0.7);
+    }
+
+    /* body {
+          background-color: #eee;
+        } */
 
     div.stars {
       width: 270px;
@@ -15,17 +24,17 @@
     }
 
     /* .mt-200 {
-      margin-top: 200px;
-    }
-     */
+          margin-top: 200px;
+        }
+         */
     input.star {
       display: none;
     }
 
     label.star {
       float: right;
-      padding: 10px;
-      font-size: 36px;
+      padding: 7px;
+      font-size: 32px;
       color: #4a148c;
       transition: all 0.2s;
     }
@@ -56,47 +65,13 @@
       content: "\f006";
       font-family: FontAwesome;
     }
-
-    .avalia{
-      font-family:IBM Plex Serif;
-      margin-left: 500px;
-      margin-bottom: 50px;
-    }
-
-    .avalia1{
-      font-family:IBM Plex Serif;
-      text-align: center;
-    }
-
-    .avaliacao{
-      font-family:Nanum Myeongjo;
-      margin-left: 200px;
-      height: 40px;
-    }
-
-    .deletar:hover {
-    background :#730002;
-    }
-
-    .fonte{
-      font-family:IBM Plex Serif;
-    }
-
-    .classificacao{
-      font-family:Nanum Myeongjo;
-      margin-left: 200px;
-    }
-
-    .classificacao1{
-      font-family:Nanum Myeongjo;
-      margin-left: 200px;
-      margin-bottom: 100px;
-    }
-    </style>
-
+</style>
 {% endblock %}
 
-{% block titulo %}Receitas{% endblock %}
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+
+{% block titulo %}Receita{% endblock %}
 
 {% block conteudo %}
 
@@ -110,63 +85,60 @@
 {% endif %}
 {% endwith %}
 
-<img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="fotos" alt="...">
 
-<h1 class="titulo">{{receita.titulo}}</h1>
-<h3 class="descricao p-4">{{receita.descricao}}</h3>
-
-<p><h3 class="especificacoes1">Tempo de preparo <strong><span class="fs-4">{{receita.tempo_preparo | formatar_tempo}}</span></strong></h3>
-<h3 class="especificacoes">Rendimento <strong><span class="fs-4">{{receita.rendimento}}</span></strong></h3></p>
-
-    <div id="linha-horizontal"></div>
-
-    <!-----------------------------------------INICIO INGREDIENTE----------------------------------------------------------->
-    <h4 class="especificacoes"><strong>INGREDIENTES</strong></h4>
-    <ul class="especificacoes">
-      <h4>
-
-        {% for ingrediente in receita.ingrediente %}
+<div class="container mt-5 " style="color: 	#000000;">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-fluid mt-3" alt="{{receita.titulo}}">
+    </div>
+    <div class="col-12 col-sm-6 ">
+      <h2 class="mt-3 text-center cor_fundo">{{receita.titulo}}</h2>
+      <p class="shadow-lg p-3 cor_fundo">{{receita.descricao}}</p>
+    </div>
+    <div class="col-12 col-sm-4">
+      <h3 class="">Ingredientes</h3>
+      <ul>
+         {% for ingrediente in receita.ingrediente %}
           <li>{{ingrediente.nome}}</li>
         {% endfor %}
-      </h4>
-    </ul>
-    <!-----------------------------------------FIM INGREDIENTE----------------------------------------------------------->
-
-     <!-----------------------------------------INICIO ETAPA----------------------------------------------------------->
-    <h4 class="especificacoes mt-5"><strong>MODO DE PREPARO</strong></h4>
-    <ol class="especificacoes">
-      <h4>
-
+      </ul>
+    </div>
+    <div class="col-12 col-sm-4">
+      <h3>Tempo de preparo</h3>
+      <p>{{receita.tempo_preparo | formatar_tempo}}</p>
+    </div>
+    <div class="col-12 col-sm-4">
+      <h3>Rendimento</h3>
+      <p>{{receita.rendimento}}</p>
+    </div>
+    <div class="col-12 col-sm-6">
+      <h3 class="text-center">Modo de preparo</h3>
+      <ol>
         {% for etapa in receita.etapa %}
           <li>{{etapa.descricao}}</li>
         {% endfor %}
-      </h4>
-    </ol>
-    <!-----------------------------------------FIM ETAPA----------------------------------------------------------->
+      </ol>
+    </div>
+    <div class="col-12 col-sm-6 ">
+      <h3 class="text-center">Avaliação</h3>
 
-<!-----------------------------------------------------INICIO AVALIACAO---------------------------------------------------------->
-    <div id="linha-horizontal"></div>
-
-    <h3 class="avalia">AVALIAÇÕES</h3>
-
-     <h3 class="classificacao"><strong>Classificação:</strong> {{receita.id | classificacao}} (estrelas)</h3>
-     <!--<h3 class="classificacao1">{{receita.id | quantidade_avalicoes}}</h3>-->
-    {% if receita.id | quantidade_avalicoes %} <h3 class="classificacao1"> <strong>Quantidade de avaliações: </strong>{{receita.id | quantidade_avalicoes}} </h3> {% else %} <br>{% endif %}
-    <div class="container d-flex justify-content-center mt-200">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="stars">
-
+      <div class="d-flex justify-content-evenly">
+      <!--  <div class="row">-->
+      <!--    <div class="col-12">-->
             {% if current_user.id | avaliacao(idReceita=receita.id)%}
-            <form action="/receitasUsuario/avaliarReceita"  method="POST" >
-              <h4 class="avalia1">Avalie esta receita</h4>
+            <form action="/receitasUsuario/avaliarReceita"  method="POST" class="row">
+              <h6 class="text-center">Avalie esta receita</h6>
 
             {% else %}
-            <form action="/receitasUsuario/iditarAvalicao"  method="POST" >
-              <h4 class="avalia1">Edite sua avaliação</h4>
+            <form action="/receitasUsuario/iditarAvalicao"  method="POST" class="row">
+              <h6 class="text-center">Edite sua avaliação</h6>
               <!--<center> <h1> {# {{current_user.id | nota_usuario(receita.id)}}#}</h1></center>-->
 
             {% endif %}
+            <div class="col-2 col-sm-3">
+
+            </div>
+            <div class="col-8 col-sm-6">
               <input type="hidden" name="idReceita" value="{{receita.id}}">
               <input type="hidden" name="idUsuario" value="{{current_user.id}}">
               <input class="star star-5" id="star-5" type="radio" name="nota" value="5" {% if current_user.id | nota_usuario(receita.id) == 5 %} checked {% endif %} required/>
@@ -179,25 +151,43 @@
               <label class="star star-2" for="star-2"> </label>
               <input class="star star-1" id="star-1" type="radio" name="nota" value="1" {% if current_user.id | nota_usuario(receita.id) == 1 %} checked {% endif %} required/>
               <label class="star star-1" for="star-1"></label>
-              <center><button type="submit" class="btn btn-lg btn-outline-primary my-3 ">Avaliar</button></center>
+              </div>
+              <div class="col-2 col-sm-3">
+
+             </div>
+              <div class="col-12">
+                    <center><button type="submit" class="btn " style="background-color: #FF7F00; color: white;">Avaliar</button></center>
+              </div>
             </form>
           </div>
+
            {% if not(current_user.id | avaliacao(idReceita=receita.id))%}
+           <!--<div class="col-12">-->
             <form action="/receitasUsuario/apagarAvaliacao"  method="POST" >
                 <input type="hidden" name="idReceita" value="{{receita.id}}">
                 <input type="hidden" name="idUsuario" value="{{current_user.id}}">
-                <center><button type="submit" class="btn btn-lg btn-outline-danger my-3 deletar">Apagar avaliação</button></center>
+               <center><button type="submit" class="btn btn-danger">Apagar Avalição</button></center>
             </form>
+             <!--</div>-->
             {% endif %}
-        </div>
-      </div>
+
+          </div>
+      <!--  </div>-->
+      <!--</div>-->
     </div>
-
-
-<!---------------------------------------------------------FIM AVALICAO----------------------------------------------------------------->
-<div id="linha-horizontal"></div>
-
-    {% if receita.userID == current_user.id %}
+    <div class="col-12 col-sm-6 mt-3">
+      <h5 class="d-inline">Classificação:</h5>
+      <p class="d-inline fs-5">{{receita.id | classificacao}} (estrelas)</p>
+    </div>
+    <div class="col-12 col-sm-6 mt-3">
+    {% if receita.id | quantidade_avalicoes %}
+      <h5 class="d-inline">Quantidade de votos:</h5>
+      <p class="d-inline fs-5">{{receita.id | quantidade_avalicoes}}</p>
+     {% endif %}
+    </div>
+    <div class="col-12 my-4">
+      <h3 class="text-center">Comentarios</h3>
+      {% if receita.userID == current_user.id %}
     <div class="mt-3 text-center">
       <a class="btn " type="button" href="/receitasUsuario/edit_receita/{{receita.id}}" style="background-color: D57700">Editar Receita</a>
       <!--</div>-->
@@ -256,19 +246,19 @@
 
     <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
 
-    <div class="container border border-warning rounded-3" style="background-color: #f9f9f9;">
-      <div class="row">
+    <div class="container rounded-3" style="background-color: #f9f9f9;">
+      <div class="row  mb-3">
         {% for comentario in receita.comentario | reverse %}
-        <div class="col-2">
+        <div class="col-4 col-sm-2 cor_fundo my-1">
           <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail" style="width:200px" alt="...">
         </div>
-        <div class="col-10">
+        <div class="col-8 col-sm-10 cor_fundo my-1">
           <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.user.name}}</a></strong></p>
           <p>{{comentario.comentario}}</p>
           <p>{{comentario.data_hora}}</p>
 
           {% if comentario.userID == current_user.id %}
-          <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editarComentario{{comentario.id}}">Editar</button>
+          <button type="button" class="btn btn-outline-primary my-2" data-bs-toggle="modal" data-bs-target="#editarComentario{{comentario.id}}">Editar</button>
           <!-- Modal -->
           <div class="modal fade" id="editarComentario{{comentario.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -293,7 +283,7 @@
             </div>
           </div>
 
-          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#apagarComentario{{comentario.id}}">Apagar</button>
+          <button type="button" class="btn btn-outline-danger my-2" data-bs-toggle="modal" data-bs-target="#apagarComentario{{comentario.id}}">Apagar</button>
           <!-- Modal -->
           <div class="modal fade" id="apagarComentario{{comentario.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -325,12 +315,9 @@
         {% else %}
         <p class="fs-2 text-center text-Warning">Os comentários estão desativados</p>
         {% endif %}
-
-      </div>
+        </div>
     </div>
-
   </div>
 </div>
 
-{% endblock %}
-
+{% endblock conteudo%}
