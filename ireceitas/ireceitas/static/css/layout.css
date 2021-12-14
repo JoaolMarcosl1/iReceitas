@@ -1,6 +1,25 @@
 /* ESSE CSS AFETA O REGSTRO E LOGIN. LAYOUT.CSS */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+a:link{
+  text-decoration: none!important;
+}
+
+
+.btn-google{
+  background-color: #ea4335;
+  justify-content: center;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-google a {
+    color: white;
+    text-decoration: none!important;
+}
 
 .registro,
 .image {
@@ -20,27 +39,27 @@
 }
 
 .login-heading {
-  font-weight: 900;
-  font-family: "IBM Plex Serif"
+  font-weight: 600;
+  font-family: "Poppins"
 }
 
 .login-nome{
-  font-family: "IBM Plex Serif"
+  font-family: "Poppins"
 }
 
 
 .login-google{
-  font-family: "IBM Plex Serif"
+  font-family: "Poppins"
   color: black;
 }
 
 .registro-heading {
-  font-weight: 900;
-  font-family: "IBM Plex Serif"
+  font-weight: 600;
+  font-family: "Poppins"
 }
 
 .registro-nome{
-  font-family: "IBM Plex Serif"
+  font-family: "Poppins"
 }
 
 .container {
@@ -49,12 +68,16 @@
 }
 
 .botao {
-  background-color: #ff7f00;
-  padding: 5px 2px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 6px;
-  font-family: "Montserrat"
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+    width: 140px;
+
+}
+
+
+.container
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ffa430;
 }
