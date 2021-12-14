@@ -5,8 +5,11 @@
 {% endblock %}
 
 {% block css %}
-
 <link rel="stylesheet" href="/static/css/home.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
+
 {% endblock %}
 
 {% block css2 %}
@@ -37,17 +40,6 @@
 </center>
 {%endfor%}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" />
-
-</head>
-
 <body>
 
   <div class="container-fluid my-5">
@@ -59,7 +51,7 @@
               <img src="https://images.pexels.com/photos/6544227/pexels-photo-6544227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Acompanhamentos</h4>
+                  <a href="receitas/acompanhamentos"> <h4>Acompanhamentos</h4> </a>
                 </div>
               </div>
             </div>
@@ -70,7 +62,7 @@
               <img src="https://cdn.pixabay.com/photo/2017/08/02/00/51/food-2569257_960_720.jpg" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Café da manhã</h4>
+                  <a class="link_cat" href="receitas/cafedamanha"> <h4>Café da manhã </h4> </a>
                 </div>
               </div>
             </div>
@@ -80,7 +72,7 @@
               <img src="https://images.pexels.com/photos/2747591/pexels-photo-2747591.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Comidas fitness</h4>
+                  <a class="link_cat" href="receitas/comidasfitness"> <h4> Comidas fitness </h4> </a>
                 </div>
               </div>
             </div>
@@ -90,7 +82,7 @@
               <img src="https://images.pexels.com/photos/6128868/pexels-photo-6128868.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Comidas veganas</h4>
+                  <a class="link_cat" href="receitas/comidasveganas"> <h4> Comidas Veganas </h4> </a>
                 </div>
               </div>
             </div>
@@ -100,7 +92,7 @@
               <img src="https://images.pexels.com/photos/3992132/pexels-photo-3992132.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Sobremesas</h4>
+                  <a class="link_cat" href="receitas/docesesobremesas"> <h4> Sobremesas </h4> </a>
                 </div>
               </div>
             </div>
@@ -110,7 +102,7 @@
               <img src="https://cdn.pixabay.com/photo/2021/10/16/12/51/pomelo-salad-6714965_960_720.jpg" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Frutos do mar</h4>
+                  <a class="link_cat" href="receitas/frutosdomar"> <h4> Frutos do mar </h4> </a>
                 </div>
               </div>
             </div>
@@ -121,7 +113,7 @@
               <img src="https://images.pexels.com/photos/2271106/pexels-photo-2271106.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Lanches</h4>
+                  <a class="link_cat" href="receitas/lanches"> <h4> Lanches </h4> </a>
                 </div>
               </div>
             </div>
@@ -132,7 +124,7 @@
               <img src="https://images.pexels.com/photos/5949885/pexels-photo-5949885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Massas</h4>
+                  <a class="link_cat" href="receitas/massas_topicos"> <h4> Massas </h4> </a>
                 </div>
               </div>
             </div>
@@ -143,7 +135,7 @@
               <img src="https://images.pexels.com/photos/5605569/pexels-photo-5605569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" class="card-img-top">
               <div class="card-body">
                 <div class="card-title text-center">
-                  <h4>Sopas</h4>
+                 <a class="link_cat" href="receitas/sopas"> <h4> Sopas </h4> </a>
                 </div>
               </div>
             </div>
@@ -152,7 +144,6 @@
       </div>
     </div>
   </div>
-
 
   <script>
   $('.owl-carousel').owlCarousel({
