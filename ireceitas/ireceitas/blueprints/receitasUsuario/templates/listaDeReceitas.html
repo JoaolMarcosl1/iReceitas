@@ -30,13 +30,15 @@
   <div class="card">
     <div class="row ">
       <div class="col-md-4 bg-scuba">
-        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-thumbnail" alt="...">
+        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-thumbnail" alt="..." style=" width:350px;
+  height:210px;">
       </div>
       <div class="col-md-8 px-3">
         <div class="card-block px-3">
           <h4 class="card-title py-3">{{receita.titulo}}</h4>
           <p class="card-text">{{receita.descricao}}</p>
-          <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post">Saber mais</a>
+          <p class="fs-5"><strong>Autor: </strong>{{receita.user.name}}</p>
+          <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post mb-3">Saber mais</a>
         </div>
       </div>
 
