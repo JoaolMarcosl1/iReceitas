@@ -19,11 +19,12 @@ def allowed_file(filename):
 @bp.route('/perfil')
 @login_required
 def perfil():
+    usuario = User.query.get({current_user.id})
     if not current_user.is_authenticated:
         flash("\nSomente quem esta logado pode acessar o seu perfil.")
     else:
         flash(".")
-    return render_template("perfil_user.html")
+    return render_template("perfil_user.html",usuario=usuario)
 
 @bp.route("/edit/<int:id>", methods=['GET', 'POST'])
 @login_required
