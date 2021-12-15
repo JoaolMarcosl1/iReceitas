@@ -11,7 +11,7 @@
     }
 
     .cor_fundo {
-      background-color: rgba(248, 248, 255, 0.7);
+      background-color: rgba(248, 248, 255, 0.5);
     }
 
     /* body {
@@ -33,8 +33,8 @@
 
     label.star {
       float: right;
-      padding: 7px;
-      font-size: 32px;
+      padding: 5px;
+      font-size: 27px;
       color: #4a148c;
       transition: all 0.2s;
     }
@@ -87,58 +87,58 @@
 
 
 <div class="container mt-5 " style="color: 	#000000;">
-  <div class="row">
+  <div class="row cor_fundo">
     <div class="col-12 col-sm-6">
       <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-fluid mt-3" alt="{{receita.titulo}}">
     </div>
     <div class="col-12 col-sm-6 ">
-      <h2 class="mt-3 text-center cor_fundo">{{receita.titulo}}</h2>
-      <p class="shadow-lg p-3 cor_fundo">{{receita.descricao}}</p>
+      <h2 class="mt-3 text-center ">{{receita.titulo}}</h2>
+      <p class="fs-5">{{receita.descricao}}</p>
     </div>
     <div class="col-12 col-sm-4">
       <h3 class="">Ingredientes</h3>
       <ul>
          {% for ingrediente in receita.ingrediente %}
-          <li>{{ingrediente.nome}}</li>
+          <li class="fs-5">{{ingrediente.nome}}</li>
         {% endfor %}
       </ul>
     </div>
     <div class="col-12 col-sm-4">
       <h3>Tempo de preparo</h3>
-      <p>{{receita.tempo_preparo | formatar_tempo}}</p>
+      <p class="fs-5">{{receita.tempo_preparo | formatar_tempo}}</p>
     </div>
     <div class="col-12 col-sm-4">
       <h3>Rendimento</h3>
-      <p>{{receita.rendimento}}</p>
+      <p class="fs-5">{{receita.rendimento}}</p>
     </div>
     <div class="col-12 col-sm-6">
       <h3 class="text-center">Modo de preparo</h3>
       <ol>
         {% for etapa in receita.etapa %}
-          <li>{{etapa.descricao}}</li>
+          <li class="fs-5">{{etapa.descricao}}</li>
         {% endfor %}
       </ol>
     </div>
     <div class="col-12 col-sm-6 ">
       <h3 class="text-center">Avaliação</h3>
 
-      <div class="d-flex justify-content-evenly">
+      <div class="">
       <!--  <div class="row">-->
       <!--    <div class="col-12">-->
             {% if current_user.id | avaliacao(idReceita=receita.id)%}
             <form action="/receitasUsuario/avaliarReceita"  method="POST" class="row">
-              <h6 class="text-center">Avalie esta receita</h6>
+              <h5 class="text-center">Avalie esta receita</h5>
 
             {% else %}
             <form action="/receitasUsuario/iditarAvalicao"  method="POST" class="row">
-              <h6 class="text-center">Edite sua avaliação</h6>
-              <!--<center> <h1> {# {{current_user.id | nota_usuario(receita.id)}}#}</h1></center>-->
+              <h5 class="text-center">Edite sua avaliação</h5>
+
 
             {% endif %}
-            <div class="col-2 col-sm-3">
+            <div class="col-12 col-md-12">
 
             </div>
-            <div class="col-8 col-sm-6">
+            <div class="col-9 col-md-8">
               <input type="hidden" name="idReceita" value="{{receita.id}}">
               <input type="hidden" name="idUsuario" value="{{current_user.id}}">
               <input class="star star-5" id="star-5" type="radio" name="nota" value="5" {% if current_user.id | nota_usuario(receita.id) == 5 %} checked {% endif %} required/>
@@ -152,7 +152,7 @@
               <input class="star star-1" id="star-1" type="radio" name="nota" value="1" {% if current_user.id | nota_usuario(receita.id) == 1 %} checked {% endif %} required/>
               <label class="star star-1" for="star-1"></label>
               </div>
-              <div class="col-2 col-sm-3">
+              <div class="col-3 col-md-2">
 
              </div>
               <div class="col-12">
@@ -174,7 +174,7 @@
           </div>
       <!--  </div>-->
       <!--</div>-->
-    </div>
+    <!--</div>-->
     <div class="col-12 col-sm-6 mt-3">
       <h5 class="d-inline">Classificação:</h5>
       <p class="d-inline fs-5">{{receita.id | classificacao}} (estrelas)</p>
@@ -186,7 +186,7 @@
      {% endif %}
     </div>
     <div class="col-12 my-4">
-      <h3 class="text-center">Comentarios</h3>
+      <!--<h3 class="text-center">Comentarios</h3>-->
       {% if receita.userID == current_user.id %}
     <div class="mt-3 text-center">
       <a class="btn " type="button" href="/receitasUsuario/edit_receita/{{receita.id}}" style="background-color: D57700">Editar Receita</a>
@@ -219,11 +219,11 @@
         <input type="hidden" name="idReceita" value="{{receita.id}}">
         {% if receita.comentario_ativado == 'sim' %}
         <input type="hidden" name="ativar" value="nao">
-        <button type="submit" class="btn btn-outline-dark my-3 ">Desativar os Comentários</button>
+        <button type="submit" class="btn btn-dark my-3 ">Desativar os Comentários</button>
         {% endif %}
         {% if receita.comentario_ativado == 'nao' %}
         <input type="hidden" name="ativar" value="sim">
-        <button type="submit" class="btn btn-outline-primary my-3 ">Ativar os Comentários</button>
+        <button type="submit" class="btn btn-primary my-3 ">Ativar os Comentários</button>
         {% endif %}
       </form>
     </div>
@@ -231,7 +231,7 @@
 
     {% if receita.comentario_ativado == 'sim' %}
 
-    <h4 class="text-center my-3 fonte"><strong>Adicione um comentário:</strong></h4>
+    <h4 class="text-center my-3 "><strong>Adicione um comentário:</strong></h4>
     <form action="/receitasUsuario/addComentario" method="POST" class="form-row row">
       <div class="form-group col-sm-12">
         <input type="hidden" name="idReceita" value="{{receita.id}}">
@@ -244,15 +244,15 @@
       </div>
     </form>
 
-    <h3 class="text-center fonte p-4"><strong>Comentários</strong></h3>
+    <h3 class="text-center  p-4"><strong>Comentários</strong></h3>
 
-    <div class="container rounded-3" style="background-color: #f9f9f9;">
-      <div class="row  mb-3">
+    <div class="mx-3" >
+      <div class="row  mb-3 ">
         {% for comentario in receita.comentario | reverse %}
-        <div class="col-4 col-sm-2 cor_fundo my-1">
+        <div class="col-4 col-sm-2  my-1 border-top border-start border-bottom border-dark  rounded-start" style="background-color: #f9f9f9;">
           <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail" style="width:200px" alt="...">
         </div>
-        <div class="col-8 col-sm-10 cor_fundo my-1">
+        <div class="col-8 col-sm-10  my-1 border-top border-end border-bottom border-dark  rounded-end" style="background-color: #f9f9f9;">
           <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.user.name}}</a></strong></p>
           <p>{{comentario.comentario}}</p>
           <p>{{comentario.data_hora}}</p>
@@ -308,12 +308,22 @@
               </div>
             </div>
           </div>
-          {% endif %}
 
-        </div>
+
+        <!--</div>-->
+          {% endif %}
+         </div>
         {% endfor %}
+        </div>
         {% else %}
-        <p class="fs-2 text-center text-Warning">Os comentários estão desativados</p>
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+          <div>
+           Os comentários estão desativados
+          </div>
+        </div>
         {% endif %}
         </div>
     </div>
