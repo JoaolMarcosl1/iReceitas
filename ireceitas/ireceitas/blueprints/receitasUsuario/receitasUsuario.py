@@ -295,6 +295,9 @@ def buscarReceita():
     titulo = request.form["titulo"]
     search = "%{}%".format(titulo)
     receita = Receitas.query.filter(Receitas.titulo.like(search)).all()
+    if len(receita) == 0:
+        flash("Receita não encontrada")
+        return render_template("listaDeReceitas.html", receitas = receita)
     return render_template("listaDeReceitas.html", receitas = receita)
 
 # -----------------Avaliação receita---------------

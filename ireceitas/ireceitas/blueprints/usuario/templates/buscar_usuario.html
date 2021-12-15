@@ -29,7 +29,7 @@
           <div class="mb-3">
             <h1 class="my-5">Pesquisar usuários</h1>
             <!--             <label for="nome" class="form-label fs-2">Nome:</label> -->
-            <input type="text" id="nome-input" name="nome">
+            <input type="text" id="nome-input" name="nome" required>
             <input type="submit" value="buscar" id="buscar-btn"></input>
           </div>
         </form>
@@ -73,7 +73,7 @@
           $('#saidaTxt').text('');
           $('#quantidade').html(quantidade + ' resultados!<br><br>');
           for (var ind in saida) {
-            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block" alt="..." style="width: 10rem;">')
+            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block" alt="..." style=" width:160px; height:90px;">')
             $('#saidaTxt').append('<li>' + '<a href="/usuario/perfil_publico/' + ids[i] + '"style="color: #D57700">' + saida[ind] + '</a>' + '</li>' + '<br>');
             i += 1;
           }
