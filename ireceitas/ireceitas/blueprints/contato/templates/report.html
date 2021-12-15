@@ -1,13 +1,49 @@
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-</head>
-<h1>Report de usuário!</h1>
-<br>
-<form action="" method="POST">
-    Nome do meliante:<input type="text" name="nome" placeholder="nome do usuario reportado" required id="">
-    E-mail do meliante:<input type="text" name="email" placeholder="email do usuario reportado" required id="">
-    Motivo: <textarea name="motivo" id="" cols="20" placeholder="motivo" required rows='10'></textarea>
-    <input type="submit" value="Enviar Report">
-  </form>
- </html>
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/contato.ico"> {% endblock %}
+
+{% block titulo %} Contato{% endblock %}
+
+{% block conteudo %}
+<body>
+<div class="container rounded bg-white mt-5 geral">
+  <div class="row">
+    <div class="col-md-4 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="https://imagensemoldes.com.br/wp-content/uploads/2020/06/Ilustra%C3%A7%C3%A3o-Megafone-PNG.png" width="190" height="190" alt"x"> </div>
+    </div>
+    <div class="col-md-8">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 titulo">
+          <h2 id="titulo"> Report usuário </h2>
+          <div class="d-flex flex-row align-items-center back">
+          </div>
+        </div>
+        <form action="" method="POST">
+          <div class="row mt-2">
+            <div class="col-md-66"> <input type="text" name="nome" placeholder="Nome do usuario" class="form-control" required id="" > </div>
+            <div class="col-md-6"> <input type="email" name="email" placeholder="Email do usuario" class="form-control" required id="">
+            </div>
+        <style>
+            .col-md-66{
+                white-space: pre;
+                width:661px;
+                
+            }
+        </style>    
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6"> <textarea id="caixaTextoContato" name="motivo" maxlength="400" class="form-control" placeholder="Motivo do report" required></textarea>  </div>
+          </div>
+          <div class="mt-5 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
+        </form>
+        <div class="mt-2 text-right"><a class="btn btn-warning botao text-light" type="button" href="/"> Voltar </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
