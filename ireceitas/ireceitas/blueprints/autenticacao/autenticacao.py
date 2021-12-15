@@ -13,6 +13,7 @@ from ... import create_app
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, StringField, PasswordField, validators
 
+
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
 s = URLSafeTimedSerializer('123456')
