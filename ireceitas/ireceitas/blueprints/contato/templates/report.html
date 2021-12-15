@@ -23,17 +23,20 @@
           </div>
         </div>
         <form action="" method="POST">
-          <div class="row mt-2">
-            <div class="col-md-66"> <input type="text" name="nome" placeholder="Nome do usuario" class="form-control" required id="" > </div>
-            <div class="col-md-6"> <input type="email" name="email" placeholder="Email do usuario" class="form-control" required id="">
+
+            {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+            <div class="alert alert-warning text-center" role="alert">
+              {% for mensagem in mensagens %}
+              <h2>{{mensagem}}</h2>
+              {% endfor %}
             </div>
-        <style>
-            .col-md-66{
-                white-space: pre;
-                width:661px;
-                
-            }
-        </style>    
+            {% endif %}
+            {% endwith %}
+          <div class="row mt-2">
+            <!--<div class="col-md-66"> <input type="text" name="nome" placeholder="Nome do usuario" class="form-control" required id="" > </div>-->
+            <div class="col-md-6"> <input type="number" name="id_" placeholder="ID do usuário" class="form-control" required id="">
+            </div>
           </div>
           <div class="row mt-3">
             <div class="col-md-6"> <textarea id="caixaTextoContato" name="motivo" maxlength="400" class="form-control" placeholder="Motivo do report" required></textarea>  </div>
