@@ -37,7 +37,10 @@
         <div class="card-block px-3">
           <h4 class="card-title py-3">{{receita.titulo}}</h4>
           <p class="card-text">{{receita.descricao}}</p>
-          <p class="fs-5"><strong>Autor: </strong>{{receita.user.name}}</p>
+          {% for topico in receita.topico %}
+            <p class="d-inline mb-3 text-warning">#{{topico.nome}}  </p>
+          {% endfor %}
+          <p class="fs-5"><strong>Autor(a): </strong>{{receita.user.name}}</p>
           <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post mb-3">Saber mais</a>
         </div>
       </div>

@@ -50,6 +50,8 @@ class Receitas(db.Model):
     avaliacao = db.relationship('Avaliacao', backref='receitas', lazy=True, cascade="all, delete")
     ingrediente = db.relationship('Ingrediente', backref='receitas', lazy=True, cascade="all, delete")
     etapa = db.relationship('Etapa', backref='receitas', lazy=True, cascade="all, delete")
+    topico = db.relationship('Topico', backref='receitas', lazy=True, cascade="all, delete")
+
     def __init__(self, titulo, desc, tempo_preparo, rendimento, userID):
         self.titulo = titulo
         self.descricao = desc
@@ -78,6 +80,12 @@ class Ingrediente(db.Model):
 class Etapa(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
-    descricao = db.Column(db.String(50), nullable=False)
+    descricao = db.Column(db.String(200), nullable=False)
+
+class Topico(db.Model):
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
+    nome = db.Column(db.String(50), nullable=False)
+
 
 

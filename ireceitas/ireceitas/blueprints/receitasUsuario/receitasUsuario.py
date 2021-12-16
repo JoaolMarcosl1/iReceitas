@@ -4,7 +4,7 @@ from flask_login import login_required
 from PIL import Image
 from datetime import datetime, timezone, timedelta
 from werkzeug.utils import secure_filename
-from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao, Ingrediente, Etapa
+from ..usuario.entidades import Receitas, User, Comentarios, Avaliacao, Ingrediente, Etapa, Topico
 from ...ext.database import db
 from ... import create_app
 
@@ -29,6 +29,9 @@ def cadastrarReceitas(id):
         rendimento = request.form['rendimento']
         img = request.files['imagemReceitas']
         userID = id
+
+        #  if 'cafe_da_manha' in request.form:
+
 
         if img and allowed_file(img.filename):
 
@@ -72,6 +75,13 @@ def cadastrarReceitas(id):
                 instancia_etapa.descricao = ETAPA
                 db.session.add(instancia_etapa)
                 db.session.commit()
+
+
+            instancia_topico = Topico()
+            instancia_topico.receitaID = idReceitas
+            instancia_topico.nome = request.form['topico']
+            db.session.add(instancia_topico)
+            db.session.commit()
 
 
 
@@ -173,11 +183,6 @@ def edit_receita(id):
             ingrediente.nome = request.form[IngrAtual]
             db.session.commit()
 
-        # for apagarIngr in  [x for x in request.form if 'apagarIngr' in x]:
-        #     idIngrediente = apagarIngr.split("r")[1]
-        #     ingrediente = Ingrediente.query.get(idIngrediente)
-        #     db.session.delete(ingrediente)
-        #     db.session.commit()
 
         # ----------------------Para editar uma etapa------------------------
         for etapaAtual in  [x for x in request.form if 'EtAtual' in x]:
@@ -194,6 +199,18 @@ def edit_receita(id):
             instancia_etapa.descricao = ETAPA
             db.session.add(instancia_etapa)
             db.session.commit()
+
+        #------------- Para editar um Topico em uma receita -----------------
+
+        idTopico = [id for id in receita.topico]
+
+        if len(idTopico) != 0:
+            topico = Topico.query.get(idTopico[0].id)
+            topico.nome = request.form['topico']
+            db.session.commit()
+
+
+
 
         flash("Edição feita com sucesso")
         return redirect(f'/receitasUsuario/receita/{id}')

@@ -39,6 +39,47 @@
               <input type="text" class="form-control" id="tituloReceita" name="titulo" value="{{receita.titulo}}" placeholder="{{receita.titulo}}" minlength="3" maxlength="40" required>
             </div>
 
+            <div class="form-group mb-3 col-12">
+                <p><strong>Categoria</strong></p>
+                <div class="form-check form-check-inline">
+
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="CAFÉ DA MANHÃ" name="topico" {% for topico in receita.topico %}{% if topico.nome == 'CAFÉ DA MANHÃ' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">CAFÉ DA MANHÃ</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="SOPAS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'SOPAS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">SOPAS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="COMIDAS VEGANAS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'COMIDAS VEGANAS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">COMIDAS VEGANAS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="FITNESS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'FITNESS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">FITNESS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="FRUTOS DO MAR"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'FRUTOS DO MAR' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">FRUTOS DO MAR</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="LANCHES" name="topico" {% for topico in receita.topico %}{% if topico.nome == 'LANCHES' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">LANCHES</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="SOBREMESAS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'SOBREMESAS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">SOBREMESAS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="MASSAS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'MASSAS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">MASSAS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="OUTROS"  name="topico" {% for topico in receita.topico %}{% if topico.nome == 'OUTROS' %}  checked {% endif %}{% endfor %} />
+                  <label class="form-check-label" for="inlineCheckbox1">OUTROS</label>
+                </div>
+            </div>
+
             <div class="form-group my-3 col-sm-5 mb-3">
               <label for="TempoDePreparo" class="form-label"><strong>Tempo de preparo (clique no relógio):</strong></label>
               <input type="time" class="form-control" id="TempoDePreparo" name="tempo_preparo" value="{{receita.tempo_preparo}}" required>
