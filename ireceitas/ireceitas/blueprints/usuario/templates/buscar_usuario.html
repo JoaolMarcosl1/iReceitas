@@ -25,18 +25,15 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <form action="/usuario/buscar_usuario" method="post" class="row g-3">
-          <div class="mb-3">
-            <h1 class="my-5">Pesquisar usuários</h1>
-            <!--             <label for="nome" class="form-label fs-2">Nome:</label> -->
-            <input type="text" id="nome-input" name="nome">
-            <input type="submit" value="buscar" id="buscar-btn"></input>
-          </div>
+        <form action="/usuario/buscar_usuario" method="post" class="row">
+            <label for="nome-input" class="form-label fs-2 text-center my-3">Pesquisar usuários</label>
+            <input type="text" id="nome-input" name="nome" class="col-9" required>
+            <input type="submit" value="buscar" id="buscar-btn" class="col-3 ">
         </form>
         <hr>
-        <strong id="quantidade"></strong>
+       <center><strong id="quantidade" ></strong></center>
         <ul class="list-group list-unstyled">
-          <span id="saidaTxt" class="list-group-item fs-5">Nenhum resultado...</span><br>
+          <span id="saidaTxt" class="list-group-item fs-5"></span><br>
         </ul>
       </div>
     </div>
@@ -73,8 +70,8 @@
           $('#saidaTxt').text('');
           $('#quantidade').html(quantidade + ' resultados!<br><br>');
           for (var ind in saida) {
-            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block" alt="..." style="width: 10rem;">')
-            $('#saidaTxt').append('<li>' + '<a href="/usuario/perfil_publico/' + ids[i] + '"style="color: #D57700">' + saida[ind] + '</a>' + '</li>' + '<br>');
+            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block mb-2" alt="..." style=" width:160px; height:90px;">')
+            $('#saidaTxt').append('<center><li>' + '<a href="/usuario/perfil_publico/' + ids[i] + '"style="color: #D57700">' + saida[ind] + '</a>' + '</li></center>' + '<br>');
             i += 1;
           }
         } else {

@@ -9,24 +9,36 @@
 <link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
 
 {% block icon %}
-<link rel="icon" href="/static/imagens/icons/usuario.ico"> {% endblock %}
+ <link rel="icon" href="/static/imagens/icons/ireceitas.ico"> {% endblock %}
 
 {% block titulo %}Lista de receitas{% endblock %}
 
 {% block conteudo %}
+
+{% with mensagens = get_flashed_messages() %}
+{% if mensagens %}
+<div class="container alert alert-warning text-center mt-5" role="alert">
+  {% for mensagem in mensagens %}
+  <h2>{{mensagem}}</h2>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
 
 {% for receita in receitas %}
 <div class="container py-3">
   <div class="card">
     <div class="row ">
       <div class="col-md-4 bg-scuba">
-        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-thumbnail" alt="...">
+        <img src="/receitasUsuario/imagemReceitas/{{receita.img}}" class="img-thumbnail" alt="..." style=" width:350px;
+  height:210px;">
       </div>
       <div class="col-md-8 px-3">
         <div class="card-block px-3">
           <h4 class="card-title py-3">{{receita.titulo}}</h4>
           <p class="card-text">{{receita.descricao}}</p>
-          <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post">Saber mais</a>
+          <p class="fs-5"><strong>Autor: </strong>{{receita.user.name}}</p>
+          <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post mb-3">Saber mais</a>
         </div>
       </div>
 
