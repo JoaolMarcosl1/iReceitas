@@ -12,7 +12,7 @@ class User(db.Model, UserMixin): #usuarios
     name = db.Column(db.String(70), nullable=False)
     email = db.Column(db.String(70), nullable=False, unique=True)
     password = db.Column(db.String(2048), nullable=False)
-    sobre = db.Column(db.String(100), nullable=False)
+    sobre = db.Column(db.String(100), default="Não sabemos sobre o usuário")
     isactive = db.Column(db.Boolean, default=False)
     isadmin = db.Column(db.Boolean, default=False)
     profile_img = db.Column(db.String(100), default="default_perfil.png")

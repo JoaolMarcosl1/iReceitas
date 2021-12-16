@@ -10,6 +10,8 @@ from ireceitas.ext.mail import mail
 from ireceitas.ext.googleLogin import oauth
 from ..usuario.entidades import User
 from ... import create_app
+from flask_wtf import FlaskForm
+from wtforms import BooleanField, StringField, PasswordField, validators
 
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
@@ -20,6 +22,72 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+# --------------------------TESTE FLASKWTF-----------------------------------
+class RegistrationForm(FlaskForm):
+    username = StringField('Nome', validators=[validators.Length(min=4, message='Digite no mínimo 4 caracteres')])
+    email = StringField('E-mail', validators=[validators.Length(min=6)])
+    password = PasswordField('Senha', validators=[validators.DataRequired(), validators.EqualTo('confirm', message='Digite sua senha correta')])
+    confirm = PasswordField('Confirme sua senha')
+    accept_tos = BooleanField('Aceitar direitos', validators=[validators.DataRequired()])
+
+class LoginForm(FlaskForm):
+    email = StringField('E-mail', validators=[validators.Length(min=6)])
+    password = PasswordField('Senha')
+    remember = BooleanField('remember me')
+
+
+@bp.route('/login_wtf', methods=['GET', 'POST'])
+def login_wtf():
+    form = LoginForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+
+        if not user or not user.verify_password(form.password.data):
+            flash("Email ou senha inválidos!")
+            return redirect(url_for('autenticacao.login_wtf'))
+
+        if user.isactive:
+            if not user.verify_password(form.password.data):
+                flash("Senha inválida!")
+                return redirect(url_for('autenticacao.login_wtf'))
+            else:
+                login_user(user, remember=form.remember.data)
+                flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
+                return redirect(url_for('root'))
+        else:
+            flash('Sua conta não foi ativada')
+    return render_template('login_wtf.html', form=form)
+
+
+@bp.route('/register_wtf', methods=['GET'])
+def register_wtf():
+    form = RegistrationForm()
+    return render_template('registerr.html', form=form)
+
+@bp.route('/registerr', methods=['POST'])
+def registerr():
+    form = RegistrationForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        jatem = User.query.filter_by(email=form.email.data).first()
+        if jatem is not None:
+            flash('Já existe uma conta com esse e-mail. Insira outro e-mail')
+            return redirect(url_for('autenticacao.register_wtf'))
+        else:
+            user = User(form.username.data, form.email.data, form.password.data, sobre="", isactive=False)
+            token = s.dumps(form.email.data, salt='email-confirm')
+            msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[form.email.data])
+            link = url_for('autenticacao.confirm_email', token=token, _external=True)
+            msg.body = 'Confirme seu e-mail, link: {}'.format(link)
+            msg.html = render_template('ativacao_conta.html', link=link)
+            mail.send(msg)
+            db.session.add(user)
+            db.session.commit()
+            flash('Foi enviado um e-mail de confirmação de conta!')
+            return redirect(url_for('autenticacao.login_wtf'))
+    return "<h1>Deu errado</h1>"
+
+# --------------------------TESTE FLASKWTF-----------------------------------
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
