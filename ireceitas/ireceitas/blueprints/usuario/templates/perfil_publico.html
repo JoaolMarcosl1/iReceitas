@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/perfil_publico.css"> {% endblock %}
+<link rel="stylesheet" href="/static/css/perfil_publico.css">
+<link rel="stylesheet" href="/static/css/receitasUsuario.css">
+{% endblock %}
 
 {% block css2 %}
 <link rel="stylesheet" href="/static/css/home.css"> {% endblock %}
@@ -20,7 +22,7 @@
             <div class="card p-3 py-4" id="perfil">
                 <div class="text-center"> <img src="/usuario/imagem/{{usuario.profile_img}}" width="200" class="rounded-circle foto" alt="..."> </div>
                 <div class="text-center mt-3">
-                    <h5 class="mt-2 mb-0">{{usuario.name}}#{{usuario.id}}</h5><span> Sobre </span>
+                    <h5 class="mt-2 mb-0">{{usuario.name}}</h5> <span> Sobre </span>
                     <div class="px-4 mt-1">
                         <p class="sobre"> {{usuario.sobre}} </p>
                     </div>
@@ -30,7 +32,38 @@
     </div>
 </div>
 
+<center><div id="linhas"></div></center>
+<center><h1>Receitas do usuário</h1></center>
 
+  <div class="row g-3">
+  {% for receita in usuario.receitas %}
+
+  <div class="col-12 col-sm-6 col-xl-3 mt-3">
+<div class="container1">
+  <div class="card_receitas">
+    <div class="img-cover"><img src="/receitasUsuario/imagemReceitas/{{receita.img}}" alt="...">
+      <div class="icon"><svg width="23" height="18" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 9H22M12 1.5L20.9333 8.2C21.4667 8.6 21.4667 9.4 20.9333 9.8L12 16.5" stroke="white" stroke-width="3" />
+        </svg>
+      </div>
+    </div>
+    <div class="desc">
+      <p class="tdesc"> {{receita.titulo}} </p>
+      <ion-icon class="preparo" name="alarm-outline"></ion-icon>
+      <div class='receita_tempo'>{{receita.tempo_preparo}}</div>
+      <ion-icon class="rendimento" name="fast-food-outline"></ion-icon>
+      <div class='receita_rendimento'>{{receita.rendimento}}</div>
+      <a href="/receitasUsuario/receita/{{receita.id}}">Clique aqui <svg width="19" height="14" viewBox="0 0 23 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 9H22M12 1.5L20.9333 8.2C21.4667 8.6 21.4667 9.4 20.9333 9.8L12 16.5" stroke="white" stroke-width="3" />
+        </svg></a>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+
+  {% endfor %}
+</div>
 
 
 
