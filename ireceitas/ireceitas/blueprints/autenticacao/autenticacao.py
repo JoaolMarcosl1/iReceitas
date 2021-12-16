@@ -3,8 +3,8 @@ from flask import Blueprint, request, redirect, url_for, flash, render_template,
 from flask_mail import Message
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from flask_login import login_user, logout_user, login_required, current_user
-from PIL import Image
-from werkzeug.utils import secure_filename
+# from PIL import Image
+# from werkzeug.utils import secure_filename
 from ireceitas.ext.database import db
 from ireceitas.ext.mail import mail
 from ireceitas.ext.googleLogin import oauth
@@ -18,13 +18,13 @@ bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_fo
 
 s = URLSafeTimedSerializer('123456')
 
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+# ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# def allowed_file(filename):
+#     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# --------------------------TESTE FLASKWTF-----------------------------------
+ #--------------------------TESTE FLASKWTF-----------------------------------
 class RegistrationForm(FlaskForm):
     username = StringField('Nome', validators=[DataRequired(message="Digite um nome."), validators.Length(min=4,max=15, message='Digite no mínimo 4 caracteres')])
     email = EmailField('E-mail', validators=[DataRequired(message="Digite uma email."), validators.Length(min=6,max=30)])
@@ -88,58 +88,58 @@ def registerr():
 
 # --------------------------FIM FLASKWTF-----------------------------------
 
-@bp.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        pwd = request.form['password']
-        sobre = ""
-        if 'foto_perfil' not in request.files:
-            flash("Não deu certo inserir essa imagem")
-            return redirect(url_for('autenticacao.register'))
-        foto = request.files['foto_perfil']
+# @bp.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         name = request.form['name']
+#         email = request.form['email']
+#         pwd = request.form['password']
+#         sobre = ""
+#         if 'foto_perfil' not in request.files:
+#             flash("Não deu certo inserir essa imagem")
+#             return redirect(url_for('autenticacao.register'))
+#         foto = request.files['foto_perfil']
 
-        jatem = User.query.filter_by(email=email).first()
+#         jatem = User.query.filter_by(email=email).first()
 
-        if jatem is not None:
-            flash('Já existe uma conta com esse e-mail. Insira outro e-mail')
-            return redirect(url_for('autenticacao.register'))
+#         if jatem is not None:
+#             flash('Já existe uma conta com esse e-mail. Insira outro e-mail')
+#             return redirect(url_for('autenticacao.register'))
 
-        else:
+#         else:
 
-            user = User(name, email, pwd, sobre)
+#             user = User(name, email, pwd, sobre)
 
-            token = s.dumps(email, salt='email-confirm')
-            msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
-            link = url_for('autenticacao.confirm_email', token=token, _external=True)
-            msg.body = 'Confirme seu e-mail, link: {}'.format(link)
-            msg.html = render_template('ativacao_conta.html', link=link)
-            mail.send(msg)
-            flash('Foi enviado um e-mail de confirmação de conta!')
+#             token = s.dumps(email, salt='email-confirm')
+#             msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[email])
+#             link = url_for('autenticacao.confirm_email', token=token, _external=True)
+#             msg.body = 'Confirme seu e-mail, link: {}'.format(link)
+#             msg.html = render_template('ativacao_conta.html', link=link)
+#             mail.send(msg)
+#             flash('Foi enviado um e-mail de confirmação de conta!')
 
-            db.session.add(user)
-            db.session.commit()
-            if foto and allowed_file(foto.filename):
-                filename =  secure_filename(foto.filename)
-                filename = filename.split(".")
-                id = user.id
-                filename = 'PerfilUser' + str(id) + '.' + filename[1]
+#             db.session.add(user)
+#             db.session.commit()
+#             if foto and allowed_file(foto.filename):
+#                 filename =  secure_filename(foto.filename)
+#                 filename = filename.split(".")
+#                 id = user.id
+#                 filename = 'PerfilUser' + str(id) + '.' + filename[1]
 
 
-                app = create_app()
-                foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+#                 app = create_app()
+#                 foto.save(os.path.join(app.config['UPLOAD_PERFIL'], filename))
 
-                imagem = Image.open(os.path.join(app.config['UPLOAD_PERFIL'], filename))
-                imagem.thumbnail((300,300))
-                imagem.save(os.path.join(app.config['UPLOAD_PERFIL'],filename))
+#                 imagem = Image.open(os.path.join(app.config['UPLOAD_PERFIL'], filename))
+#                 imagem.thumbnail((300,300))
+#                 imagem.save(os.path.join(app.config['UPLOAD_PERFIL'],filename))
 
-                user.profile_img = filename
-                db.session.add(user)
-                db.session.commit()
+#                 user.profile_img = filename
+#                 db.session.add(user)
+#                 db.session.commit()
 
-            return redirect(url_for('autenticacao.login'))
-    return render_template('register.html')
+#             return redirect(url_for('autenticacao.login'))
+#     return render_template('register.html')
 
 
 @bp.route('/confirm_email/<token>', methods=['GET', 'POST'])
@@ -153,33 +153,33 @@ def confirm_email(token):
 
     except SignatureExpired:
         flash('Token não existe mais!')
-        return redirect(url_for('autenticacao.login'))
+        return redirect(url_for('autenticacao.login_wtf'))
 
     flash('Conta ativada com sucesso!')
-    return redirect(url_for('autenticacao.login'))
+    return redirect(url_for('autenticacao.login_wtf'))
 
-@bp.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        if not current_user.is_authenticated:
-            email = request.form['email']
-            pwd = request.form['password']
-            user = User.query.filter_by(email=email).first()
-            if not user or not user.verify_password(pwd):
-                flash("Email ou senha inválidos!")
-                return redirect(url_for('autenticacao.login'))
-            if user.isactive:
-                if not user or not user.verify_password(pwd):
-                    flash("Email ou senha inválidos!")
-                    return redirect(url_for('autenticacao.login'))
-                login_user(user)
-                flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
-                return redirect(url_for('root'))
-            else:
-                flash("Sua conta não foi ativada")
-        else:
-            return abort(404)
-    return render_template('login.html')
+# @bp.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         if not current_user.is_authenticated:
+#             email = request.form['email']
+#             pwd = request.form['password']
+#             user = User.query.filter_by(email=email).first()
+#             if not user or not user.verify_password(pwd):
+#                 flash("Email ou senha inválidos!")
+#                 return redirect(url_for('autenticacao.login'))
+#             if user.isactive:
+#                 if not user or not user.verify_password(pwd):
+#                     flash("Email ou senha inválidos!")
+#                     return redirect(url_for('autenticacao.login'))
+#                 login_user(user)
+#                 flash(f'Olá {current_user.name}, seja bem-vindo(a)\n')
+#                 return redirect(url_for('root'))
+#             else:
+#                 flash("Sua conta não foi ativada")
+#         else:
+#             return abort(404)
+#     return render_template('login.html')
 
 @bp.route("/delete/<int:id>", methods=['GET', 'POST'])
 def delete(id):
@@ -230,7 +230,7 @@ def redefinir_email(token, id):
                 user.email=email
                 db.session.add(user)
                 db.session.commit()
-                flash('e-mail alterado com sucesso')
+                flash('E-mail alterado com sucesso')
                 return redirect(url_for('root'))
 
             else:
@@ -239,7 +239,7 @@ def redefinir_email(token, id):
         return render_template("novaemail.html", user=user, token=token)
 
     except SignatureExpired:
-            return '<h1>Seu token foi expirado! </h1>'
+            return '<h1>Seu token foi expirado, volte para o site!</h1>'
 
 
 

@@ -45,7 +45,7 @@
                      <div class="row">
                       {{ render_field(form.confirm, class="form-control", placeholder="Confirme sua senha") }}
                     </div>
-                    <p class="small mt-2 mb-0 ml-9 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login')}}" class="link-warning"> Faça login </strong></a></p>
+                    <p class="small mt-2 mb-0 ml-9 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login_wtf')}}" class="link-warning"> Faça login </strong></a></p>
                   </div>
                   <div class="recap">
                       <center>{{recaptcha}}</center>
@@ -59,17 +59,31 @@
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h6 class="modal-title" id="TermosDeUso">Termos de uso</h6>
+                            <h6 class="modal-title" id="TermosDeUso">Termos de uso e política de privacidade</h6>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            when an unknown printer took a galley of type and scrambled it to make a type
-                            specimen book. It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                            <strong>[TERMOS DE USO]</strong><br>
+                            Estes termos de serviço regulam o uso deste site. Ao acessá-lo você concorda com estes termos?
+                            <br><strong>[FUNÇÃO DO SITE]</strong> <br>
+                            Este site foi criado e desenvolvido com a função de trazer conteúdo informativo de boa qualidade. Aqui você encontra receitas de qualidade, passo a passo de cada uma, ingredientes, modo de preparo e vídeos, tudo que você precisa para começar sua receita.
+                            Todo o conteúdo que está no site foi desenvolvido buscando materiais confiáveis.
+                            <br><strong>[DO ACESSO AO SITE]</strong><br>
+                            Funcionará normalmente 24(vinte e quatro horas) por dia.
+                            <br><strong>[LICENÇA E USO DE CÓPIA]</strong><br>
+                            O visitante poderá acessar todo o conteúdo compartilhado no site.
+                            <br><strong>[OBRIGAÇÕES]</strong><br>
+                            Não realizar qualquer tipo de ação que prejudique a estrutura do site.
+                            Não fazer divulgação indevida nos comentários.
+                            Não falar palavrões nos comentários, mantenha o respeito sempre.
+                            Um e-mail só pode ser cadastrado uma vez
+                            <br><strong>[COMENTÁRIOS ]</strong><br>
+                            A área de comentários que permite a exibição de conteúdo de autoria de seu usuário são espaços reservados para que os leitores troquem informações e opiniões, e se preferirem tirar dúvidas também.
+                            <br><strong>[POLÍTICA DE PRIVACIDADE]</strong><br>
+                            No iReceitas, privacidade e segurança são prioridades, nos comprometemos com a transparência do tratamento dos dados coletados dos nossos usuários. Seus dados não serão divulgados e ficarão armazenados com segurança. Seu e-mail e senha são informações que servem exclusivamente para criar um perfil de usuário. Você pode excluir seus dados a qualquer momento que desejar.
+                            <br><strong>[OUTRAS INFORMAÇÕES]</strong><br>
+                            Nossos termos de uso e nossa política de privacidade podem ser atualizadas a qualquer momento.
+
                           </div>
                         </div>
                       </div>
