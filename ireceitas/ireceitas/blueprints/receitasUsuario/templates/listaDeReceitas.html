@@ -15,6 +15,48 @@
 
 {% block conteudo %}
 
+  <form action="/receitasUsuario/buscarTopico" method="POST" class="container">
+     <p class="fs-5">Pesquise por tópico</p>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="CAFÉ DA MANHÃ" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">CAFÉ DA MANHÃ</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="SOPAS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">SOPAS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="COMIDAS VEGANAS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">COMIDAS VEGANAS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="FITNESS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">FITNESS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="FRUTOS DO MAR" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">FRUTOS DO MAR</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="LANCHES" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">LANCHES</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="SOBREMESAS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">SOBREMESAS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="MASSAS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">MASSAS</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" id="inlineCheckbox1" value="OUTROS" name="topico">
+      <label class="form-check-label" for="inlineCheckbox1">OUTROS</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+  </form>
+
 {% with mensagens = get_flashed_messages() %}
 {% if mensagens %}
 <div class="container alert alert-warning text-center mt-5" role="alert">
@@ -37,7 +79,10 @@
         <div class="card-block px-3">
           <h4 class="card-title py-3">{{receita.titulo}}</h4>
           <p class="card-text">{{receita.descricao}}</p>
-          <p class="fs-5"><strong>Autor: </strong>{{receita.user.name}}</p>
+          {% for topico in receita.topico %}
+            <p class="d-inline mb-3 text-warning">#{{topico.nome}}  </p>
+          {% endfor %}
+          <p class="fs-5"><strong>Autor(a): </strong>{{receita.user.name}}</p>
           <a href="/receitasUsuario/receita/{{receita.id}}" class="blog-post mb-3">Saber mais</a>
         </div>
       </div>

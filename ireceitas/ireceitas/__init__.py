@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from sqlalchemy.sql import func
 from ireceitas.ext import configuration
 from .views import root
-from .blueprints.usuario.entidades import Avaliacao
+from .blueprints.usuario.entidades import Avaliacao, Receitas
 
 def formatar_tempo(tempo):
     hora = int(tempo[0:2])
@@ -49,6 +49,7 @@ def primeiro(ingredientes):
     return i
 
 
+
 def create_app():
     app = Flask(__name__)
     configuration.init_app(app)
@@ -61,6 +62,7 @@ def create_app():
     app.jinja_env.filters['nota_usuario'] = nota_usuario
     app.jinja_env.filters['quantidade_avalicoes'] = quantidade_avalicoes
     app.jinja_env.filters['primeiro'] = primeiro
+
 
     @app.errorhandler(404)#Caso usuário acesse uma pagina que não existe
     def not_found(e):
