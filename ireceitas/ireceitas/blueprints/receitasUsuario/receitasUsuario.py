@@ -15,9 +15,6 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# @bp.route('/TesteReceita')
-# def TesteReceita():
-#     return render_template("receita.html")
 
 @bp.route('/cadastrarReceitas/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -316,6 +313,23 @@ def buscarReceita():
         flash("Receita não encontrada")
         return render_template("listaDeReceitas.html", receitas = receita)
     return render_template("listaDeReceitas.html", receitas = receita)
+
+# -----------------BUSCAR RECEITA POR TOPICO------------
+@bp.post("/buscarTopico")
+@login_required
+def buscarTopico():
+    Nometopico = request.form['topico']
+    topico = Topico.query.filter_by(nome=Nometopico).all()
+    receita =[]
+    for t in topico:
+      r = Receitas.query.get(t.receitaID)
+      receita.append(r)
+
+    if len(topico) == 0:
+        flash("Tópico vazio")
+        return render_template("listaDeReceitas.html", receitas = receita)
+    return render_template("listaDeReceitas.html", receitas = receita)
+
 
 # -----------------Avaliação receita---------------
 @bp.post("/avaliarReceita")
