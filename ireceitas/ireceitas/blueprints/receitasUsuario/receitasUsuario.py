@@ -77,7 +77,7 @@ def cadastrarReceitas(id):
 
 
 
-            return redirect(f'/receitasUsuario/minhasReceitas/{id}')
+            return redirect('/usuario/perfil')
         else:
             flash("A extensão deste arquivo não é permitida!")
             return redirect(f'/receitasUsuario/cadastrarReceitas/{id}')
