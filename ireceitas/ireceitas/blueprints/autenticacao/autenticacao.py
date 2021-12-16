@@ -11,7 +11,8 @@ from ireceitas.ext.googleLogin import oauth
 from ..usuario.entidades import User
 from ... import create_app
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, StringField, PasswordField, validators
+from wtforms import BooleanField, StringField, PasswordField, validators, EmailField
+from wtforms.validators import DataRequired
 
 bp = Blueprint('autenticacao', __name__, url_prefix='/autenticacao', template_folder='templates')
 
@@ -25,20 +26,22 @@ def allowed_file(filename):
 
 # --------------------------TESTE FLASKWTF-----------------------------------
 class RegistrationForm(FlaskForm):
-    username = StringField('Nome', validators=[validators.Length(min=4, message='Digite no mínimo 4 caracteres')])
-    email = StringField('E-mail', validators=[validators.Length(min=6)])
-    password = PasswordField('Senha', validators=[validators.DataRequired(), validators.EqualTo('confirm', message='Digite sua senha correta')])
-    confirm = PasswordField('Confirme sua senha')
-    accept_tos = BooleanField('Aceitar direitos', validators=[validators.DataRequired()])
+    username = StringField('Nome', validators=[DataRequired(message="Digite um nome."), validators.Length(min=4,max=15, message='Digite no mínimo 4 caracteres')])
+    email = EmailField('E-mail', validators=[DataRequired(message="Digite uma email."), validators.Length(min=6,max=30)])
+    password = PasswordField('Senha', validators=[DataRequired(message="Digite uma senha."), validators.Length(min=6,max=100), validators.EqualTo('confirm', message='Digite sua senha correta')])
+    confirm = PasswordField('Confirme sua senha', validators=[DataRequired(message="Confirme sua senha.")])
+
 
 class LoginForm(FlaskForm):
-    email = StringField('E-mail', validators=[validators.Length(min=6)])
-    password = PasswordField('Senha')
-    remember = BooleanField('remember me')
+    email = StringField('E-mail', validators=[DataRequired(message="Digite um nome."), validators.Length(min=6)])
+    password = PasswordField('Senha', validators=[DataRequired(message="Digite uma senha.")])
+    remember = BooleanField('Lembre-se de mim')
 
 
 @bp.route('/login_wtf', methods=['GET', 'POST'])
 def login_wtf():
+    if current_user.is_authenticated:
+        return abort(404)
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -60,19 +63,15 @@ def login_wtf():
     return render_template('login_wtf.html', form=form)
 
 
-@bp.route('/register_wtf', methods=['GET'])
-def register_wtf():
-    form = RegistrationForm()
-    return render_template('registerr.html', form=form)
 
-@bp.route('/registerr', methods=['POST'])
+@bp.route('/registerr', methods=['GET', 'POST'])
 def registerr():
     form = RegistrationForm()
     if request.method == 'POST' and form.validate_on_submit():
         jatem = User.query.filter_by(email=form.email.data).first()
         if jatem is not None:
             flash('Já existe uma conta com esse e-mail. Insira outro e-mail')
-            return redirect(url_for('autenticacao.register_wtf'))
+            return redirect(url_for('autenticacao.registerr'))
         else:
             user = User(form.username.data, form.email.data, form.password.data, sobre="", isactive=False)
             token = s.dumps(form.email.data, salt='email-confirm')
@@ -85,9 +84,9 @@ def registerr():
             db.session.commit()
             flash('Foi enviado um e-mail de confirmação de conta!')
             return redirect(url_for('autenticacao.login_wtf'))
-    return "<h1>Deu errado</h1>"
+    return render_template('registerr.html', form=form)
 
-# --------------------------TESTE FLASKWTF-----------------------------------
+# --------------------------FIM FLASKWTF-----------------------------------
 
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
