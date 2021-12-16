@@ -30,7 +30,13 @@ body {
   width:73%;
 }
 
+.link_cat, h4, a {
+    color: black;
+    font-family: "Poppins";
 
+
+
+}
 
 
 

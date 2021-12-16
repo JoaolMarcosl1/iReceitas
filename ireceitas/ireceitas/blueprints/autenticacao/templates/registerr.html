@@ -1,16 +1,20 @@
-
-<html lang="PT-BR">
+<html>
+{% from "_formhelpers.html" import render_field %}
 <head>
-  <meta charset="utf-8">
+
+ <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link href="/static/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/layout.css">
   <script src="/static/js/bootstrap.bundle.min.js"></script>
   <link rel="icon" href="/static/imagens/icons/usuario.ico">
-  <title>Registro</title>
+
+
+<title>Registro</title>
 </head>
 <body>
-  <div class="container-fluid">
+
+<div class="container-fluid">
     <div class="row no-gutter">
       <div class="d-none d-md-flex col-md-4 col-lg-6 fundo-registro"></div>
       <div class="col-md-8 col-lg-6">
@@ -26,38 +30,31 @@
                 <center>
                   <h1 class="registro-heading mb-4"> Registre-se! </h1>
                 </center>
-                <form action="{{url_for('autenticacao.register')}}" class="container" method="post"  enctype="multipart/form-data">
+                <form action="/autenticacao/registerr" class="container" method="POST"  enctype="multipart/form-data">
+                  {{ form.csrf_token }}
                   <div class="row justify-content-center">
                     <div class="row">
-                      <input type="text" class="form-control registro-nome p-2" name="name" placeholder="Nome" required>
+                     {{ render_field(form.username, class="form-control", placeholder="Nome") }}
                     </div>
                     <div class="row">
-                      <input type="email" class="form-control registro-nome p-2" name="email" placeholder="E-mail" required>
+                       {{ render_field(form.email, class="form-control", placeholder="E-mail") }}
                     </div>
                     <div class="row">
-                      <input type="password" class="form-control registro-nome p-2" name="password" placeholder="Senha" required>
+                      {{ render_field(form.password, class="form-control", placeholder="Senha") }}
                     </div>
-                    <p class="small mt-2 mb-0 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login')}}" class="link-warning"> Faça login </strong></a></p>
-                  </div>
-                   <br/>
-                   <div class="row  justify-content-center">
-                       <div class="col-7">
-                           <h5 class="registro-nome text-center"> Foto de perfil (opcional) </h5>
-                           <input class="form-control registro-nome" type="file" id="" name="foto_perfil" accept="image/*">
-                       </div>
+                     <div class="row">
+                      {{ render_field(form.confirm, class="form-control", placeholder="Confirme sua senha") }}
                     </div>
+                    <p class="small mt-2 mb-0 ml-9 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login')}}" class="link-warning"> Faça login </strong></a></p>
                   </div>
-                  <br>
-                  <div class="row p-3">
+                  <div class="recap">
                       <center>{{recaptcha}}</center>
                   </div>
-                  <br>
                   <div class="p-2">
                     <center><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                     <label class="form-check-label text-center registro-nome" for="flexCheckDefault">
-                      <h5>Eu li e concordo com os <a href="#" data-bs-toggle="modal" data-bs-target="#Termos" class="link-warning">termos de uso</a>.</h5>
+                      <h5 class="termos">Aceito os <a href="#" data-bs-toggle="modal" data-bs-target="#Termos" class="link-warning">termos de uso</a>.</h5>
                     </label> </center>
-                    <!-- Modal -->
                     <div class="modal fade" id="Termos" tabindex="-1" aria-labelledby="TermosDeUso" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -81,7 +78,6 @@
                   <br>
                   <div class="row-col-xs-12">
                     <center>
-                      <div class="botao">
                         <input type="submit" class="btn btn-warning botao text-light" value="Cadastrar">
                     </center>
                   </div>
@@ -93,4 +89,29 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
+</html>

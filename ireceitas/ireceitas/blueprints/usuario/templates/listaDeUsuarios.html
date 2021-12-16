@@ -13,6 +13,16 @@
 
 {% block conteudo %}
 
+{% with mensagens = get_flashed_messages() %}
+{% if mensagens %}
+<div class="container alert alert-warning text-center mt-5" role="alert">
+  {% for mensagem in mensagens %}
+  <h2>{{mensagem}}</h2>
+  {% endfor %}
+</div>
+{% endif %}
+{% endwith %}
+
 <div class="row g-3">
      {% for usuario in usuarios %}
     <div class="col-12 col-sm-6 col-xl-4">

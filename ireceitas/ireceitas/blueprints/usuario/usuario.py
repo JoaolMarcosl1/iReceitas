@@ -96,10 +96,14 @@ def buscar_usuario():
     nomes_usuarios = [usuario.name for usuario in usuarios]
     id_usuarios = [usuario.id for usuario in usuarios]
     fotos_usuarios = [usuario.profile_img for usuario in usuarios]
+
     if request.method == 'POST':
         nome = request.form["nome"]
         search = "%{}%".format(nome)
         user = User.query.filter(User.name.like(search)).all()
+        if len(user) == 0:
+            flash("Usuário não encontrado")
+            return render_template("listaDeUsuarios.html", usuarios = user)
 
         return render_template("listaDeUsuarios.html", usuarios = user)
     return render_template("buscar_usuario.html", nomes_usuarios = nomes_usuarios, id_usuarios = id_usuarios, fotos_usuarios = fotos_usuarios)

@@ -1,5 +1,9 @@
 
+
 <html lang="PT-BR">
+
+{% from "_formhelpers.html" import render_field %}
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -31,12 +35,14 @@
                   <h1 class="login-heading mb-4"> Login </h1>
                 </center>
                 <form action="{{url_for('autenticacao.login')}}" class="container" method="post">
+                  {{ form.hidden_tag() }}
                   <div class="row justify-content-center">
                     <div class="row">
-                      <input type="email" class="form-control login-nome p-2" name="email" placeholder="E-mail" required>
+                      {{ render_field(form.email, class="form-control", placeholder="E-mail") }}
                     </div>
                     <div class="row">
-                      <input type="password" class="form-control login-nome p-2" name="password" placeholder="Senha" required>
+                      {{ render_field(form.password, class="form-control", placeholder="Senha") }}
+                     <p class="small fw-bold mt-1 pt-90 mb-0 login-nome text-center p-2">{{ render_field(form.remember) }} Lembre-se de mim </p>
                     <p class="small fw-bold mt-1 pt-90 mb-0 login-nome text-center p-2"> Esqueceu sua senha? <a href="/autenticacao/redefinir" class="link-warning"> Clique aqui </a></p>
                     </div>
                   </div>
@@ -67,3 +73,28 @@
 </html>
 
 {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

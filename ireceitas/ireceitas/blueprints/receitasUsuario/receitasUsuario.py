@@ -15,6 +15,10 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# @bp.route('/TesteReceita')
+# def TesteReceita():
+#     return render_template("receita.html")
+
 @bp.route('/cadastrarReceitas/<int:id>', methods=['GET', 'POST'])
 @login_required
 def cadastrarReceitas(id):
@@ -88,12 +92,17 @@ def minhasReceitas(id):
     usuario = User.query.get(id)
     return render_template('receitasUsuario.html', usuario=usuario)
 
-
 @bp.get('/receita/<int:id>')
 @login_required
 def receitaPublica(id):
     receita = Receitas.query.get(id)
-    return render_template("receitaPublica.html", receita = receita)
+    return render_template("receita.html", receita = receita)
+
+# @bp.get('/receita/<int:id>')
+# @login_required
+# def receitaPublica(id):
+#     receita = Receitas.query.get(id)
+#     return render_template("receitaPublica.html", receita = receita)
 
 @bp.get('/imagemReceitas/<nome>')
 @login_required
@@ -286,6 +295,9 @@ def buscarReceita():
     titulo = request.form["titulo"]
     search = "%{}%".format(titulo)
     receita = Receitas.query.filter(Receitas.titulo.like(search)).all()
+    if len(receita) == 0:
+        flash("Receita não encontrada")
+        return render_template("listaDeReceitas.html", receitas = receita)
     return render_template("listaDeReceitas.html", receitas = receita)
 
 # -----------------Avaliação receita---------------

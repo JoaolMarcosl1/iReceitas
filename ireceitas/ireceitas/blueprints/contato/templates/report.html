@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/editar_perfil.css"> {% endblock %}
+
+{% block icon %}
+<link rel="icon" href="/static/imagens/icons/contato.ico"> {% endblock %}
+
+{% block titulo %} Contato{% endblock %}
+
+{% block conteudo %}
+<body>
+<div class="container rounded bg-white mt-5 geral">
+  <div class="row">
+    <div class="col-md-4 border-right">
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="icone" src="https://imagensemoldes.com.br/wp-content/uploads/2020/06/Ilustra%C3%A7%C3%A3o-Megafone-PNG.png" width="190" height="190" alt"x"> </div>
+    </div>
+    <div class="col-md-8">
+      <div class="p-3 py-5">
+        <div class="d-flex justify-content-between align-items-center mb-3 titulo">
+          <h2 id="titulo"> Report usuário </h2>
+          <div class="d-flex flex-row align-items-center back">
+          </div>
+        </div>
+        <form action="" method="POST">
+
+            {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+            <div class="alert alert-warning text-center" role="alert">
+              {% for mensagem in mensagens %}
+              <h2>{{mensagem}}</h2>
+              {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+          <div class="row mt-2">
+            <!--<div class="col-md-66"> <input type="text" name="nome" placeholder="Nome do usuario" class="form-control" required id="" > </div>-->
+            <div class="col-md-6"> <input type="number" name="id_" placeholder="ID do usuário" class="form-control" required id="">
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6"> <textarea id="caixaTextoContato" name="motivo" maxlength="400" class="form-control" placeholder="Motivo do report" required></textarea>  </div>
+          </div>
+          <div class="mt-5 text-right"><button class="btn btn-warning botao text-light" type="submit"> Enviar </button> </div>
+        </form>
+        <div class="mt-2 text-right"><a class="btn btn-warning botao text-light" type="button" href="/"> Voltar </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+{% endblock %}
