@@ -42,7 +42,10 @@
             <div class="form-group mb-3 col-12">
                 <p><strong>Categoria</strong></p>
                 <div class="form-check form-check-inline">
-
+                  <input class="form-check-input" type="radio" id="inlineCheckbox1" value="ACOMPANHAMENTOS" name="topico">
+                  <label class="form-check-label" for="inlineCheckbox1">ACOMPANHAMENTOS</label>
+                </div>
+                <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" id="inlineCheckbox1" value="CAFÉ DA MANHÃ" name="topico" {% for topico in receita.topico %}{% if topico.nome == 'CAFÉ DA MANHÃ' %}  checked {% endif %}{% endfor %} />
                   <label class="form-check-label" for="inlineCheckbox1">CAFÉ DA MANHÃ</label>
                 </div>

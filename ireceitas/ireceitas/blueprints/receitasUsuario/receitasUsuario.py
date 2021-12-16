@@ -315,10 +315,10 @@ def buscarReceita():
     return render_template("listaDeReceitas.html", receitas = receita)
 
 # -----------------BUSCAR RECEITA POR TOPICO------------
-@bp.post("/buscarTopico")
+@bp.get("/buscarTopico/<Nometopico>")
 @login_required
-def buscarTopico():
-    Nometopico = request.form['topico']
+def buscarTopico(Nometopico):
+    # Nometopico = request.form['topico']
     topico = Topico.query.filter_by(nome=Nometopico).all()
     receita =[]
     for t in topico:
