@@ -18,11 +18,19 @@
         <h2>Página inexistente</h2>
       </div>
       <a href="/">Página inicial</a>
+       <a href="#jogo">Surpresa</a>
     </div>
   </div>
-<center>
-  <div class="altura">
-  <div class="game">
+
+
+
+
+
+
+<center class="linha"> Use as setas do teclado para jogar ou volte para <div class="notfound"> <a href="/">Página inicial</a> </div> </center>
+ <center>
+ <div class="altura">
+  <div class="game" id="jogo">
     <div class="game-area">
       <canvas style="background-color:white;" id="area" width="400" height="400"></canvas>
       </div>
@@ -48,29 +56,14 @@ body{
 .game {
   position: center;
   display:center;
-  margin-bottom: 900px;
+  margin-bottom: 500px;
 
 }
-
 
 .game-area{
-    position: center;
-    margin-bottom: 1022px;
-  display:center;
+  margin-bottom: 500px;
   flex-direction: column;
 
-}
-
-.level{
-    margin-bottom: 1022px;
-  list-style:none;
-  margin:0;
-  padding:20px;
-}
-
-.level li{
-    margin-bottom: 1022px;
-  margin-bottom:10px;
 }
 
 
@@ -79,7 +72,6 @@ a{
 }
 
 canvas{
-
   border:3px solid orange;
   border-radius:10px 10px 0 0;
 }
