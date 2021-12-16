@@ -20,7 +20,7 @@ def report():
             user = User.query.get(id_)
 
             if user is None:
-                flash("Id não existe")
+                flash("ID não encontrado!")
                 return redirect("/contato/report")
 
             else:
@@ -38,27 +38,29 @@ def report():
 
 @bp.route('/contato', methods=['GET', 'POST'])
 def contato():
-    if request.method == 'POST':
-        tittle = request.form.get('tittle')
-        message = request.form.get('message')
+    if current_user.is_authenticated:
+        if request.method == 'POST':
+            tittle = request.form.get('tittle')
+            message = request.form.get('message')
 
 
-        #message = message+f"\nReperquilson se garante mais que o {current_user.name}"
+            #message = message+f"\nReperquilson se garante mais que o {current_user.name}"
 
-        msg = Message(subject=f"Suporte para {current_user.name} | {tittle}",
-                      sender="joaobastos716@gmail.com", recipients=["receitasprojetoint@gmail.com"])
+            msg = Message(subject=f"Suporte para {current_user.name} | {tittle}",
+                          sender="joaobastos716@gmail.com", recipients=["receitasprojetoint@gmail.com"])
 
-        msg.body = f"{message}"
-        msg.html = render_template('suporte_email.html', message=message)
-        mail.send(msg)
-        flash("Sua mensagem foi enviada com sucesso!")
+            msg.body = f"{message}"
+            msg.html = render_template('suporte_email.html', message=message)
+            mail.send(msg)
+            flash("Sua mensagem foi enviada com sucesso!")
 
 
-        #msg = Message("Olá, Estou precisando da ajuda de vocês.", sender="joaobastos716@gmail.com", recipients=["receitasprojetoint@gmail.com"])
-        #msg.body = "Enviando uma duvida, testando"
-        #mail.send(msg)
-        return redirect(url_for('root'))
-
+            #msg = Message("Olá, Estou precisando da ajuda de vocês.", sender="joaobastos716@gmail.com", recipients=["receitasprojetoint@gmail.com"])
+            #msg.body = "Enviando uma duvida, testando"
+            #mail.send(msg)
+            return redirect(url_for('root'))
+    else:
+        return abort(404)
 
     return render_template("contato.html")
 

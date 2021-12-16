@@ -96,6 +96,7 @@ def buscar_usuario():
     nomes_usuarios = [usuario.name for usuario in usuarios]
     id_usuarios = [usuario.id for usuario in usuarios]
     fotos_usuarios = [usuario.profile_img for usuario in usuarios]
+
     if request.method == 'POST':
         nome = request.form["nome"]
         search = "%{}%".format(nome)
