@@ -87,7 +87,7 @@ def edit(id):
 def perfil_publico(id):
     user = User.query.get(id)
 
-    return render_template("perfil_publico.html", usuario = user)
+    return render_template("perfil_publico.html", usuario=user)
 
 @bp.route('/buscar_usuario', methods=['GET', 'POST'])
 @login_required
