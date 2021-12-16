@@ -1,31 +1,100 @@
-<html>
+
+
+<html lang="PT-BR">
+
 {% from "_formhelpers.html" import render_field %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/layout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="/static/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" href="/static/imagens/icons/usuario.ico">
+  <title> Login </title>
+</head>
+ {% if current_user.is_authenticated %}
+<meta http-equiv="refresh" URL='/paginaNaoEncontrada' />
+ {% else %}
 <body>
-<div class="container">
-<h1>Login FlaskWTF</h1>
-
-    <center>
-    <div id="linha-horizontal"></div>
-    </center>
-
-    {% for mess in get_flashed_messages() %}
-
-     <center>
-
-     {{mess}}
-    </center>
-
-    {%endfor%}
-
-    <form class="form-signin" method="POST" action="/autenticacao/login_wtf">
-    <h2 class="form-signin-heading">Entrar:</h2>
-    {{ form.hidden_tag() }}
-    {{ render_field(form.email) }}
-    {{ render_field(form.password) }}
-    {{ render_field(form.remember) }}
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    </form>
-
-    </div> <!-- /container -->
-    </body>
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <div class="d-none d-md-flex col-md-4 col-lg-6 fundo-login"></div>
+      <div class="col-md-8 col-lg-6">
+        <div class="registro d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-9 col-lg-8 mx-auto">
+                {% for mess in get_flashed_messages() %}
+                <div class="alert alert-warning" role="alert">
+ <strong> {{mess}} </strong>
+</div>
+ {%endfor%}
+                <center>
+                  <h1 class="login-heading mb-4"> Login </h1>
+                </center>
+                <form action="{{url_for('autenticacao.login')}}" class="container" method="post">
+                  {{ form.hidden_tag() }}
+                  <div class="row justify-content-center">
+                    <div class="row">
+                      {{ render_field(form.email, class="form-control", placeholder="E-mail") }}
+                    </div>
+                    <div class="row">
+                      {{ render_field(form.password, class="form-control", placeholder="Senha") }}
+                     <p class="small fw-bold mt-1 pt-90 mb-0 login-nome text-center p-2">{{ render_field(form.remember) }} Lembre-se de mim </p>
+                    <p class="small fw-bold mt-1 pt-90 mb-0 login-nome text-center p-2"> Esqueceu sua senha? <a href="/autenticacao/redefinir" class="link-warning"> Clique aqui </a></p>
+                    </div>
+                  </div>
+              </div>
+              <br> </br>
+              <div class="row-col-xs-12">
+                <center>
+                  <input type="submit" class="btn btn-warning botao text-light" value="Logar">
+                </center>
+              </form>
+              <center>
+               <hr class="my-3">
+              <div class="d-grid mb-2">
+              <p class="small fw-bold mt-2 pt-1 mb-0 login-nome text-center p-2"> Não tem uma conta? <a href="{{url_for('autenticacao.register')}}" class="link-warning"> Registre-se ou,  </a></p>
+ <button class="btn btn-google btn-login text-uppercase fw-bold"> <a href="/autenticacao/loginn">
+                  <i class="fab fa-google me-2"></i> Entre com o google </a>
+                </button>
+            </center>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</body>
 </html>
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

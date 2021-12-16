@@ -9,6 +9,7 @@
   <script src="/static/js/bootstrap.bundle.min.js"></script>
   <link rel="icon" href="/static/imagens/icons/usuario.ico">
 
+
 <title>Registro</title>
 </head>
 <body>
@@ -33,37 +34,26 @@
                   {{ form.csrf_token }}
                   <div class="row justify-content-center">
                     <div class="row">
-                     {{ render_field(form.username) }}
+                     {{ render_field(form.username, class="form-control", placeholder="Nome") }}
                     </div>
                     <div class="row">
-                       {{ render_field(form.email) }}
+                       {{ render_field(form.email, class="form-control", placeholder="E-mail") }}
                     </div>
                     <div class="row">
-                      {{ render_field(form.password) }}
+                      {{ render_field(form.password, class="form-control", placeholder="Senha") }}
                     </div>
                      <div class="row">
-                      {{ render_field(form.confirm) }}
-                    </div
-                    {{ render_field(form.accept_tos) }}
-                    <p class="small mt-2 mb-0 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login')}}" class="link-warning"> Faça login </strong></a></p>
-                  </div>
-                   <br/>
-                   <div class="row  justify-content-center">
-                       <div class="col-7">
-                           <h5 class="registro-nome text-center"> Foto de perfil (opcional) </h5>
-                           <input class="form-control registro-nome" type="file" id="" name="foto_perfil" accept="image/*">
-                       </div>
+                      {{ render_field(form.confirm, class="form-control", placeholder="Confirme sua senha") }}
                     </div>
+                    <p class="small mt-2 mb-0 ml-9 registro-nome"><strong>Já tem uma conta? <a href="{{url_for('autenticacao.login')}}" class="link-warning"> Faça login </strong></a></p>
                   </div>
-                  <br>
-                  <div class="row p-3">
+                  <div class="recap">
                       <center>{{recaptcha}}</center>
                   </div>
-                  <br>
                   <div class="p-2">
                     <center><input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                     <label class="form-check-label text-center registro-nome" for="flexCheckDefault">
-                      <h5>Eu li e concordo com os <a href="#" data-bs-toggle="modal" data-bs-target="#Termos" class="link-warning">termos de uso</a>.</h5>
+                      <h5 class="termos">Aceito os <a href="#" data-bs-toggle="modal" data-bs-target="#Termos" class="link-warning">termos de uso</a>.</h5>
                     </label> </center>
                     <div class="modal fade" id="Termos" tabindex="-1" aria-labelledby="TermosDeUso" aria-hidden="true">
                       <div class="modal-dialog">
@@ -88,8 +78,7 @@
                   <br>
                   <div class="row-col-xs-12">
                     <center>
-                      <div class="botao">
-                        <input type="submit" class="btn btn-warning botao text-light" value="Register">
+                        <input type="submit" class="btn btn-warning botao text-light" value="Cadastrar">
                     </center>
                   </div>
                 </form>

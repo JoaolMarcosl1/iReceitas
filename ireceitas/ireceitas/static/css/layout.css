@@ -47,7 +47,6 @@ a:link{
   font-family: "Poppins"
 }
 
-
 .login-google{
   font-family: "Poppins"
   color: black;
@@ -74,10 +73,17 @@ a:link{
     width: 140px;
 
 }
-
-
 .container
 .form-control:focus {
     box-shadow: none;
     border-color: #ffa430;
+}
+
+.termos {
+   font-weight: 400;
+   font-family: "Poppins"
+}
+
+.recap {
+    margin-top: 30;
 }
