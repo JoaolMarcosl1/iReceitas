@@ -80,7 +80,7 @@ class Ingrediente(db.Model):
 class Etapa(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     receitaID = db.Column(db.Integer, db.ForeignKey('receitas.id'), nullable=False)
-    descricao = db.Column(db.String(200), nullable=False)
+    descricao = db.Column(db.Text(), nullable=False)
 
 class Topico(db.Model):
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)

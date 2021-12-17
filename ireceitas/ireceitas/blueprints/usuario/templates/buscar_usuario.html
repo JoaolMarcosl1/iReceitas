@@ -20,9 +20,9 @@
 </div>
 {% endif %}
 {% endwith %}
-
+<body>
 <div id="area-de-busca">
-  <div class="container">
+  <div class="container geral">
     <div class="row">
       <div class="col">
         <form action="/usuario/buscar_usuario" method="post" class="row">
@@ -39,7 +39,7 @@
     </div>
   </div>
 </div>
-
+</body>
 <script>
   var busca = null;
   var array = JSON.parse('{{nomes_usuarios|tojson}}');
@@ -70,7 +70,7 @@
           $('#saidaTxt').text('');
           $('#quantidade').html(quantidade + ' resultados!<br><br>');
           for (var ind in saida) {
-            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block mb-2" alt="..." style=" width:160px; height:90px;">')
+            $('#saidaTxt').append('<img src="/usuario/imagem/' + fotos[i] + '" class="rounded mx-auto d-block mb-2" alt="..." style=" width:256px; height:256px;">')
             $('#saidaTxt').append('<center><li>' + '<a href="/usuario/perfil_publico/' + ids[i] + '"style="color: #D57700">' + saida[ind] + '</a>' + '</li></center>' + '<br>');
             i += 1;
           }
