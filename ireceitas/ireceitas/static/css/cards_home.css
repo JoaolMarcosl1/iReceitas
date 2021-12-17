@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
 *,
@@ -40,6 +41,7 @@ img {
   border: 1px solid rgba(255, 240, 230);
   background: transparent;
   text-decoration: none;
+  font-family: 'Merriweather', serif;
 }
 
 .botao:hover {
@@ -89,8 +91,8 @@ img {
 
 .texto {
   color: #ffffff;
-  font-family: 'Quicksand', serif;
-  font-size: 1.4rem;
+  font-family: 'Merriweather', serif;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: capitalize;
@@ -100,7 +102,7 @@ img {
 .card_text {
   color: #ffffff;
   font-family: 'Quicksand', serif;
-  font-size: 0.975rem;
+  font-size: 0.985rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
   font-weight: 400;
