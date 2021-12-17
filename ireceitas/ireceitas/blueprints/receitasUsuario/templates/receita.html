@@ -190,10 +190,10 @@
     <div class="mx-3" >
       <div class="row  mb-3 ">
         {% for comentario in receita.comentario | reverse %}
-        <div class="col-4 col-sm-2  my-1 border-top border-start border-bottom border-dark  rounded-start" style="background-color: #f9f9f9;">
-          <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail" style="width:200px" alt="...">
+        <div class="col-4 col-sm-2  my-1 border-top border-start border-bottom border-gray  rounded-start" style="background-color: #f9f9f9;">
+          <img src="/usuario/imagem/{{comentario.user.profile_img}}" class="img-thumbnail" style="width:128px; height:128px;" alt="...">
         </div>
-        <div class="col-8 col-sm-10  my-1 border-top border-end border-bottom border-dark  rounded-end" style="background-color: #f9f9f9;">
+        <div class="col-8 col-sm-10  my-1 border-top border-end border-bottom border-gray  rounded-end" style="background-color: #f9f9f9;">
           <p class="fs-4"><strong><a href="/usuario/perfil_publico/{{comentario.userID}}" style="color: D57700">{{comentario.user.name}}</a></strong></p>
           <p>{{comentario.comentario}}</p>
           <p>{{comentario.data_hora}}</p>
