@@ -55,10 +55,10 @@ def confirm_email_admin(token):
 
     except SignatureExpired:
         flash('Token não existe mais!')
-        return redirect(url_for('autenticacao.login'))
+        return redirect(url_for('root'))
 
     flash('Conta admin ativada com sucesso!')
-    return redirect(url_for('autenticacao.login'))
+    return redirect(url_for('root'))
 
 #Controlador para entrar no /admin
 class controller(ModelView):
