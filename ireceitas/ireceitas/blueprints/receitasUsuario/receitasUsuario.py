@@ -187,8 +187,8 @@ def edit_receita(id):
             etapa = Etapa.query.get(idEtapa)
             etapa.descricao = request.form[etapaAtual]
             db.session.commit()
-            flash("Edição feita com sucesso")
-            return redirect(f'/receitasUsuario/receita/{id}')
+            # flash("Edição feita com sucesso")
+            # return redirect(f'/receitasUsuario/receita/{id}')
 
         # #------------- Para adicionar etapas em uma receita -----------------
         for etapa in  [x for x in request.form if 'ETAPA' in x]:
