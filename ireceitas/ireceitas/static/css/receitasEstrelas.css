@@ -68,3 +68,9 @@ label.star:before {
   margin-bottom: 80px;
   margin-top: 120px;
 }
+
+.botao{
+    background: #ff7f00;
+    box-shadow: none;
+    border: none;
+

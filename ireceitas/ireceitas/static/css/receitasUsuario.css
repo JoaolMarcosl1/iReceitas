@@ -49,6 +49,8 @@ center{
 
 .img-cover{
   position: relative;
+  top: 50%;
+
 }
 
 .card_receitas img{
