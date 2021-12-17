@@ -27,7 +27,7 @@ s = URLSafeTimedSerializer('123456')
  #--------------------------TESTE FLASKWTF-----------------------------------
 class RegistrationForm(FlaskForm):
     username = StringField('Nome', validators=[DataRequired(message="Digite um nome."), validators.Length(min=4,max=15, message='Digite no mínimo 4 caracteres')])
-    email = EmailField('E-mail', validators=[DataRequired(message="Digite uma email."), validators.Length(min=6,max=30)])
+    email = EmailField('E-mail', validators=[DataRequired(message="Digite uma email."), validators.Length(min=6,max=60)])
     password = PasswordField('Senha', validators=[DataRequired(message="Digite uma senha."), validators.Length(min=6,max=100), validators.EqualTo('confirm', message='Digite sua senha correta')])
     confirm = PasswordField('Confirme sua senha', validators=[DataRequired(message="Confirme sua senha.")])
 
