@@ -35,21 +35,28 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
+          <ul class="navbar-nav ms-auto justify-content-between">
 
 
-            <form action="/receitasUsuario/buscarReceita" method="POST" class="form-row row">
-              <li class="nav-item">
-                <div class="search-box">
+ <form class="form-row row" action="/receitasUsuario/buscarReceita" method="POST">
+    <div class="input-group">
+  <div class="form-outline">
+    <input type="text" name="titulo" placeholder="Pesquise uma receita" class="form-control" />
+  </div>
+  <button class="btn btn-warning text-light botaop" type="submit">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+</form>
+    </li>
 
-                  <input class="search-txt" type="text" name="titulo" placeholder="Procure uma receita" required>
-                  <button>
-                    <input type="submit" class="search-btn fas fa-search" id="lupa" value="">
-                  </button>
 
-                </div>
-              </li>
-            </form>
+
+
+
+
+
+
 {% if current_user.is_authenticated %}
 
              <li class="nav-item">
