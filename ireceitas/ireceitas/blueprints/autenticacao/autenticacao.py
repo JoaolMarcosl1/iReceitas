@@ -73,7 +73,7 @@ def registerr():
             flash('Já existe uma conta com esse e-mail. Insira outro e-mail')
             return redirect(url_for('autenticacao.registerr'))
         else:
-            user = User(form.username.data, form.email.data, form.password.data, sobre="", isactive=False)
+            user = User(f"[Membro] - {form.username.data}", form.email.data, form.password.data, sobre="", isactive=False)
             token = s.dumps(form.email.data, salt='email-confirm')
             msg = Message('Confirmação de e-mail, iReceitas', sender="receitasprojetoint@gmail.com", recipients=[form.email.data])
             link = url_for('autenticacao.confirm_email', token=token, _external=True)
@@ -313,11 +313,11 @@ def contagoogle():
             pwd = request.form['password']
             sobre = ""
 
-            user = User(name, email, pwd, sobre, isactive=True)
+            user = User(f"[Membro] - {name}", email, pwd, sobre, isactive=True)
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            flash(f"Olá {name}, sua conta do google foi criada com sucesso!")
+            flash(f"Olá [Membro] - {name}, sua conta do google foi criada com sucesso!")
             return redirect(url_for('root'))
 
     return render_template("criar_conta_google.html", email=email)
